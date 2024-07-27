@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { useSelector } from "react-redux";
 import ContentCenter from "../../utilityComponent/ContentCenter";
+import noposter from "../../assets/no-poster.png"
 import { TbBasketX } from "react-icons/tb";
 
 const SearchPage = () => {
@@ -44,9 +45,9 @@ const SearchPage = () => {
             return (
               <div key={item.id} >
                 <img
-                  src={url + item.poster_path}
+                  src={item.poster_path ? url + item.poster_path : noposter}
                   className="hover:opacity-60 duration-300 rounded-tl-xl rounded-tr-xl object-cover"
-                  alt=""/>
+                  alt="Image Unavailable"/>
                 
                 <div>
                     {item.title || item.name}
