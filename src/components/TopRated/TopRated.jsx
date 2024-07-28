@@ -29,7 +29,7 @@ const TopRated = () => {
                 </div>
 
                 <div>
-                    <Carousel data={data?.results} loading={loading}/>
+                    <Carousel data={data?.results} loading={loading} endpoint={endpoint}/>
                 </div>
             </ContentCenter>
         </div>

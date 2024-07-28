@@ -23,7 +23,7 @@ const Popular = () => {
                     <SwitchTabs data={["Movie", "TV Show"]} onTabChange={onTabChange}/>
                 </div>
                 <div>
-                    <Carousel data={data?.results} loading={loading}/>
+                    <Carousel data={data?.results} loading={loading} endpoint={endpoint}/>
                 </div>
             </ContentCenter>
         </div>

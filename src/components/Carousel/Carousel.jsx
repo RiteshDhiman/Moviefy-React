@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ContentCenter from '../../utilityComponent/ContentCenter'
 import { useSelector } from 'react-redux'
 import CircularRating from '../../utilityComponent/CircularRating'
@@ -8,14 +8,13 @@ import { useNavigate } from 'react-router-dom'
 import LazyLoadImages from '../../utilityComponent/LazyLoadImages'
 import { HiArrowSmLeft } from "react-icons/hi";
 
-const Carousel = ({data, loading}) => {
+const Carousel = ({data, loading, endpoint}) => {
 
   const navigate = useNavigate();
 
   const [hover, setHover] = useState(null);
   const [absoluteHover, setAbsolueteHover] = useState(null)
   const itemImg = useSelector((state)=>state.home)
-
 
   return (
     <div className='relative text-white'>
@@ -32,7 +31,9 @@ const Carousel = ({data, loading}) => {
                   onMouseLeave={()=>{
                     setHover(null);
                   }}
-                  onClick={()=>navigate(`/${item?.media_type}/${item?.id}`)}
+                  onClick={()=>{
+                    item.media_type ? navigate(`/${item.media_type}/${item.id}`) : navigate(`/${endpoint}/${item.id}`)
+                  }}
                   >
                   <div>
                     <LazyLoadImages src={itemImg.url + item.poster_path} className={`${absoluteHover === item.id ? 'opacity-40' : '  '} hover:opacity-40 duration-300 rounded-xl`}/>

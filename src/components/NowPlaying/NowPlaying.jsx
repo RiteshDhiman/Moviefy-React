@@ -16,7 +16,7 @@ const NowPlaying = () => {
                     </div>
                 </div>
                 <div>
-                    <Carousel data={data?.results} loading={loading}/>
+                    <Carousel data={data?.results} loading={loading} endpoint={'movie'}/>
                 </div>
             </ContentCenter>
         </div>
