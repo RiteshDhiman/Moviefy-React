@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
@@ -24,6 +24,9 @@ const Details = () => {
     return count;
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
 
   return (
@@ -42,7 +45,7 @@ const Details = () => {
             {
               data?.number_of_seasons ? 
               <div className='font-poppins'>
-                {data?.seasons/length} Seasons • {epCount()} Episodes
+                {data?.seasons.length} Seasons • {epCount()} Episodes
               </div>
               :
               <div className='font-poppins'>
