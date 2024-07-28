@@ -24,9 +24,9 @@ const Details = () => {
     return count;
   }
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
 
   return (
@@ -39,9 +39,9 @@ const Details = () => {
         </div>
 
         <ContentCenter>
-          <div className='absolute w-1/2 h-1/3 z-20 bottom-1/4 flex flex-col gap-4 text-white'>
+          <div className='absolute w-full md:w-1/2 h-1/3 z-20 bottom-1/4 flex flex-col gap-4 text-white'>
 
-            <div className='font-oswald text-5xl font-bold uppercase'>{data?.title || data?.name}</div>
+            <div className='font-oswald text-3xl md:text-5xl font-bold uppercase'>{data?.title || data?.name}</div>
             {
               data?.number_of_seasons ? 
               <div className='font-poppins'>
@@ -55,7 +55,7 @@ const Details = () => {
             <div className='flex gap-3'>
               {data?.genres.map((genre)=>{
                 return(
-                  <div className='border-white rounded-lg border-[1px] px-2 py-1 bg-[#464847] bg-opacity-50'>
+                  <div className='hover:scale-95 duration-200 flex justify-center items-center border-white rounded-lg border-[1px] md:px-2 md:py-1 bg-[#464847] bg-opacity-50'>
                     {genre.name}
                   </div>
                 )
@@ -63,31 +63,31 @@ const Details = () => {
             </div>
           </div>
 
-          <div className='w-3/5 h-1/4 absolute z-30 -bottom-12 flex gap-4'>
+          <div className='w-full md:w-3/5 h-1/4 absolute z-30 -bottom-12 flex gap-4'>
 
-            <div className='w-1/4 h-full bg-[#c4e200e4] rounded-3xl flex items-center font-poppins justify-start font-bold text-[#ababab]'>
-              <div className='transform -rotate-90 text-xl text-black'>TRAILER</div>
-              <img src={play}/>
+            <div className='hover:scale-95 duration-200 relative w-1/4 h-full bg-[#c4e200e4] rounded-3xl flex items-center font-poppins justify-center font-bold text-[#ababab]'>
+              <div className='absolute -left-5 transform -rotate-90 text-xl text-black'>TRAILER</div>
+              <img src={play} className='hover:scale-125 duration-300'/>
             </div>
 
-            <div className='w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl'>
+            <div className='hover:scale-95 duration-200 w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl'>
               
             </div>
 
-            <div className='w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl flex items-center font-poppins justify-center font-bold text-[#ababab]'>
-              <div className='transform -rotate-90 text-sm'>
-                TRAILER
+            <div className='hover:scale-95 duration-200 relative w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl flex items-center font-poppins justify-center font-bold text-[#ababab]'>
+              <div className='absolute -left-6 transform -rotate-90 text-lg'>
+                AIR DATE
               </div>
 
-              <div className='font-oswald text-white text-2xl w-3/4'>
-                {data?.first_air_date || data?.release_date ? dayjs(data?.first_air_date || data?.release_date).format('MMMM D, YYYY') : 'N/A'}
+              <div className='font-oswald text-white text-[26px]'>
+                {data?.first_air_date || data?.release_date ? dayjs(data?.first_air_date || data?.release_date).format('MMM D, YYYY') : 'N/A'}
               </div>
             </div>
 
-            <div className='w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl'>H</div>
+            <div className='hover:scale-95 duration-200 w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl'>H</div>
           </div>
           
-          <div className='text-white absolute z-30 -bottom-14 right-0 w-1/6 mr-36 rounded-xl'>
+          <div className='hidden md:block text-white absolute z-30 -bottom-14 right-0 w-1/6 mr-36 rounded-xl'>
             <img src={posterImg.url + data?.poster_path} className="rounded-xl" />
           </div>
 
