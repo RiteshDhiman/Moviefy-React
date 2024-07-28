@@ -18,7 +18,7 @@ const Trending = () => {
         <div>
             <ContentCenter>
                 <div className="flex justify-between items-center my-10">
-                    <div className="text-xl md:text-3xl font-poppins font-medium text-white">
+                    <div className="text-xl md:text-3xl font-fina font-medium text-white">
                         {endpoint === 'day' ? 'Trending - Today' : 'Trending - Weekly'}
                     </div>
                     <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange}/>

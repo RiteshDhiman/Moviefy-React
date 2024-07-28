@@ -35,7 +35,7 @@ const Carousel = ({data, loading}) => {
                   onClick={()=>navigate(`/${item?.media_type}/${item?.id}`)}
                   >
                   <div>
-                    <LazyLoadImages src={itemImg.url + item.poster_path} className={`${absoluteHover === item.id ? 'opacity-60' : '  '} hover:opacity-60 duration-300 rounded-xl`}/>
+                    <LazyLoadImages src={itemImg.url + item.poster_path} className={`${absoluteHover === item.id ? 'opacity-40' : '  '} hover:opacity-40 duration-300 rounded-xl`}/>
                   </div>
                   
                   {hover === item.id && 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { useSelector } from "react-redux";
 import ContentCenter from "../../utilityComponent/ContentCenter";
@@ -7,6 +7,8 @@ import noposter from "../../assets/no-poster.png"
 import { TbBasketX } from "react-icons/tb";
 
 const SearchPage = () => {
+
+  const navigate = useNavigate();
 
   const { text } = useParams();
   const { data, loading } = useFetch(`/search/multi?query=${text}&page=1`);
@@ -43,7 +45,7 @@ const SearchPage = () => {
             
           {data?.results.map((item) => {
             return (
-              <div key={item.id} >
+              <div key={item.id} onClick={()=>navigate(`/${item?.media_type}/${item?.id}`)}>
                 <img
                   src={item.poster_path ? url + item.poster_path : noposter}
                   className="hover:opacity-60 duration-300 rounded-tl-xl rounded-tr-xl object-cover"

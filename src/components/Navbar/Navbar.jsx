@@ -14,7 +14,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className='h-[60px] top-0 w-full z-10 bg-black bg-opacity-70'>
+    <div className='h-[60px] w-full z-10 bg-black bg-opacity-70'>
       <ContentCenter className={"h-full"}>
         <div className='text-white flex justify-between items-center h-full '>
             

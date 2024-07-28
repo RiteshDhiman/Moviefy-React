@@ -13,7 +13,8 @@ export default {
       'mukta': ['Mukta'],
       'oswald': ['Oswald'],
       'fina': ['Fira Sans'],
-      'krona' : ['Krona One']
+      'krona' : ['Krona One'],
+      'lato' : ['Lato']
     },
   },
   plugins: [
