@@ -84,7 +84,15 @@ const Details = () => {
               </div>
             </div>
 
-            <div className='hover:scale-95 duration-200 w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl'>H</div>
+            <div className='relative hover:scale-95 font-oswald text-white text-[26px] duration-200 w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl flex justify-center items-center'>
+              
+              <div className='text-[#ababab] font-bold absolute -left-4 transform -rotate-90 text-xl'>
+                COMPANY
+              </div>
+              <div className='font-oswald text-2xl font-bold uppercase'>
+                {data?.production_companies[0]?.name}
+              </div>
+            </div>
           </div>
           
           <div className='hidden md:block text-white absolute z-30 -bottom-14 right-0 w-1/6 mr-36 rounded-xl'>
