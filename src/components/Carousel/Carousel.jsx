@@ -38,13 +38,15 @@ const Carousel = ({data, loading, endpoint}) => {
                   <div>
                     <LazyLoadImages src={itemImg.url + item.poster_path} className={`${absoluteHover === item.id ? 'opacity-40' : '  '} hover:opacity-40 duration-300 rounded-xl`}/>
                   </div>
+                  <div className='absolute right-0 top-3 px-4 py-1 rounded-l-xl border-white border-[1px] border-r-0 bg-black bg-opacity-60'>
+                    {item.media_type === 'movie' ? 'Movie' : 'TV Show'}
+                  </div>
                   
                   {hover === item.id && 
                     <div className='px-2 text-center absolute bottom-6 flex flex-col justify-center items-center w-full' onMouseOver={()=>setAbsolueteHover(item.id)} onMouseLeave={()=>(setAbsolueteHover(null))}>
                       <span className='font-poetsen text-xl'>{item.title || item.name}</span>
-                      <span>{item.media_type === 'tv' ? 'TV Show' : 'Movie'}</span>
                       <CircularRating rating={item.vote_average}/>
-                      <div>{dayjs(item.first_air_date).format('D MMM YYYY')}</div>
+                      <div>{dayjs(item.release_date || item.first_air_date).format('D MMM YYYY')}</div>
                     </div>
                   }
                 </div>

@@ -11,7 +11,7 @@ const NowPlaying = () => {
         <div>
             <ContentCenter>
                 <div className="flex justify-between items-center mt-8 mb-4">
-                    <div className="text-xl md:text-3xl font-poppins font-medium text-white">
+                    <div className="text-xl md:text-3xl font-fina font-medium text-white">
                         In Cinemas
                     </div>
                 </div>

@@ -53,7 +53,7 @@ import { useNavigate } from 'react-router-dom';
 
           <div className="flex w-11/12 md:w-full h-10 md:h-14 text-black">
             <input className="w-3/4 h-full rounded-tl-2xl rounded-bl-2xl p-4 font-roboto text-lg md:text-xl outline-none"type="text" onChange={(e)=>setText(e.target.value)} onKeyDown={(e)=>handleSearchEnter(e)}/>
-            <button className="w-1/4 h-full bg-gradient-to-br from-yellow-300 to-yellow-600 rounded-tr-2xl rounded-br-2xl font-poetsen text-lg md:text-2xl
+            <button className="w-1/4 h-full bg-gradient-to-br from-[#c3d933] to-[#ddff00] rounded-tr-2xl rounded-br-2xl font-oswald font-bold text-lg md:text-2xl
               " onClick={handleSearch}>
               Search
             </button>
