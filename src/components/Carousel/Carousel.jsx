@@ -39,7 +39,7 @@ const Carousel = ({data, loading, endpoint}) => {
                     <LazyLoadImages src={itemImg.url + item.poster_path} className={`${absoluteHover === item.id ? 'opacity-40' : '  '} hover:opacity-40 duration-300 rounded-xl`}/>
                   </div>
                   <div className='absolute right-0 top-3 px-4 py-1 rounded-l-xl border-white border-[1px] border-r-0 bg-black bg-opacity-60'>
-                    {item.media_type === 'movie' ? 'Movie' : 'TV Show'}
+                    {item.media_type ? `${item.media_type === 'movie' ? 'Movie' : 'TV Show'}` : endpoint === 'movie' ? 'Movie' : 'TV Show'}
                   </div>
                   
                   {hover === item.id && 
