@@ -28,6 +28,12 @@ const Details = () => {
   //   window.scrollTo(0, 0);
   // }, []);
 
+  // useEffect(()=>{
+  //   data?.results.map((item)=>{
+
+  //   })
+  // })
+
 
   return (
     <div>

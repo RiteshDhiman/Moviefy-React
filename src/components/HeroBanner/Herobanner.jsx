@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
   const [bg, setBg] = useState();
 
-  const {data, loading} = useFetch('/trending/all/week');
+  const {data, loading} = useFetch('/discover/movie');
 
   const [text, setText] = useState('')
 
@@ -27,10 +27,14 @@ import { useNavigate } from 'react-router-dom';
     }
   }
 
+  const setBackground = async() =>{
+    const background = await data?.results[Math.floor(Math.random()*20)]?.backdrop_path;
+    const bgUrl = await url
+    setBg( bgUrl + background )
+  }
+
   useEffect(()=>{
-    {dispatch(getList(data))}
-    const background = data?.results[Math.floor(Math.random()*20)]?.backdrop_path;
-    setBg(url+background)
+    setBackground();
   },[data])
 
   return (

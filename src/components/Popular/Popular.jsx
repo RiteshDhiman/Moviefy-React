@@ -25,6 +25,11 @@ const Popular = () => {
                 <div>
                     <Carousel data={data?.results} loading={loading} endpoint={endpoint}/>
                 </div>
+
+                {/* <div className='text-white flex w-[80px] justify-between items-center text-lg hover:text-[#c3e200] hover:cursor-pointer hover:scale-105 duration-200'>
+                    <span>See All</span>
+                    <FaArrowRight />
+                </div> */}
             </ContentCenter>
         </div>
     );
