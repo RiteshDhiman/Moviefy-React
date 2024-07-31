@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+// const TOKEN = process.env.API_TOKEN
+
 const BASE_URL = "https://api.themoviedb.org/3";
 const TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjOTRmNjk0YmE1ZTQ2MjI0NmMyNmNjZTkzMjFhZmYzZiIsInN1YiI6IjY2NDhiMzVlYTg3YjJlYTBhMzY1ZDQ4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EP_tf5hRRLDRmYde7FLqNnCE8vl4fI8ZtEdW5QGBBpI";
 
@@ -22,5 +24,7 @@ const fetchDataFromAPI = async(url, params) => {
         return err
     }
 }
+
+// console.log(API_TOKEN)
 
 export default fetchDataFromAPI

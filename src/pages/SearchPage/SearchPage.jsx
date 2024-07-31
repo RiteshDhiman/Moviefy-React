@@ -10,14 +10,40 @@ const SearchPage = () => {
 
   const navigate = useNavigate();
 
+  const [page, setPage] = useState(1)
+  
   const { text } = useParams();
   const { media } = useParams();
-  const { data, loading } = text === undefined ? useFetch(`/discover/${media}`) : useFetch(`/search/multi?query=${text}&page=1`);
+  const { data, loading } = text === undefined ? useFetch(`/discover/${media}?page=${page}`) : useFetch(`/search/multi?query=${text}&page=${page}`);
+  const [results, setResults] = useState([])
 
   const { url } = useSelector((state) => state.home);
 
   console.log(media)
   console.log(text)
+
+  useEffect(()=>{
+    if(data?.results){
+      setResults(prevResults => [...prevResults, ...data.results])
+    }
+  },[data])
+
+  useEffect(()=>{
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.scrollHeight) {
+        // Load more results when scrolled to the bottom
+        setPage(prevPage => prevPage + 1);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  },[])
+
+  console.log(results)
 
   // const capitalize = (word) => {
   //   const temp = word.slice(0, 1).toUpperCase();
@@ -40,9 +66,14 @@ const SearchPage = () => {
             <span className='text-3xl font-bol bg-red-300'>{data?.results[0]?.title}</span> */}
       <ContentCenter>
 
-        <div className="py-10 font-poetsen text-3xl">
-          <span>Search Results for '<span>{text}</span>'</span>
-        </div>
+        {text === !undefined ? 
+          <div className="py-10 font-poetsen text-3xl">
+            <span>Search Results for '<span className="capitalize">{text}</span>'</span>
+          </div>
+          :
+          <div className="py-10"></div>
+        }
+
 
         <div className="grid grid-cols-4 gap-6">
             
