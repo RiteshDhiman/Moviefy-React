@@ -33,6 +33,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/:mediaType/:id' element={<Details/>}/>
           <Route path='/search/multi/:text' element={<SearchPage/>}/>
+          <Route path='/search/:media/' element={<SearchPage/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -16,7 +16,7 @@ const TopRated = () => {
         setEndpoint(value === 'Movie' ? 'movie' : 'tv')
     }
 
-    console.log(dataStore.list)
+    // console.log(dataStore.list)
 
     return (
         <div>

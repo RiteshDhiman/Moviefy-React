@@ -49,8 +49,8 @@ const Navbar = () => {
 
             <div>
                 <ul className='flex gap-6 items-center text-lg font-mukta'>
-                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer'>Movies</li>
-                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer'>TV Shows</li>
+                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/movie')}>Movies</li>
+                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/tv')}>TV Shows</li>
                 <li className='hidden md:block hover:text-[#c3e200] cursor-pointer'>In Cinemas</li>
                 <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>
                 <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black' onClick={()=>handleLogin()}>Log In</button>

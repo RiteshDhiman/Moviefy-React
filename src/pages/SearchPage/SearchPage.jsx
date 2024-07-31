@@ -11,25 +11,28 @@ const SearchPage = () => {
   const navigate = useNavigate();
 
   const { text } = useParams();
-  const { data, loading } = useFetch(`/search/multi?query=${text}&page=1`);
+  const { media } = useParams();
+  const { data, loading } = text === undefined ? useFetch(`/discover/${media}`) : useFetch(`/search/multi?query=${text}&page=1`);
 
   const { url } = useSelector((state) => state.home);
 
+  console.log(media)
+  console.log(text)
 
-  const capitalize = (word) => {
-    const temp = word.slice(0, 1).toUpperCase();
-    return temp + word.slice(1);
-  };
+  // const capitalize = (word) => {
+  //   const temp = word.slice(0, 1).toUpperCase();
+  //   return temp + word.slice(1);
+  // };
 
-  useEffect(()=>{
-    handleScroll()
-  })
+  // useEffect(()=>{
+  //   handleScroll()
+  // })
 
-  const handleScroll = async() => {
-    console.log(window.innerHeight);
-    console.log(document.documentElement.scrollTop);
-    console.log(document.documentElement.scrollHeight)
-  }
+  // const handleScroll = async() => {
+  //   console.log(window.innerHeight);
+  //   console.log(document.documentElement.scrollTop);
+  //   console.log(document.documentElement.scrollHeight)
+  // }
 
   return (
     <div className="flex flex-col text-white">
@@ -38,7 +41,7 @@ const SearchPage = () => {
       <ContentCenter>
 
         <div className="py-10 font-poetsen text-3xl">
-          <span>Search Results for '{capitalize(text)}'</span>
+          <span>Search Results for '<span>{text}</span>'</span>
         </div>
 
         <div className="grid grid-cols-4 gap-6">
