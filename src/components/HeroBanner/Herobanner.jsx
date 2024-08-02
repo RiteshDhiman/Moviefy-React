@@ -29,8 +29,8 @@ import { useNavigate } from 'react-router-dom';
 
   const setBackground = async() =>{
     const background = await data?.results[Math.floor(Math.random()*20)]?.backdrop_path;
-    const bgUrl = await url
-    setBg( bgUrl + background )
+    console.log(background)
+    setBg( "http://image.tmdb.org/t/p/original/" + background )
   }
 
   useEffect(()=>{
