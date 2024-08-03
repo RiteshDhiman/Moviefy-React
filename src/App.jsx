@@ -9,7 +9,7 @@ import { getConfigApi } from './store/homeSlice'
 import fetchDataFromAPI from './utils/api'
 import Details from './pages/Details/Details'
 import SearchPage from './pages/SearchPage/SearchPage'
-import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 function App() {
   
@@ -37,7 +37,7 @@ function App() {
           <Route path='/search/:media/' element={<SearchPage/>}/>
         </Routes>
       </BrowserRouter>
-      <Analytics/>
+      <SpeedInsights/>
     </div>
   )
 }
