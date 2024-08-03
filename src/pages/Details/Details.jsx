@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import add  from '../../assets/add.png'
 import Seasons from './detailsComponents/Seasons';
 import Similar from '../../components/Similar/Similar';
+import Recommendation from '../../components/Recommendation/Recommendation';
 
 const Details = () => {
 
@@ -137,6 +138,7 @@ const Details = () => {
         )
       }
         <Similar id={id} mediaType={mediaType}/>
+        <Recommendation id={id} mediaType={mediaType}/>
 
     </div>
 

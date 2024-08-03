@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { FaArrowRight } from "react-icons/fa";
 import LazyLoadImages from '../../../utilityComponent/LazyLoadImages';
 import CircleRating from '../../../utilityComponent/CircularRating';
+import noposter from "../../../assets/no-poster.png"
 
 const Seasons = ({data, loading}) => {
 
@@ -29,7 +30,7 @@ const Seasons = ({data, loading}) => {
             <div key={item.id} className='flex h-[50vh] bg-[#1e293b83] w-full rounded-3xl'>
               <div className='w-1/2 h-full'>
                 {/* <LazyLoadImages src={posterImg.url + item.poster_path} className={'absolute top-0 w-full h-full'}/> */}
-                <img src={posterImg.url + item.poster_path} className="w-full h-full object-cover rounded-3xl opacity-85" />
+                <img src={item.poster_path ? posterImg.url + item.poster_path : noposter} className="w-full h-full object-cover rounded-3xl opacity-85" />
               </div>
               <div className='w-1/2 flex flex-col items-center justify-around h-full'>
                 <div className='h-1/2 w-full flex flex-col justify-center items-center gap-2'>

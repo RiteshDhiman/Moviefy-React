@@ -7,6 +7,7 @@ import dayjs, { Dayjs } from 'dayjs'
 import { useNavigate } from 'react-router-dom'
 import LazyLoadImages from '../../utilityComponent/LazyLoadImages'
 import { HiArrowSmLeft } from "react-icons/hi";
+import noposter from '../../assets/no-poster.png'
 
 const Carousel = ({data, loading, endpoint}) => {
 
@@ -36,7 +37,7 @@ const Carousel = ({data, loading, endpoint}) => {
                   }}
                   >
                   <div>
-                    <LazyLoadImages src={itemImg.url + item.poster_path} className={`${absoluteHover === item.id ? 'opacity-40' : '  '} hover:opacity-40 duration-300 rounded-xl`}/>
+                    <LazyLoadImages src={item.poster_path ? itemImg.url + item.poster_path : noposter} className={`${absoluteHover === item.id ? 'opacity-40' : '  '} hover:opacity-40 duration-300 rounded-xl`}/>
                   </div>
 
                   <div className='absolute right-0 top-3 px-4 py-1 rounded-l-xl border-white border-[1px] border-r-0 bg-black bg-opacity-60'>
