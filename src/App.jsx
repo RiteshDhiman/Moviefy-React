@@ -10,6 +10,7 @@ import fetchDataFromAPI from './utils/api'
 import Details from './pages/Details/Details'
 import SearchPage from './pages/SearchPage/SearchPage'
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import Footer from './components/Footer/Footer'
 
 function App() {
   
@@ -36,6 +37,7 @@ function App() {
           <Route path='/search/multi/:text' element={<SearchPage/>}/>
           <Route path='/search/:media/' element={<SearchPage/>}/>
         </Routes>
+        <Footer/>
       </BrowserRouter>
       <SpeedInsights/>
     </div>

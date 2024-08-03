@@ -17,7 +17,7 @@ const SwitchTabs = ({data, onTabChange}) => {
             <div className='flex'>
                 {data.map((item,index)=>{
                     return(
-                        <div key={index} onClick={()=>activeTab(item, index)} className={`flex justify-center items-center w-[80px] md:w-[100px] cursor-pointer rounded-xl font-poppins font-semibold text-sm md:text-lg ${selected === index ? 'bg-gradient-to-br from-yellow-300 to-yellow-600' : ''}`}>
+                        <div key={index} onClick={()=>activeTab(item, index)} className={`flex justify-center items-center w-[80px] md:w-[100px] cursor-pointer rounded-xl font-poppins font-semibold text-sm md:text-lg ${selected === index ? 'bg-gradient-to-br from-[#c3e200] to-[#9bce4a]' : ''}`}>
                             {item}
                         </div>
                     )
