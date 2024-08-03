@@ -46,7 +46,7 @@ const Carousel = ({data, loading, endpoint}) => {
                   {hover === item.id && 
                     <div className='px-2 text-center absolute bottom-6 flex flex-col justify-center items-center w-full' onMouseOver={()=>setAbsolueteHover(item.id)} onMouseLeave={()=>(setAbsolueteHover(null))}>
                       <span className='font-poetsen text-xl'>{item.title || item.name}</span>
-                      <CircularRating rating={item.vote_average}/>
+                      <CircularRating rating={item.vote_average} width={'w-12'}/>
                       <div>{dayjs(item.release_date || item.first_air_date).format('D MMM YYYY')}</div>
                     </div>
                   }
