@@ -4,6 +4,7 @@ import { FiSearch } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { LuMenu } from "react-icons/lu";
 import moviefy from '../../assets/moviefy_logo.jpeg'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Navbar = () => {
 
@@ -43,7 +44,7 @@ const Navbar = () => {
       <ContentCenter className={"h-full"}>
         <div className='text-white flex justify-between items-center h-full '>
             
-            <div onClick={()=>navigate('/')} className='hover:cursor-pointer w-1/6'>
+            <div onClick={()=>navigate('/')} className='hover:cursor-pointer w-1/3 md:w-1/6'>
               <img src={moviefy} alt="" />
             </div>
 
@@ -70,8 +71,8 @@ const Navbar = () => {
 
         {search &&
           <div className='w-full flex justify-center items-center mt-10 h-[40px]'>
-            <input type="text" className='w-1/2 h-full outline-none pl-4 rounded-l-lg' onChange={(e)=>setText(e.target.value)} onKeyDown={(e)=>handleSearchEnter(e)}/>
-            <button className='w-1/6 h-full bg-[#c3e200] font-oswald rounded-r-lg' onClick={handleSearchOnclick}>Search</button>
+            <input type="text" className='w-2/3 md:w-1/2 h-full outline-none pl-4 rounded-l-lg' onChange={(e)=>setText(e.target.value)} onKeyDown={(e)=>handleSearchEnter(e)}/>
+            <button className='w-1/4 md:w-1/6 h-full bg-[#c3e200] font-oswald rounded-r-lg' onClick={handleSearchOnclick}>Search</button>
           </div>
         }
       </ContentCenter>

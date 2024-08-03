@@ -29,7 +29,7 @@ import { useNavigate } from 'react-router-dom';
 
   const setBackground = async() =>{
     const background = await data?.results[Math.floor(Math.random()*20)]?.backdrop_path;
-    console.log(background)
+    // console.log(background)
     setBg( "http://image.tmdb.org/t/p/original/" + background )
   }
 
@@ -38,19 +38,19 @@ import { useNavigate } from 'react-router-dom';
   },[data])
 
   return (
-    <div className='relative w-full h-[80vh] mb-10'>
+    <div className='relative w-full h-[45vh] md:h-[80vh] mb-10'>
       <div className='w-full h-full'>
         <img src={bg} className="h-full w-full object-cover opacity-50" loading='lazy'/>
       </div>
 
       <div className='top-0 left-0 w-full h-full absolute flex justify-center items-center'>
-        <div className='w-1/2 h-1/2 flex flex-col items-center justify-around text-white'>
+        <div className='w-11/12 md:w-1/2 h-1/2 flex flex-col items-center justify-around text-white'>
 
-          <div className='flex flex-col items-center justify-center'>
-            <span className="text-4xl md:text-6xl lg:text-9xl font-poetsen">
+          <div className='flex flex-col items-center justify-center gap-1'>
+            <span className="text-5xl md:text-6xl lg:text-9xl font-poetsen">
               Welcome
             </span>
-            <span className="text-sm md:text-xl lg:text-2xl font-roboto">
+            <span className="text-md md:text-xl lg:text-2xl font-oswald">
               Your Streaming guide for Movies and TV shows
             </span>
           </div>
