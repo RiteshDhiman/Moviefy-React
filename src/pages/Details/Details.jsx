@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import LazyLoad from 'react-lazyload';
 import ContentCenter from '../../utilityComponent/ContentCenter'
 import play from '../../assets/play.png'
 import dayjs from 'dayjs';
