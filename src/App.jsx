@@ -9,6 +9,7 @@ import { getConfigApi } from './store/homeSlice'
 import fetchDataFromAPI from './utils/api'
 import Details from './pages/Details/Details'
 import SearchPage from './pages/SearchPage/SearchPage'
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   
@@ -36,6 +37,7 @@ function App() {
           <Route path='/search/:media/' element={<SearchPage/>}/>
         </Routes>
       </BrowserRouter>
+      <Analytics/>
     </div>
   )
 }
