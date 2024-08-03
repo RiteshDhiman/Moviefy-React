@@ -2,11 +2,11 @@ import React from 'react'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const CircleRating = ({rating}) => {
+const CircleRating = ({rating, width}) => {
   return (
-    <div className='w-12'>
+    <div className={width}>
         <CircularProgressbar 
-        className='bg-white rounded-full font-bold top-8 right-2 dark:bg-black dark:'
+        className='rounded-full font-bold top-8 right-2 bg-black backdrop-blur-50'
         value={rating} 
         maxValue={10} 
         text={rating.toFixed(1)} 

@@ -104,7 +104,7 @@ const Details = () => {
 
       </div>
 
-      <div className='w-full h-[30vh]'>
+      <div className='w-full h-[40vh]'>
         <ContentCenter className={'mt-20'}>
 
           <div className='w-full flex justify-between'>
@@ -132,7 +132,7 @@ const Details = () => {
           <Seasons data={data} loading={loading}/>
         :
         (
-          <div>MEdia is Movie</div>
+          <div className='text-white'>MEdia is Movie</div>
         )
       }
 

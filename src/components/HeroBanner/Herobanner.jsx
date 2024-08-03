@@ -40,7 +40,7 @@ import { useNavigate } from 'react-router-dom';
   return (
     <div className='relative w-full h-[80vh] mb-10'>
       <div className='w-full h-full'>
-        <img src={bg} className="h-full w-full object-cover opacity-50" />
+        <img src={bg} className="h-full w-full object-cover opacity-50" loading='lazy'/>
       </div>
 
       <div className='top-0 left-0 w-full h-full absolute flex justify-center items-center'>
