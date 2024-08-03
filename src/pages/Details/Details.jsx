@@ -7,6 +7,7 @@ import ContentCenter from '../../utilityComponent/ContentCenter'
 import play from '../../assets/play.png'
 import dayjs from 'dayjs';
 import add  from '../../assets/add.png'
+import Seasons from './detailsComponents/Seasons';
 
 const Details = () => {
 
@@ -21,22 +22,17 @@ const Details = () => {
       count += item.episode_count
     })
 
+    // data?.seasons.array.forEach(element => {
+    //   count += element.episode_count
+    // });
+
     return count;
   }
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
-
-  // useEffect(()=>{
-  //   data?.results.map((item)=>{
-
-  //   })
-  // })
 
 
   return (
     <div>
+      {/* <DetailsHerobanner mediaType={mediaType} id={id} data={data} loading={loading}/> */}
 
       <div className='relative w-full h-[60vh]'>
         <div className='absolute z-10 w-full h-full'>
@@ -44,7 +40,7 @@ const Details = () => {
           <div className='absolute inset-0 bg-black opacity-40'></div>
         </div>
 
-        <ContentCenter>
+        <ContentCenter className={'2xl:w-5/6'}>
           <div className='absolute w-full md:w-1/2 h-1/3 z-20 bottom-1/4 flex flex-col gap-4 text-white'>
 
             <div className='font-oswald text-3xl md:text-5xl font-bold uppercase'>{data?.title || data?.name}</div>
@@ -61,7 +57,7 @@ const Details = () => {
             <div className='flex gap-3'>
               {data?.genres.map((genre)=>{
                 return(
-                  <div className='hover:scale-95 duration-200 flex justify-center items-center border-white rounded-lg border-[1px] md:px-2 md:py-1 bg-[#464847] bg-opacity-50'>
+                  <div key={genre.id} className='hover:scale-95 duration-200 flex justify-center items-center border-white rounded-lg border-[1px] md:px-2 md:py-1 bg-[#464847] bg-opacity-50'>
                     {genre.name}
                   </div>
                 )
@@ -106,11 +102,10 @@ const Details = () => {
           </div>
 
         </ContentCenter>
-          {/* <div className='absolute z-10 -bottom-24 left-0 w-full h-[200px] bg-gradient-to-t from-[#030c1e] via-transparent to-transparent'></div> */}
 
       </div>
 
-      <div className='w-full h-[50vh]'>
+      <div className='w-full h-[30vh]'>
         <ContentCenter className={'mt-20'}>
 
           <div className='w-full flex justify-between'>
@@ -133,6 +128,14 @@ const Details = () => {
           </div>
         </ContentCenter>
       </div>
+
+      {mediaType === 'tv' ?
+          <Seasons data={data} loading={loading}/>
+        :
+        (
+          <div>MEdia is Movie</div>
+        )
+      }
 
     </div>
 

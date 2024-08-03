@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import ContentCenter from "../../utilityComponent/ContentCenter";
 import noposter from "../../assets/no-poster.png"
 import { TbBasketX } from "react-icons/tb";
+import LazyLoadImages from "../../utilityComponent/LazyLoadImages";
 
 const SearchPage = () => {
 
@@ -80,10 +81,8 @@ const SearchPage = () => {
           {data?.results.map((item) => {
             return (
               <div key={item.id} onClick={()=>navigate(`/${item?.media_type}/${item?.id}`)}>
-                <img
-                  src={item.poster_path ? url + item.poster_path : noposter}
-                  className="hover:opacity-60 duration-300 rounded-tl-xl rounded-tr-xl object-cover"
-                  alt="Image Unavailable"/>
+                <LazyLoadImages src={item.poster_path ? url + item.poster_path : noposter}
+                  className="hover:opacity-60 duration-300 rounded-tl-xl rounded-tr-xl object-cover"/>
                 
                 <div>
                     {item.title || item.name}
