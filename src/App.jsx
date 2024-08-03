@@ -9,7 +9,7 @@ import { getConfigApi } from './store/homeSlice'
 import fetchDataFromAPI from './utils/api'
 import Details from './pages/Details/Details'
 import SearchPage from './pages/SearchPage/SearchPage'
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function App() {
   
