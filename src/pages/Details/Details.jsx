@@ -7,6 +7,7 @@ import play from '../../assets/play.png'
 import dayjs from 'dayjs';
 import add  from '../../assets/add.png'
 import Seasons from './detailsComponents/Seasons';
+import Similar from '../../components/Similar/Similar';
 
 const Details = () => {
 
@@ -132,9 +133,10 @@ const Details = () => {
           <Seasons data={data} loading={loading}/>
         :
         (
-          <div className='text-white'>MEdia is Movie</div>
+          <div></div>
         )
       }
+        <Similar id={id} mediaType={mediaType}/>
 
     </div>
 
