@@ -9,6 +9,8 @@ import add  from '../../assets/add.png'
 import Seasons from './detailsComponents/Seasons';
 import Similar from '../../components/Similar/Similar';
 import Recommendation from '../../components/Recommendation/Recommendation';
+import SubDetails from './detailsComponents/SubDetails';
+import Tagline from './detailsComponents/Tagline';
 
 const Details = () => {
 
@@ -130,15 +132,16 @@ const Details = () => {
         </ContentCenter>
       </div>
 
-      {mediaType === 'tv' ?
-          <Seasons data={data} loading={loading}/>
-        :
-        (
-          <div></div>
-        )
-      }
-        <Similar id={id} mediaType={mediaType}/>
-        <Recommendation id={id} mediaType={mediaType}/>
+      <ContentCenter>
+        <div className='w-3/4 flex gap-5 my-10'>
+          <SubDetails data={data} loading={loading}/>
+          <Tagline data={data} loading={loading}/>
+        </div>
+      </ContentCenter>
+
+      {mediaType === 'tv' ? <Seasons data={data} loading={loading}/> : <div/>}
+      <Similar id={id} mediaType={mediaType}/>
+      <Recommendation id={id} mediaType={mediaType}/>
 
     </div>
 

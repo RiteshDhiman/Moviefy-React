@@ -32,8 +32,9 @@ const Seasons = ({data, loading}) => {
                 {/* <LazyLoadImages src={posterImg.url + item.poster_path} className={'absolute top-0 w-full h-full'}/> */}
                 <img src={item.poster_path ? posterImg.url + item.poster_path : noposter} className="w-full h-full object-cover rounded-3xl opacity-85" />
               </div>
-              <div className='w-1/2 flex flex-col items-center justify-around h-full'>
-                <div className='h-1/2 w-full flex flex-col justify-center items-center gap-2'>
+              
+              <div className='w-1/2 flex flex-col items-center justify-between h-full'>
+                <div className='h-2/3 w-full flex flex-col justify-center items-center gap-2'>
                   <div className='font-oswald uppercase text-4xl font-semibold'>
                     {item.name}
                   </div>
@@ -44,15 +45,17 @@ const Seasons = ({data, loading}) => {
                     {item.episode_count} Episodes
                   </div>
 
-                  <CircleRating rating={item.vote_average} width={'w-14'}/>
+                  <CircleRating rating={item.vote_average} width={'w-20'}/>
 
                 </div>
-                <button className='flex items-center justify-center w-4/5 h-1/5 rounded-2xl bg-[#c3e200] gap-5'>
-                  <span className='font-oswald text-2xl text-black font-semibold'>
-                    EPISODES
-                  </span>
-                  <FaArrowRight className='text-3xl text-black'/>
-                </button>
+                <div className='h-1/3 w-full flex items-center justify-center hover:scale-105 duration-200'>
+                  <button className='flex items-center justify-center h-3/5 w-4/5 rounded-2xl bg-[#c3e200] gap-5'>
+                    <span className='font-oswald text-2xl text-black font-semibold'>
+                      EPISODES
+                    </span>
+                    <FaArrowRight className='text-3xl text-black'/>
+                  </button>
+                </div>
               </div>
             </div>
            ))}

@@ -14,7 +14,10 @@ export default {
       'oswald': ['Oswald'],
       'fina': ['Fira Sans'],
       'krona' : ['Krona One'],
-      'lato' : ['Lato']
+      'lato' : ['Lato'],
+      'anton' : ['Anton'],
+      'alfa' : ['Alfa Slab One'],
+      'antonio' : ['Antonio'],
     },
   },
   plugins: [
