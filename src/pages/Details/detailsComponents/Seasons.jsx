@@ -6,7 +6,7 @@ import LazyLoadImages from '../../../utilityComponent/LazyLoadImages';
 import CircleRating from '../../../utilityComponent/CircularRating';
 import noposter from "../../../assets/no-poster.png"
 
-const Seasons = ({data, loading}) => {
+const Seasons = ({data, loading, handleEpisode}) => {
 
     console.log(data)
     const posterImg = useSelector((state)=>state.home)
@@ -49,7 +49,7 @@ const Seasons = ({data, loading}) => {
 
                 </div>
                 <div className='h-1/3 w-full flex items-center justify-center hover:scale-105 duration-200'>
-                  <button className='flex items-center justify-center h-3/5 w-4/5 rounded-2xl bg-[#c3e200] gap-5'>
+                  <button className='flex items-center justify-center h-3/5 w-4/5 rounded-2xl bg-[#c3e200] gap-5' onClick={()=>handleEpisode()}>
                     <span className='font-oswald text-2xl text-black font-semibold'>
                       EPISODES
                     </span>

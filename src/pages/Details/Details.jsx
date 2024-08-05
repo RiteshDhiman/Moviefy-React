@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
@@ -16,6 +16,8 @@ const Details = () => {
 
   const {mediaType, id} = useParams();
 
+  const [showEps, setShowEps] = useState(false)
+
   const posterImg = useSelector((state)=>state.home)
   const {data, loading} = useFetch(`/${mediaType}/${id}`)
 
@@ -30,6 +32,10 @@ const Details = () => {
     // });
 
     return count;
+  }
+
+  const handleEpisode = () => {
+    setShowEps(!showEps)
   }
 
 
@@ -133,15 +139,26 @@ const Details = () => {
       </div>
 
       <ContentCenter>
-        <div className='w-3/4 flex gap-5 my-10'>
-          <SubDetails data={data} loading={loading}/>
-          <Tagline data={data} loading={loading}/>
+        <div className='flex justify-between'> 
+          <div className='w-3/4 flex gap-5 my-10'>
+            <SubDetails data={data} loading={loading}/>
+            <Tagline data={data} loading={loading}/>
+          </div>
+          {/* <div className='w-[23%] bg-red-300'>
+          sad
+          </div> */}
         </div>
       </ContentCenter>
 
-      {mediaType === 'tv' ? <Seasons data={data} loading={loading}/> : <div/>}
+      {mediaType === 'tv' ? <Seasons data={data} loading={loading} handleEpisode={handleEpisode}/> : <div/>}
       <Similar id={id} mediaType={mediaType}/>
       <Recommendation id={id} mediaType={mediaType}/>
+
+      {
+        showEps && <div className='text-white text-9xl absolute top-0 w-3/4 h-[100vh] z-50 bg-black overflow-scroll'>
+          <span onClick={handleEpisode}>XXXXXXXXXXX</span>
+        </div>
+      }
 
     </div>
 
