@@ -29,10 +29,6 @@ const Details = () => {
       count += item.episode_count
     })
 
-    // data?.seasons.array.forEach(element => {
-    //   count += element.episode_count
-    // });
-
     return count;
   }
 
@@ -168,7 +164,7 @@ const Details = () => {
 
       {
         showEps && <div className='text-white text-9xl absolute top-0 w-3/4 h-[100vh] z-50 bg-black overflow-scroll'>
-          <span onClick={handleEpisode}>XXXXXXXXXXX</span>
+          <span onClick={handleEpisode}>XXXXXXXX</span>
         </div>
       }
 
@@ -178,3 +174,4 @@ const Details = () => {
 }
 
 export default Details
+  
