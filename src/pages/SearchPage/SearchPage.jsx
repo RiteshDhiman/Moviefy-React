@@ -20,31 +20,32 @@ const SearchPage = () => {
 
   const { url } = useSelector((state) => state.home);
 
-  console.log(media)
-  console.log(text)
+  // console.log(media)
+  // console.log(text)
 
-  useEffect(()=>{
-    if(data?.results){
-      setResults(prevResults => [...prevResults, ...data.results])
-    }
-  },[data])
+  console.log(data?.results)
+  // useEffect(()=>{
+  //   if(data?.results){
+  //     setResults(prevResults => [...prevResults, ...data.results])
+  //   }
+  // },[data])
 
-  useEffect(()=>{
-    const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.scrollHeight) {
-        // Load more results when scrolled to the bottom
-        setPage(prevPage => prevPage + 1);
-      }
-    };
+  // useEffect(()=>{
+  //   const handleScroll = () => {
+  //     if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.scrollHeight) {
+  //       // Load more results when scrolled to the bottom
+  //       setPage(prevPage => prevPage + 1);
+  //     }
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  },[])
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll)
+  //   }
+  // },[])
 
-  console.log(results)
+  // console.log(results)
 
   // const capitalize = (word) => {
   //   const temp = word.slice(0, 1).toUpperCase();
@@ -80,7 +81,7 @@ const SearchPage = () => {
             
           {data?.results.map((item) => {
             return (
-              <div key={item.id} onClick={()=>navigate(`/${item?.media_type}/${item?.id}`)}>
+              <div key={item.id} onClick={()=>media === undefined ? navigate(`/${item?.media_type}/${item?.id}`) : navigate(`/${media}/${item?.id}`)}>
                 <LazyLoadImages src={item.poster_path ? url + item.poster_path : noposter}
                   className="hover:opacity-60 duration-300 rounded-tl-xl rounded-tr-xl object-cover"/>
                 
