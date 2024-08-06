@@ -10,16 +10,16 @@ const Footer = () => {
   return (
     <div className='w-full bg-black'>
       <ContentCenter>
-        <div className='w-full py-12 flex'>
+        <div className='w-full py-12 flex flex-col gap-2 md:flex-row'>
 
-          <div className='w-1/3'>
-            <LazyLoadImages src={moviefy}/>
+          <div className='w-full flex justify-center items-center md:w-1/3'>
+            <img src={moviefy} className="w-2/3 md:w-full" />
           </div>
 
-          <div className='w-2/3 flex flex-col items-center font-poppins text-gray-200 gap-5'>
+          <div className='w-full md:w-2/3 flex flex-col items-center font-poppins text-gray-200 gap-5'>
 
-            <div className='flex flex-col items-center w-1/4 gap-2'>
-              <span>Get in touch</span>
+            <div className='flex flex-col items-center w-1/2 md:w-1/4 md:gap-2'>
+              <span className='text-lg md:text-xl'>Get in touch</span>
               <div className='flex w-full justify-evenly'>
                 <LazyLoadImages className="w-9" src={gmail}/>
                 <LazyLoadImages className="w-9" src={instagram}/>
@@ -27,7 +27,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div>
+            <div className='text-center'>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, ab?
             </div>
           </div>

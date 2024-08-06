@@ -30,7 +30,7 @@ const Seasons = ({data, loading, handleEpisode}) => {
             <div key={item.id} className='flex h-[50vh] bg-[#1e293b83] w-full rounded-3xl'>
               <div className='w-1/2 h-full'>
                 {/* <LazyLoadImages src={posterImg.url + item.poster_path} className={'absolute top-0 w-full h-full'}/> */}
-                <img src={item.poster_path ? posterImg.url + item.poster_path : noposter} className="w-full h-full object-cover rounded-3xl opacity-85" />
+                <img src={item.poster_path ? posterImg.url + item.poster_path : noposter} className="w-full h-full object-cover rounded-3xl opacity-85 shadow-2xl shadow-black"/>
               </div>
               
               <div className='w-1/2 flex flex-col items-center justify-between h-full'>

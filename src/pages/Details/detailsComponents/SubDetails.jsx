@@ -3,7 +3,7 @@ import React from "react";
 const SubDetails = ({ data, loading }) => {
 //   asdsdfsdf;
   return (
-    <div className="w-3/5 flex flex-col items-center py-5 bg-[#141a1e] gap-4 rounded-3xl">
+    <div className="w-3/5 flex flex-col items-center py-5 bg-[#1e293b] gap-4 rounded-3xl">
       <span className="text-[#C3E200] font-oswald uppercase text-2xl font-medium">Details</span>
       <div className="flex px-4 w-full gap-4">
         <div className="flex flex-col w-1/3 items-center bg-black py-2 rounded-2xl">
