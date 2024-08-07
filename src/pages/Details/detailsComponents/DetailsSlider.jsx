@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import useFetch from "../../../hooks/useFetch";
 import { useSelector } from "react-redux";
 import LazyLoadImages from "../../../utilityComponent/LazyLoadImages";
-import { GrNext } from "react-icons/gr";
-import { GrPrevious } from "react-icons/gr";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const DetailsSlider = ({mediaType}) => {
   const {data, loading} = useFetch(`/${mediaType}/top_rated`)
@@ -33,9 +32,9 @@ const DetailsSlider = ({mediaType}) => {
       </div>
 
       <div className="w-4/5 flex gap-1 items-center justify-center">
-        <GrPrevious className="text-white text-9xl" onClick={handlePrev}/>
+        <FaArrowAltCircleLeft className="text-white text-9xl" onClick={handlePrev}/>
         <LazyLoadImages src={url + data?.results[slider].poster_path} className={'rounded-xl'}/>
-        <GrNext className="text-white text-9xl" onClick={handleNext}/>
+        <FaArrowAltCircleLeft className="text-white text-9xl" onClick={handleNext}/>
       </div>
     </div>
   );
