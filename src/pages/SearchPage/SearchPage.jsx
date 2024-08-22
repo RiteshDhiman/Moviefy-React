@@ -77,21 +77,35 @@ const SearchPage = () => {
         }
 
 
-        <div className="grid grid-cols-4 gap-6">
-            
-          {data?.results.map((item) => {
-            return (
-              <div key={item.id} onClick={()=>media === undefined ? navigate(`/${item?.media_type}/${item?.id}`) : navigate(`/${media}/${item?.id}`)}>
-                <LazyLoadImages src={item.poster_path ? url + item.poster_path : noposter}
-                  className="hover:opacity-60 duration-300 rounded-tl-xl rounded-tr-xl object-cover"/>
-                
-                <div>
-                    {item.title || item.name}
+        {!loading 
+            ?
+            (<div className="grid grid-cols-4 gap-6">
+              
+            {data?.results.map((item) => {
+              return (
+                <div key={item.id} onClick={()=>media === undefined ? navigate(`/${item?.media_type}/${item?.id}`) : navigate(`/${media}/${item?.id}`)}>
+                  <LazyLoadImages src={item.poster_path ? url + item.poster_path : noposter}
+                    className="hover:opacity-60 duration-300 rounded-tl-xl rounded-tr-xl object-cover"/>
+                  
+                  <div>
+                      {item.title || item.name}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>)
+          :
+          <div className="grid grid-cols-4 gap-6">
+            <div className="w-full bg-slate-400 h-[50vh]"></div>
+            <div className="w-full bg-slate-400 h-[50vh]"></div>
+            <div className="w-full bg-slate-400 h-[50vh]"></div>
+            <div className="w-full bg-slate-400 h-[50vh]"></div>
+            <div className="w-full bg-slate-400 h-[50vh]"></div>
+            <div className="w-full bg-slate-400 h-[50vh]"></div>
+            <div className="w-full bg-slate-400 h-[50vh]"></div>
+            <div className="w-full bg-slate-400 h-[50vh]"></div>
+          </div>
+        }
       </ContentCenter>
     </div>
   );
