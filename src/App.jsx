@@ -36,6 +36,7 @@ function App() {
           <Route path='/:mediaType/:id' element={<Details/>}/>
           <Route path='/search/multi/:text' element={<SearchPage/>}/>
           <Route path='/search/:media/' element={<SearchPage/>}/>
+          <Route path='/movie/now_playing/' element={<SearchPage/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

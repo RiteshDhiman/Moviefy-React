@@ -15,7 +15,20 @@ const SearchPage = () => {
   
   const { text } = useParams();
   const { media } = useParams();
-  const { data, loading } = text === undefined ? useFetch(`/discover/${media}?page=${page}`) : useFetch(`/search/multi?query=${text}&page=${page}`);
+
+  let fetchUrl;
+  if(text === undefined){
+    if(text === undefined && media === undefined){
+      fetchUrl = useFetch(`/movie/now_playing`)
+    }
+    else{
+      fetchUrl = useFetch(`/discover/${media}?page=${page}`)
+    }
+  }
+  else{
+    fetchUrl = useFetch(`/search/multi?query=${text}&page=${page}`)
+  }
+  const { data, loading } = fetchUrl
   const [results, setResults] = useState([])
 
   const { url } = useSelector((state) => state.home);

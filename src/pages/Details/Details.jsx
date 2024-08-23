@@ -39,7 +39,7 @@ const Details = () => {
   return (
     <div>
 
-      <DetailsHerobanner data={data} loading={loading}/>
+      <DetailsHerobanner data={data} loading={loading} mediaType={mediaType} id={id}/>
 
         <ContentCenter className={'mt-20'}>
 

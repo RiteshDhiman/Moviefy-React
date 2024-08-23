@@ -4,7 +4,7 @@ import ContentCenter from "../../../utilityComponent/ContentCenter";
 import HeroBtn from "./HeroBtn";
 import LazyLoadImages from "../../../utilityComponent/LazyLoadImages";
 
-const DetailsHerobanner = ({ data, loading }) => {
+const DetailsHerobanner = ({ data, loading, mediaType, id}) => {
 
   const posterImg = useSelector((state)=>state.home)
 
@@ -54,7 +54,7 @@ const DetailsHerobanner = ({ data, loading }) => {
               })}
             </div>
 
-            <HeroBtn data={data} loading={loading}/>
+            <HeroBtn btndata={data} btnloading={loading} mediaType={mediaType} id={id}/>
 
           </div>
 
