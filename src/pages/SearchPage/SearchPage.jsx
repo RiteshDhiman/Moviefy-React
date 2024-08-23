@@ -79,15 +79,14 @@ const SearchPage = () => {
 
         {!loading 
             ?
-            (<div className="grid grid-cols-4 gap-6">
+            (<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               
             {data?.results.map((item) => {
               return (
-                <div key={item.id} onClick={()=>media === undefined ? navigate(`/${item?.media_type}/${item?.id}`) : navigate(`/${media}/${item?.id}`)}>
-                  <LazyLoadImages src={item.poster_path ? url + item.poster_path : noposter}
-                    className="hover:opacity-60 duration-300 rounded-tl-xl rounded-tr-xl object-cover"/>
+                <div key={item.id} onClick={()=>media === undefined ? navigate(`/${item?.media_type}/${item?.id}`) : navigate(`/${media}/${item?.id}`)} className="rounded-xl hover:scale-105 hover:brightness-[60%] transition-all duration-300">
+                  <LazyLoadImages src={item.poster_path ? url + item.poster_path : noposter} className={'hover:cursor-pointer rounded-xl'}/>
                   
-                  <div>
+                  <div className="w-full text-center font-poppins">
                       {item.title || item.name}
                   </div>
                 </div>

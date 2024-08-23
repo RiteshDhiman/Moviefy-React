@@ -22,6 +22,15 @@ const Details = () => {
   const posterImg = useSelector((state)=>state.home)
   const {data, loading} = useFetch(`/${mediaType}/${id}`)
 
+  const epCount = () => {
+    let count = 0;
+    data?.seasons.map((item)=>{
+      count += item.episode_count
+    })
+
+    return count;
+  }
+
   const handleEpisode = () => {
     setShowEps(!showEps)
   }
@@ -34,48 +43,41 @@ const Details = () => {
 
         <ContentCenter className={'mt-20'}>
 
-            <div className='w-full flex justify-between gap-5'>
+          <div className='w-full flex justify-between gap-5'>
 
-              <div className='w-3/4'>
-                <div className='bg-slate-800 rounded-2xl p-5 px-6 flex flex-col gap-3 h-[]'>
-                  <div className='text-[#C3E200] font-oswald text-3xl'>DESCRIPTION</div>
-                  <div className='font-lato text-white text-lg'>
-                    {data?.overview}
-                  </div>
-                </div>
-                <div className='flex justify-between'> 
-                  <div className='w-full flex gap-5 my-10'>
-                    <SubDetails data={data} loading={loading}/>
-                    <Tagline data={data} loading={loading}/>
-                  </div>
+            <div className='w-3/4'>
+              <div className='bg-slate-800 rounded-2xl p-5 px-6 flex flex-col gap-3 h-[]'>
+                <div className='text-[#C3E200] font-oswald text-3xl'>DESCRIPTION</div>
+                <div className='font-lato text-white text-lg'>
+                  {data?.overview}
                 </div>
               </div>
-
-              <div className='w-1/4 flex flex-col gap-5'>
-
-                <div className='w-full h-1/4 flex flex-col gap-3'>
-                  <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl'>
-                    <IoMdAddCircleOutline className='scale-150'/>
-                    Add to WatchList
-                  </button>
-
-                  <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl'>
-                    <FaShareAlt/>
-                    Share
-                  </button>
+              <div className='flex justify-between'> 
+                <div className='w-full flex gap-5 my-10'>
+                  <SubDetails data={data} loading={loading}/>
+                  <Tagline data={data} loading={loading}/>
                 </div>
-
-                <div className='h-3/4'>
-                  <DetailsSlider mediaType={mediaType}/>
-                </div>
-
               </div>
+            </div>
+
+            <div className='w-1/4 flex flex-col gap-5'>
+              <div className='w-full h-1/4 flex flex-col gap-3'>
+                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl'>
+                  <IoMdAddCircleOutline className='scale-150'/>
+                  Add to WatchList
+                </button>
+                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl'>
+                  <FaShareAlt/>
+                  Share
+                </button>
+              </div>
+              <div className='h-3/4'>
+                <DetailsSlider mediaType={mediaType}/>
+              </div>
+            </div>
 
           </div>
         </ContentCenter>
-
-      <ContentCenter>
-      </ContentCenter>
 
       {mediaType === 'tv' ? <Seasons data={data} loading={loading} handleEpisode={handleEpisode}/> : <div/>}
       <Similar id={id} mediaType={mediaType}/>
