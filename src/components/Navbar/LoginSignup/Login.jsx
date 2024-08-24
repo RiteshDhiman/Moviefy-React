@@ -3,8 +3,38 @@ import React, { useState } from 'react'
 import { loginSchema } from '../../../schemas'
 import google from '../../../assets/google.png'
 import close from '../../../assets/close.png'
+import useFetch from '../../../hooks/useFetch'
+import { useSelector } from 'react-redux'
+import LazyLoadImages from '../../../utilityComponent/LazyLoadImages'
+import loginbg from '../../../assets/loginbg.png'
+import {motion} from 'framer-motion'
 
 const Login = ({handleLogin}) => {
+
+  const posterPath = [
+    "/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
+    "/4GDy0PHYX3VRXUtwK5ysFbg3kEx.jpg",
+    "/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",
+    "/rAGiXaUfPzY7CDEyNKUofk3Kw2e.jpg",
+    "/hr0L2aueqlP2BYUblTTjmtn0hw4.jpg",
+    "/hA2ple9q4qnwxp3hKVNhroipsir.jpg",
+    "/uxzzxijgPIY7slzFvMotPv8wjKA.jpg",
+    "/qhPtAc1TKbMPqNvcdXSOn9Bn7hZ.jpg",
+    "/7WfK17BXE6szXlm4WOxfswgbdsL.jpg",
+    "/yXCbOiVDCxO71zI7cuwBRXdftq8.jpg",
+    "/sdEOH0992YZ0QSxgXNIGLq1ToUi.jpg",
+    "/5VTN0pR8gcqV3EPUHHfMGnJYN9L.jpg",
+    "/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg",
+    "/c24sv2weTHPsmDa7jEMN0m2P3RT.jpg",
+    "/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg",
+    "/aWxwnYoe8p2d2fcxOqtvAtJ72Rw.jpg",
+    "/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg",
+    "/prSfAi1xGrhLQNxVSUFh61xQ4Qy.jpg",
+  ]
+
+  const {url} = useSelector((state)=>state.home)
+
+  const loginBg = posterPath[Math.floor(Math.random()*posterPath.length)]
 
   const [loginSignup, setloginSignup] = useState('login')
 
@@ -27,17 +57,38 @@ const Login = ({handleLogin}) => {
   }) 
 
   return (
-    <div className = {`w-full h-[100vh] absolute z-10 top-0 flex justify-center items-center`}>
-        <div className='w-2/3 h-5/6 bg-red-300 fixed flex rounded-xl'>
+    <div className = 'w-full h-[100vh] absolute z-10 top-0 flex justify-center items-center'>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.5 }}
+          transition={{ duration: 0.2 }}
+          className='w-4/5 md:w-2/3 h-5/6 bg-red-300 fixed flex rounded-xl shadow-2xl shadow-black'
+        >
 
-        <div className='absolute top-3 right-4 z-10'>
-          <img src={close} className='w-7 invert hover:scale-110 duration-200 cursor-pointer' onClick={handleLogin}/>
-        </div>
+          <div className='absolute top-3 right-4 z-10'>
+            <img src={close} className='w-7 invert hover:scale-110 duration-200 cursor-pointer' onClick={handleLogin}/>
+          </div>
 
-          <div className='w-1/2 bg-orange-300 rounded-l-xl'>1</div>
+          <div className='hidden md:block w-1/2 bg-black absolute top-0 h-full opacity-60 z-10'></div>
+
+          <div className='absolute flex flex-col justify-center items-center w-1/2 top-1/2 text-white z-20 gap-5'>
+            <div className='font-anton text-4xl'>
+              Track • Discover • Enjoy
+            </div>
+            <div className='w-4/5 font-mukta text-lg text-center'>
+              Discover the latest hits, rediscover classics, and keep track of every episode and movie you've watched. Personalize your viewing journey and never miss a moment of entertainment.
+            </div>
+          </div>
+
+          <div className='hidden md:block w-1/2 rounded-l-xl h-full overflow-hidden'>
+            {/* <img src={url + loginBg} className='w-full'/> */}
+            <img src={loginbg} className='h-full w-auto object-cover' />
+          </div>
+
           {
             loginSignup === 'login' ?
-            <div style={{background: 'radial-gradient(circle, #002f4c 30%, #001c2a 100%)',}} className='w-1/2 flex items-center justify-center rounded-r-xl'>
+            <div style={{background: 'radial-gradient(circle, #002f4c 30%, #001c2a 100%)',}} className='w-full md:w-1/2 flex items-center justify-center rounded-r-xl'>
               <div className='w-2/3 h-3/4 flex flex-col items-center justify-center gap-5'>
                 <div className='font-fina font-bold text-2xl text-white'>Sign in to Moviefy</div>
 
@@ -153,7 +204,7 @@ const Login = ({handleLogin}) => {
             </div>
             
           }
-        </div>
+        </motion.div>
       </div>
   )
 }

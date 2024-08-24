@@ -4,7 +4,6 @@ import useFetch from "../../hooks/useFetch";
 import { useSelector } from "react-redux";
 import ContentCenter from "../../utilityComponent/ContentCenter";
 import noposter from "../../assets/no-poster.png"
-import { TbBasketX } from "react-icons/tb";
 import LazyLoadImages from "../../utilityComponent/LazyLoadImages";
 
 const SearchPage = () => {

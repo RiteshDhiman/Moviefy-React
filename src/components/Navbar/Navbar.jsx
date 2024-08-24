@@ -51,12 +51,26 @@ const Navbar = () => {
 
             <div>
               <ul className='flex gap-6 items-center text-lg font-mukta'>
-                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/movie')}>Movies</li>
-                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/tv')}>TV Shows</li>
-                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/movie/now_playing')}>In Cinemas</li>
+                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/movie')}>
+                  Movies
+                </li>
+
+                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/tv')}>
+                  TV Shows
+                </li>
+
+                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/movie/now_playing')}>
+                  In Cinemas
+                </li>
+
                 <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>
-                <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black' onClick={()=>handleLogin()}>Log In</button>
+
+                <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' onClick={()=>handleLogin()}>
+                  Log In
+                </button>
+
                 <LuMenu className='block md:hidden text-white hover:cursor-pointer' onClick={handleMenu}/>
+                
               </ul>
             </div>
 
