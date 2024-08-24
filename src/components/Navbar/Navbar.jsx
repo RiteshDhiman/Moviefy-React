@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { LuMenu } from "react-icons/lu";
 import moviefy from '../../assets/moviefy_logo.jpeg'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Login from './LoginSignup/Login.jsx';
 
 const Navbar = () => {
 
@@ -76,9 +77,7 @@ const Navbar = () => {
           </div>
         }
       </ContentCenter>
-      <div className={`${login ? '' : 'hidden'} w-full h-[100vh] absolute z-10 top-0`}>
-        <div onClick={handleLogin} className='text-9xl text-red-500 cursor-pointer mx-auto w-11/12 h-full bg-red-300'>X</div>
-      </div>
+      {login && <Login handleLogin={handleLogin}/>}
     </div>
   )
 }
