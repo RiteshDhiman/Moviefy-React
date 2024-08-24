@@ -63,16 +63,16 @@ const Login = ({handleLogin}) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
           transition={{ duration: 0.2 }}
-          className='w-4/5 md:w-2/3 h-5/6 bg-red-300 fixed flex rounded-xl shadow-2xl shadow-black'
+          className='w-4/5 md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black'
         >
 
           <div className='absolute top-3 right-4 z-10'>
-            <img src={close} className='w-7 invert hover:scale-110 duration-200 cursor-pointer' onClick={handleLogin}/>
+            <img src={close} className='w-5 md:w-7 invert hover:scale-110 duration-200 cursor-pointer' onClick={handleLogin}/>
           </div>
 
           <div className='hidden md:block w-1/2 bg-black absolute top-0 h-full opacity-60 z-10'></div>
 
-          <div className='absolute flex flex-col justify-center items-center w-1/2 top-1/2 text-white z-20 gap-5'>
+          <div className='hidden absolute md:flex flex-col justify-center items-center w-1/2 top-1/2 text-white z-20 gap-5'>
             <div className='font-anton text-4xl'>
               Track • Discover • Enjoy
             </div>
@@ -88,8 +88,8 @@ const Login = ({handleLogin}) => {
 
           {
             loginSignup === 'login' ?
-            <div style={{background: 'radial-gradient(circle, #002f4c 30%, #001c2a 100%)',}} className='w-full md:w-1/2 flex items-center justify-center rounded-r-xl'>
-              <div className='w-2/3 h-3/4 flex flex-col items-center justify-center gap-5'>
+            <div style={{background: 'radial-gradient(circle, #002f4c 30%, #001c2a 100%)',}} className='w-full md:w-1/2 flex items-center justify-center rounded-xl md:rounded-r-xl'>
+              <div className='w-4/5 md:w-2/3 h-3/4 flex flex-col items-center justify-center gap-5'>
                 <div className='font-fina font-bold text-2xl text-white'>Sign in to Moviefy</div>
 
                 <form onSubmit={handleSubmit} className='font-mukta flex flex-col w-11/12' autoComplete='off'>
