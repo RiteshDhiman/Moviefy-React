@@ -27,17 +27,35 @@ const HeroBtn = ({ btndata, btnloading, mediaType, id }) => {
 
   return (
     <div>
-      <div className="mt-10 w-full flex gap-4 h-[100px]">
-        <div className="hover:scale-95 duration-200 relative w-1/4 h-full bg-[#c4e200e4] rounded-3xl flex items-center font-poppins justify-center font-bold text-[#ababab]" onClick={()=>trailer(trailerId)}>
+      <div className="mt-2 md:mt-10 w-full grid grid-cols-2 md:grid-cols-4 justify-items-center gap-4 h-[200px] md:h-[100px]">
+        <div className="hover:scale-95 duration-200 relative w-4/5 md:w-full h-full bg-[#c4e200e4] rounded-3xl flex items-center font-poppins justify-center font-bold text-[#ababab] hover:cursor-pointer" onClick={()=>trailer(trailerId)}>
           <div className="absolute -left-5 transform -rotate-90 text-xl text-black">
             TRAILER
           </div>
           <img src={play} className="hover:scale-125 duration-300" />
         </div>
 
-        <div className="hover:scale-95 duration-200 w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl text-white"></div>
+        <div className="flex flex-col items-center justify-center hover:scale-95 duration-200 w-4/5 md:w-full h-full bg-[#15202a] bg-opacity-70 rounded-3xl font-poppins font-bold text-[#ababab] hover:cursor-pointer">
+          <div className="text-[#ababab] text-xl">
+            {mediaType === 'tv' ? 'TYPE' : 'BUDGET'}
+          </div>
+          {
+            mediaType === 'tv' ?
+            (
+              <div className="font-oswald text-white text-3xl whitespace-nowrap overflow-hidden overflow-ellipsis">
+                {btndata?.type}
+              </div>  
+            )
+            :
+            (
+              <div className="font-oswald text-white text-3xl whitespace-nowrap overflow-hidden overflow-ellipsis">
+                {btndata?.budget ? `$ ${btndata?.budget / 1000000} Million` : `N/A`}
+              </div>
+            )
+          }
+        </div>
 
-        <div className="flex flex-col items-center justify-center hover:scale-95 duration-200 w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl font-poppins font-bold text-[#ababab]">
+        <div className="flex flex-col items-center justify-center hover:scale-95 duration-200 w-4/5 md:w-full h-full bg-[#15202a] bg-opacity-70 rounded-3xl font-poppins font-bold text-[#ababab] hover:cursor-pointer">
           <div className="text-md">
             AIR DATE
           </div>
@@ -51,7 +69,7 @@ const HeroBtn = ({ btndata, btnloading, mediaType, id }) => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center hover:scale-95 duration-200 w-1/4 h-full bg-[#15202a] bg-opacity-70 rounded-3xl font-poppins font-bold text-[#ababab] cursor-pointer" title={btndata?.production_companies[0]?.name}>
+        <div className="flex flex-col justify-center hover:scale-95 duration-200 w-4/5 md:w-full h-full bg-[#15202a] bg-opacity-70 rounded-3xl font-poppins font-bold text-[#ababab] cursor-pointer" title={btndata?.production_companies[0]?.name}>
           <div className="text-[#ababab] text-xl text-center">
             COMPANY
           </div>

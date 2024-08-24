@@ -32,7 +32,7 @@ const DetailsHerobanner = ({ data, loading, mediaType, id}) => {
       <div className="w-full absolute z-50 top-1/3 text-white">
         <div className="w-4/5 mx-auto flex">
 
-          <div className="w-3/4 flex flex-col gap-3">
+          <div className="w-full md:w-3/4 flex flex-col gap-3">
             <div className="font-oswald text-3xl md:text-5xl font-bold uppercase">
               {data?.title || data?.name}
             </div>
@@ -58,8 +58,8 @@ const DetailsHerobanner = ({ data, loading, mediaType, id}) => {
 
           </div>
 
-          <div className="w-1/4 flex justify-end">
-            <img src={posterImg.url + data?.poster_path} alt="Poster Unavailable" className="w-5/6 rounded-xl"/>
+          <div className="w-1/4 hidden md:flex justify-end">
+            <img src={posterImg.url + data?.poster_path} alt="Poster Unavailable" className="w-5/6 h-4/5 rounded-xl"/>
           </div>
 
         </div>
