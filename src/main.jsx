@@ -4,12 +4,12 @@ import App from './App.jsx'
 import './index.css'
 import { Provider } from 'react-redux'
 import {store} from '../src/store/store.js'
-import {TestProvider} from './Context/Testing.jsx'
+import { FirebaseProvider } from './Context/Firebase.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <TestProvider>
+    <FirebaseProvider>
       <App/>
-    </TestProvider>
+    </FirebaseProvider>
   </Provider>
 )

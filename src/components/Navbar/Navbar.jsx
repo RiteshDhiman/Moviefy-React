@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { LuMenu } from "react-icons/lu";
 import moviefy from '../../assets/moviefy_logo.jpeg'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Login from './LoginSignup/Login.jsx';
+import Authentication from './LoginSignup/Authentication.jsx'
 
 const Navbar = () => {
 
@@ -17,7 +17,6 @@ const Navbar = () => {
 
   const handleLogin = () => {
     setLogin(!login);
-    console.log('hello')
   }
 
   const handleMenu = () => {
@@ -91,7 +90,7 @@ const Navbar = () => {
           </div>
         }
       </ContentCenter>
-      {login && <Login handleLogin={handleLogin}/>}
+      {login && <Authentication handleLogin={handleLogin}/>}
     </div>
   )
 }
