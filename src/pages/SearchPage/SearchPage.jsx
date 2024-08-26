@@ -38,14 +38,6 @@ const SearchPage = () => {
 
       <ContentCenter>
 
-        {/* {text === undefined ? 
-          <div className="py-10 font-poetsen text-3xl">
-            <span>Search Results for '<span className="capitalize">{text}</span>'</span>
-          </div>
-          :
-          <div className="py-10"></div>
-        } */}
-
         <div className="py-10 font-poetsen text-3xl">
           {
             text === undefined ?
