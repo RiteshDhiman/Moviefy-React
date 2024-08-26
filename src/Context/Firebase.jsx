@@ -6,13 +6,13 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 const FirebaseContext = createContext(null);
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBK-05VJ7VhnXoXc-muGV3YyWaCAfBRtMc",
-    authDomain: "moviefy-db656.firebaseapp.com",
-    projectId: "moviefy-db656",
-    storageBucket: "moviefy-db656.appspot.com",
-    messagingSenderId: "535260592677",
-    appId: "1:535260592677:web:dd7ec9e96cd503ed165dcc",
-    measurementId: "G-20LPHFCN6N"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
   };
 
 const firebaseApp = initializeApp(firebaseConfig)
