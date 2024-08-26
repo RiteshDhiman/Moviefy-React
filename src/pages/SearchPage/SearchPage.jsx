@@ -21,77 +21,45 @@ const SearchPage = () => {
       fetchUrl = useFetch(`/movie/now_playing`)
     }
     else{
-      fetchUrl = useFetch(`/discover/${media}?page=${page}`)
+      fetchUrl = useFetch(`/${media}/top_rated?page=${page}`)
     }
   }
   else{
     fetchUrl = useFetch(`/search/multi?query=${text}&page=${page}`)
   }
   const { data, loading } = fetchUrl
-  const [results, setResults] = useState([])
 
   const { url } = useSelector((state) => state.home);
 
-  // console.log(media)
-  // console.log(text)
-
   console.log(data?.results)
-  // useEffect(()=>{
-  //   if(data?.results){
-  //     setResults(prevResults => [...prevResults, ...data.results])
-  //   }
-  // },[data])
-
-  // useEffect(()=>{
-  //   const handleScroll = () => {
-  //     if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.scrollHeight) {
-  //       // Load more results when scrolled to the bottom
-  //       setPage(prevPage => prevPage + 1);
-  //     }
-  //   };
-
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll)
-  //   }
-  // },[])
-
-  // console.log(results)
-
-  // const capitalize = (word) => {
-  //   const temp = word.slice(0, 1).toUpperCase();
-  //   return temp + word.slice(1);
-  // };
-
-  // useEffect(()=>{
-  //   handleScroll()
-  // })
-
-  // const handleScroll = async() => {
-  //   console.log(window.innerHeight);
-  //   console.log(document.documentElement.scrollTop);
-  //   console.log(document.documentElement.scrollHeight)
-  // }
 
   return (
     <div className="flex flex-col text-white">
-      {/* <img src={img.url + data?.results[0]?.poster_path} alt="" />
-            <span className='text-3xl font-bol bg-red-300'>{data?.results[0]?.title}</span> */}
+
       <ContentCenter>
 
-        {text === !undefined ? 
+        {/* {text === undefined ? 
           <div className="py-10 font-poetsen text-3xl">
             <span>Search Results for '<span className="capitalize">{text}</span>'</span>
           </div>
           :
           <div className="py-10"></div>
-        }
+        } */}
+
+        <div className="py-10 font-poetsen text-3xl">
+          {
+            text === undefined ?
+
+            (text === undefined && media === undefined ? <span>In Cinemas</span> : (media === 'tv' ? <span>Top TV Shows</span> : <span>Top Movies</span>)) :
+
+            (data?.results.length === 0 ? <span>No Results Found for '<span className="capitalize">{text}</span>'</span> : <span>Search Results for '<span className="capitalize">{text}</span>'</span>)
+          }
+        </div>
 
 
         {!loading 
             ?
-            (<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            (<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 min-h-[50vh]">
               
             {data?.results.map((item) => {
               return (

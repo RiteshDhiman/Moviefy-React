@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/home/Home'
 import Navbar from './components/Navbar/Navbar'
 import { useDispatch } from 'react-redux'
-import useFetch from './hooks/useFetch'
 import { getConfigApi } from './store/homeSlice'
 import fetchDataFromAPI from './utils/api'
 import Details from './pages/Details/Details'
 import SearchPage from './pages/SearchPage/SearchPage'
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import Footer from './components/Footer/Footer'
+import ScrolltoTop from './utilityComponent/ScrolltoTop'
 
 function App() {
   
@@ -31,6 +31,7 @@ function App() {
     <div className='bg-[#030c1e]'>
       <BrowserRouter>
         <Navbar/>
+        <ScrolltoTop/>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/:mediaType/:id' element={<Details/>}/>

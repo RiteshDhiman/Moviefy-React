@@ -3,6 +3,7 @@ import React from "react";
 import { signupSchema } from "../../../schemas";
 import { useFirebase } from "../../../Context/Firebase";
 import google from '../../../assets/google.png'
+import { updateProfile } from "firebase/auth";
 
 const SignUp = ({loginsignuphandle}) => {
 
@@ -10,14 +11,18 @@ const SignUp = ({loginsignuphandle}) => {
 
   const onSubmit = async(values, actions) => {
     try {
-      firebase.signupwithemailandpassword(values.email, values.password)
+      const userCredentials = await firebase.signupwithemailandpassword(values.email, values.password)
+      await updateProfile(userCredentials.user, {
+        displayName : `${values.first_name} ${values.last_name}`
+      })
       alert('Account created successfully')
       actions.resetForm()
     } catch (error) {
-      alert('Account error')
+      alert(error.message)
+      console.error(error)
     }
   }
-
+  
   const {values, errors, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : {
       first_name : "",

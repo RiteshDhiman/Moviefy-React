@@ -12,6 +12,7 @@ const Login = ({loginsignuphandle}) => {
     try {
       await firebase.signinwithemailandpassword(values.email, values.password);
       alert('Login Successful');
+      actions.resertForm()
     } catch (error) {
         alert('Login failed')
     }

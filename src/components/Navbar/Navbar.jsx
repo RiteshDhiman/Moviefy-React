@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ContentCenter from '../../utilityComponent/ContentCenter.jsx'
 import { FiSearch } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
@@ -6,6 +6,7 @@ import { LuMenu } from "react-icons/lu";
 import moviefy from '../../assets/moviefy_logo.jpeg'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Authentication from './LoginSignup/Authentication.jsx'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
 const Navbar = () => {
 
@@ -14,6 +15,17 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState(false)
   const [text, setText] = useState();
+  const [user, setUser] = useState(null)
+  const auth = getAuth()
+
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser)
+      console.log(currentUser)
+    })
+
+    return () => unsubscribe()
+  }, [auth])
 
   const handleLogin = () => {
     setLogin(!login);
@@ -38,6 +50,13 @@ const Navbar = () => {
       handleSearchOnclick()
     }
   }
+  const handleSignOut = () => {
+    signOut(auth).then(() => {
+      console.log('User signed out');
+    }).catch((error) => {
+      console.error('Error signing out:', error);
+    });
+  };
 
   return (
     <div className='py-3 flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
@@ -64,9 +83,18 @@ const Navbar = () => {
 
                 <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>
 
-                <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' onClick={()=>handleLogin()}>
+                {user ? (
+                <div className='flex items-center gap-2'>
+                  <span>Welcome, {user.displayName}</span>
+                  <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' onClick={handleSignOut}>
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' onClick={handleLogin}>
                   Log In
                 </button>
+              )}
 
                 <LuMenu className='block md:hidden text-white hover:cursor-pointer' onClick={handleMenu}/>
                 
