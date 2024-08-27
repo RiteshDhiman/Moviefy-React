@@ -38,7 +38,7 @@ import { useNavigate } from 'react-router-dom';
   },[data])
 
   return (
-    <div className='relative w-full h-[45vh] md:h-[80vh] mb-10'>
+    <div className='relative w-full h-[45vh] md:h-[90vh] mb-10'>
       <div className='w-full h-full'>
         <img src={bg} className="h-full w-full object-cover opacity-50" loading='lazy'/>
       </div>
@@ -65,7 +65,7 @@ import { useNavigate } from 'react-router-dom';
         </div>
       </div>
 
-      <div className='absolute z-1 bottom-0 w-full h-1/4 bg-gradient-to-t from-black to-transparent'></div>
+      <div className='absolute z-1 bottom-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent'></div>
     </div>
   )
 }

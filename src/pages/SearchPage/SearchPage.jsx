@@ -55,7 +55,7 @@ const SearchPage = () => {
               
             {data?.results.map((item) => {
               return (
-                <div key={item.id} onClick={()=>media === undefined ? navigate(`/${item?.media_type}/${item?.id}`) : navigate(`/${media}/${item?.id}`)} className="rounded-xl hover:scale-105 hover:brightness-[60%] transition-all duration-300">
+                <div key={item.id} onClick={()=>media === undefined ? navigate(`/${item?.media_type || 'movie'}/${item?.id}`) : navigate(`/${media}/${item?.id}`)} className="rounded-xl hover:scale-105 hover:brightness-[60%] transition-all duration-300">
                   <LazyLoadImages src={item.poster_path ? url + item.poster_path : noposter} className={'hover:cursor-pointer rounded-xl'}/>
                   
                   <div className="w-full text-center font-poppins">

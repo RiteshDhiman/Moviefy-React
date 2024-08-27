@@ -59,7 +59,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='py-3 flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
+    <div className='py-3 flex absolute flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
       <ContentCenter className={"h-full"}>
         <div className='text-white flex justify-between items-center h-full'>
             

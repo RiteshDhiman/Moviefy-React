@@ -73,7 +73,7 @@ const HeroBtn = ({ btndata, btnloading, mediaType, id }) => {
           <div className="text-[#ababab] text-xl text-center">
             COMPANY
           </div>
-          <div className="w-11/12 mx-auto font-oswald text-white text-3xl whitespace-nowrap overflow-hidden overflow-ellipsis">
+          <div className="w-11/12 mx-auto font-oswald text-white text-3xl text-center whitespace-nowrap overflow-hidden overflow-ellipsis">
             {btndata?.production_companies[0]?.name}
           </div>
         </div>
