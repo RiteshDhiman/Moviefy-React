@@ -70,6 +70,9 @@ const Details = () => {
                   <FaShareAlt/>
                   Share
                 </button>
+                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl'>
+                  Track
+                </button>
               </div>
               <div className='h-3/4'>
                 <DetailsSlider mediaType={mediaType}/>
