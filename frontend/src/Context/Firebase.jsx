@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 import { initializeApp } from 'firebase/app'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from  'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification  } from  'firebase/auth'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 
 const FirebaseContext = createContext(null);
@@ -42,7 +42,7 @@ export const FirebaseProvider = ({children}) => {
       
 
     return(
-        <FirebaseContext.Provider value={{signupwithemailandpassword, googlesignup, signinwithemailandpassword}}>
+        <FirebaseContext.Provider value={{signupwithemailandpassword, googlesignup, signinwithemailandpassword, firebaseauth, sendEmailVerification }}>
             {children}
         </FirebaseContext.Provider>
     )

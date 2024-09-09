@@ -4,6 +4,7 @@ import { signupSchema } from "../../../schemas";
 import { useFirebase } from "../../../Context/Firebase";
 import google from '../../../assets/google.png'
 import { updateProfile } from "firebase/auth";
+import axios from 'axios'
 
 const SignUp = ({loginsignuphandle}) => {
 
@@ -12,10 +13,22 @@ const SignUp = ({loginsignuphandle}) => {
   const onSubmit = async(values, actions) => {
     try {
       const userCredentials = await firebase.signupwithemailandpassword(values.email, values.password)
+
       await updateProfile(userCredentials.user, {
         displayName : `${values.first_name} ${values.last_name}`
       })
+
+      const userId = userCredentials.user.uid;
+      const fullName = userCredentials.user.displayName
+
+      const userIDSend = await axios.post('http://localhost:3000/auth/signup', {userId, fullName})
+
+      // firebase.sendEmailVerification(firebase.firebaseauth.currentUser).then(()=>{
+      //   console.log("Email send")
+      // })
+
       alert('Account created successfully')
+      console.log(firebase.firebaseauth.currentUser)
       actions.resetForm()
     } catch (error) {
       alert(error.message)
