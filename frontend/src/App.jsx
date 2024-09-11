@@ -11,6 +11,7 @@ import SearchPage from './pages/SearchPage/SearchPage'
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import Footer from './components/Footer/Footer'
 import ScrolltoTop from './utilityComponent/ScrolltoTop'
+import WatchLater from './pages/WatchLater/WatchLater'
 
 function App() {
   
@@ -38,6 +39,7 @@ function App() {
           <Route path='/search/multi/:text' element={<SearchPage/>}/>
           <Route path='/search/:media/' element={<SearchPage/>}/>
           <Route path='/movie/now_playing/' element={<SearchPage/>}/>
+          <Route path='/watchlist' element={<WatchLater/>}></Route>
         </Routes>
         <Footer/>
       </BrowserRouter>

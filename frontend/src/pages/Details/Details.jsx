@@ -12,8 +12,14 @@ import { FaShareAlt } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import DetailsSlider from './detailsComponents/DetailsSlider';
 import DetailsHerobanner from './Herobanner/DetailsHerobanner';
+import axios from 'axios';
+import { useFirebase } from '../../Context/Firebase';
 
 const Details = () => {
+
+  const firebase = useFirebase();
+
+  const userId = firebase.firebaseauth.currentUser?.uid
 
   const {mediaType, id} = useParams();
 
@@ -21,6 +27,20 @@ const Details = () => {
 
   const posterImg = useSelector((state)=>state.home)
   const {data, loading} = useFetch(`/${mediaType}/${id}`)
+
+  const mediaName = data?.title || data?.name
+  
+
+  const addtoWatchlist = async() => {
+    try {
+      const testing = await axios.post('http://localhost:3000/add/wishlist', {userId, id, mediaType, mediaName})
+      alert("Added successfully")
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  console.log(data)
 
   const epCount = () => {
     let count = 0;
@@ -62,14 +82,11 @@ const Details = () => {
 
             <div className='w-1/4 flex flex-col gap-5'>
               <div className='w-full h-1/4 flex flex-col gap-3'>
-                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl'>
+                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl' onClick={addtoWatchlist}>
                   <IoMdAddCircleOutline className='scale-150'/>
                   Add to WatchList
                 </button>
-                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl'>
-                  <FaShareAlt/>
-                  Share
-                </button>
+
                 <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl'>
                   Track
                 </button>

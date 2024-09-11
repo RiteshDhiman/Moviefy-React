@@ -4,7 +4,7 @@ import { loginSchema } from '../../../schemas'
 import google from '../../../assets/google.png'
 import { useFirebase } from '../../../Context/Firebase'
 
-const Login = ({loginsignuphandle}) => {
+const Login = ({loginsignuphandle, handleFormClose}) => {
 
   const firebase = useFirebase();
 
@@ -12,7 +12,8 @@ const Login = ({loginsignuphandle}) => {
     try {
       await firebase.signinwithemailandpassword(values.email, values.password);
       alert('Login Successful');
-      actions.resertForm()
+      actions.resetForm()
+      handleFormClose('close')
     } catch (error) {
         alert('Login failed')
     }

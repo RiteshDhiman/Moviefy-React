@@ -15,6 +15,12 @@ const Authentication = ({handleLogin}) => {
     loginSignup === 'login' ? setloginSignup('signup') : setloginSignup('login')
   }
 
+  const handleFormClose = (text) => {
+    if(text === 'close'){
+      handleLogin()
+    }
+  }
+
   return (
     <div className = 'w-full h-[100vh] absolute z-10 top-0 flex justify-center items-center'>
         <motion.div 
@@ -46,7 +52,7 @@ const Authentication = ({handleLogin}) => {
           </div>
 
           {
-            loginSignup === 'login' ? <Login loginsignuphandle={loginsignuphandle}/> : <SignUp loginsignuphandle={loginsignuphandle}/>
+            loginSignup === 'login' ? <Login loginsignuphandle={loginsignuphandle} handleFormClose={handleFormClose}/> : <SignUp loginsignuphandle={loginsignuphandle} handleFormClose={handleFormClose}/>
           }
         </motion.div>
       </div>

@@ -1,11 +1,8 @@
-const User = require('../models/signup.model.js')
-const bcryptjs = require('bcryptjs')
+const User = require('../models/user.model.js')
 
 const signUpEmailPass = async(req,res) => {
 
     const {userId, fullName} = req.body;
-
-    const hasheduserId = await bcryptjs.hash(userId, 10)
     
     try {
         if(!userId){
@@ -19,7 +16,7 @@ const signUpEmailPass = async(req,res) => {
         }
 
         const user = new User({
-            userId : hasheduserId,
+            userId,
             fullName
         })
 
@@ -30,7 +27,9 @@ const signUpEmailPass = async(req,res) => {
         })
 
     } catch (error) {
-        res.send("Kuch to locha h")
+        res.status(500).json({
+            message:"Internal server error on signupcontroller"
+        })
     }
 }
 

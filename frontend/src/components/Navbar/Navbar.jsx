@@ -7,6 +7,7 @@ import moviefy from '../../assets/moviefy_logo.jpeg'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Authentication from './LoginSignup/Authentication.jsx'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { useFirebase } from '../../Context/Firebase.jsx';
 
 const Navbar = () => {
 
@@ -16,12 +17,13 @@ const Navbar = () => {
   const [search, setSearch] = useState(false)
   const [text, setText] = useState();
   const [user, setUser] = useState(null)
-  const auth = getAuth()
+  const firebase = useFirebase()
+  const auth = firebase.firebaseauth
 
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
-      console.log(currentUser)
+      // console.log(currentUser)
     })
 
     return () => unsubscribe()
@@ -52,7 +54,7 @@ const Navbar = () => {
   }
   const handleSignOut = () => {
     signOut(auth).then(() => {
-      console.log('User signed out');
+      window.location.reload()
     }).catch((error) => {
       console.error('Error signing out:', error);
     });
@@ -79,6 +81,10 @@ const Navbar = () => {
 
                 <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/movie/now_playing')}>
                   In Cinemas
+                </li>
+
+                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/watchlist')}>
+                  WatchList
                 </li>
 
                 <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>

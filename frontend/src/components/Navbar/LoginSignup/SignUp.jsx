@@ -6,7 +6,7 @@ import google from '../../../assets/google.png'
 import { updateProfile } from "firebase/auth";
 import axios from 'axios'
 
-const SignUp = ({loginsignuphandle}) => {
+const SignUp = ({loginsignuphandle, handleFormClose}) => {
 
   const firebase = useFirebase();
 
@@ -30,6 +30,7 @@ const SignUp = ({loginsignuphandle}) => {
       alert('Account created successfully')
       console.log(firebase.firebaseauth.currentUser)
       actions.resetForm()
+      handleFormClose('close')
     } catch (error) {
       alert(error.message)
       console.error(error)
