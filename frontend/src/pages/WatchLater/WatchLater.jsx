@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
     const fetchWatchlist = async () => {
       try {
         if (userId) {
-          const response = await axios.get('http://localhost:3000/add/watchlist', {
+          const response = await axios.get('https://moviefy-react.vercel.app/add/watchlist', {
             params: { userId }
           });
           setWatchLaterList(response.data);  // Set the fetched watch later array
@@ -26,7 +26,7 @@ import { useNavigate } from 'react-router-dom';
 
     const removeWatchlist = async (id) => {
       try {
-        const response = await axios.post('http://localhost:3000/add/wishlistRemove', { userId, id });
+        const response = await axios.post('https://moviefy-react.vercel.app/add/wishlistRemove', { userId, id });
         
         if (response.status === 200) {
           // Update the watchLaterList by removing the item with the given id

@@ -41,7 +41,7 @@ const Details = () => {
 
   const addtoWatchlist = async() => {
     try {
-      const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
+      const testing = await axios.post('https://moviefy-react.vercel.app/wishlist', wishlistData)
       alert("Added successfully")
     } catch (error) {
       alert(error.message)
