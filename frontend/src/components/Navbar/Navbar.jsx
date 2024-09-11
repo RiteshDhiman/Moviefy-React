@@ -83,9 +83,11 @@ const Navbar = () => {
                   In Cinemas
                 </li>
 
-                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/watchlist')}>
-                  WatchList
-                </li>
+                {firebase.firebaseauth.currentUser &&
+                  <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/watchlist')}>
+                    WatchList
+                  </li>
+                }
 
                 <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>
 

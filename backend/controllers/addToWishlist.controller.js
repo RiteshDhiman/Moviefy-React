@@ -1,21 +1,17 @@
 const User = require("../models/user.model.js");
 
 const addToWishList = async(req,res) => {
-    const {userId, mediaType, id, mediaName} = req.body;
-
-    console.log(mediaName)
-    console.log(req.body)
+    const {userId, mediaType, id, mediaName, posterPath} = req.body;
 
     try {
         const userFind = await User.findOne({userId})
-
-        console.log(userFind)
 
         if(userFind){
             userFind.wishlist.push({
                 id,
                 mediaName,
                 mediaType,
+                posterPath : 'https://image.tmdb.org/t/p/original'+ posterPath
             })
 
             await userFind.save()

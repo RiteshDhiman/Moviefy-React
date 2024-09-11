@@ -29,7 +29,7 @@ const DetailsHerobanner = ({ data, loading, mediaType, id}) => {
 
       <div className="absolute z-10 w-full h-full bg-black bg-opacity-30"></div>
 
-      <div className="w-full absolute flex items-center z-50 h-full text-white">
+      <div className="w-full absolute flex items-center z-20 h-full text-white">
         <div className="w-4/5 mx-auto flex">
 
           <div className="w-full md:w-3/4 justify-center flex flex-col gap-3">

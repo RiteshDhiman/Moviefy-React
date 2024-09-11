@@ -22,7 +22,7 @@ const Authentication = ({handleLogin}) => {
   }
 
   return (
-    <div className = 'w-full h-[100vh] absolute z-10 top-0 flex justify-center items-center'>
+    <div className = 'w-full h-[100vh] absolute z-50 top-0 flex justify-center items-center'>
         <motion.div 
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}

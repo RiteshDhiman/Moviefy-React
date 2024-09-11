@@ -28,12 +28,20 @@ const Details = () => {
   const posterImg = useSelector((state)=>state.home)
   const {data, loading} = useFetch(`/${mediaType}/${id}`)
 
-  const mediaName = data?.title || data?.name
+  // const mediaName = data?.title || data?.name
+
+  const wishlistData = {
+    userId,
+    mediaType,
+    id,
+    mediaName : mediaType === 'movie' ? data?.title : data?.name,
+    posterPath : data?.poster_path
+  }
   
 
   const addtoWatchlist = async() => {
     try {
-      const testing = await axios.post('http://localhost:3000/add/wishlist', {userId, id, mediaType, mediaName})
+      const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
       alert("Added successfully")
     } catch (error) {
       alert(error.message)

@@ -12,6 +12,9 @@ const wishListSchema = new mongoose.Schema({
     mediaName : {
         type:String,
         required:true
+    },
+    posterPath : {
+        type:String
     }
 })
 
