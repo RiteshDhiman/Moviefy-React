@@ -9,6 +9,7 @@ import fetchDataFromAPI from './utils/api'
 import Details from './pages/Details/Details'
 import SearchPage from './pages/SearchPage/SearchPage'
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import { Analytics } from "@vercel/analytics/react"
 import Footer from './components/Footer/Footer'
 import ScrolltoTop from './utilityComponent/ScrolltoTop'
 import WatchLater from './pages/WatchLater/WatchLater'
@@ -44,6 +45,7 @@ function App() {
         <Footer/>
       </BrowserRouter>
       <SpeedInsights/>
+      <Analytics/>
     </div>
   )
 }
