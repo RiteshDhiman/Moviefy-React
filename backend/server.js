@@ -5,9 +5,7 @@ const userRouter = require('./routes/Signup.route.js')
 const wishlistRouter = require('./routes/Wishlist.route.js')
 const cors = require('cors');
 const app = express();
-app.use(cors({
-    origin: 'https://moviefy-ritesh.vercel.app'
-}));
+app.use(cors());
 
 dotenv.config()
 app.use(express.json())

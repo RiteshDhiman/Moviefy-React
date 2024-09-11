@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { loginSchema } from '../../../schemas'
 import google from '../../../assets/google.png'
 import { useFirebase } from '../../../Context/Firebase'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({loginsignuphandle, handleFormClose}) => {
 
@@ -11,7 +13,7 @@ const Login = ({loginsignuphandle, handleFormClose}) => {
   const onSubmit = async (values, actions) => {
     try {
       await firebase.signinwithemailandpassword(values.email, values.password);
-      alert('Login Successful');
+      toast.success('Login Successful');
       actions.resetForm()
       handleFormClose('close')
     } catch (error) {

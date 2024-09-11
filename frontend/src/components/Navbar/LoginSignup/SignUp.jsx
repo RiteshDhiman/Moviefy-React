@@ -5,6 +5,8 @@ import { useFirebase } from "../../../Context/Firebase";
 import google from '../../../assets/google.png'
 import { updateProfile } from "firebase/auth";
 import axios from 'axios'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = ({loginsignuphandle, handleFormClose}) => {
 
@@ -23,17 +25,11 @@ const SignUp = ({loginsignuphandle, handleFormClose}) => {
 
       const userIDSend = await axios.post('http://localhost:3000/auth/signup', {userId, fullName})
 
-      // firebase.sendEmailVerification(firebase.firebaseauth.currentUser).then(()=>{
-      //   console.log("Email send")
-      // })
-
-      alert('Account created successfully')
-      console.log(firebase.firebaseauth.currentUser)
+      toast.success('Account created successfully')
       actions.resetForm()
       handleFormClose('close')
     } catch (error) {
-      alert(error.message)
-      console.error(error)
+      toast.error(error.message)
     }
   }
   

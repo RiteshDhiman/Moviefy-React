@@ -14,6 +14,8 @@ import DetailsSlider from './detailsComponents/DetailsSlider';
 import DetailsHerobanner from './Herobanner/DetailsHerobanner';
 import axios from 'axios';
 import { useFirebase } from '../../Context/Firebase';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Details = () => {
 
@@ -41,8 +43,8 @@ const Details = () => {
 
   const addtoWatchlist = async() => {
     try {
-      const testing = await axios.post('https://moviefy-react.vercel.app/wishlist', wishlistData)
-      alert("Added successfully")
+      const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
+      toast.success(`${data?.name || data?.title} added to Watch Later`);
     } catch (error) {
       alert(error.message)
     }
