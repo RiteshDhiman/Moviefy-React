@@ -65,7 +65,7 @@ const WatchLater = () => {
 
         <div className="w-full">
           <div className="text-3xl font-mukta py-5">Movies</div>
-          <div className="grid md:grid-cols-3 grid-cols-2 gap-x-10 gap-y-5">
+          <div className="grid md:grid-cols-3 grid-cols-2 gap-x-6 gap-y-5">
             {movies.length > 0 ? (
               movies.map((item, index) => (
                 <div className="w-full bg-slate-900 h-[55vh] flex flex-col justify-around items-center rounded-3xl">

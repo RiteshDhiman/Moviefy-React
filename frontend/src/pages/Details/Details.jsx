@@ -16,6 +16,7 @@ import axios from 'axios';
 import { useFirebase } from '../../Context/Firebase';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import OverlayEpisodes from './OverlayEpisodes';
 
 const Details = () => {
 
@@ -25,7 +26,7 @@ const Details = () => {
 
   const {mediaType, id} = useParams();
 
-  const [showEps, setShowEps] = useState(false)
+
 
   const posterImg = useSelector((state)=>state.home)
   const {data, loading} = useFetch(`/${mediaType}/${id}`)
@@ -50,20 +51,16 @@ const Details = () => {
     }
   }
 
-  console.log(data)
+  // const epCount = () => {
+  //   let count = 0;
+  //   data?.seasons.map((item)=>{
+  //     count += item.episode_count
+  //   })
 
-  const epCount = () => {
-    let count = 0;
-    data?.seasons.map((item)=>{
-      count += item.episode_count
-    })
+  //   return count;
+  // }
 
-    return count;
-  }
 
-  const handleEpisode = () => {
-    setShowEps(!showEps)
-  }
 
 
   return (
@@ -109,15 +106,11 @@ const Details = () => {
           </div>
         </ContentCenter>
 
-      {mediaType === 'tv' ? <Seasons data={data} loading={loading} handleEpisode={handleEpisode}/> : <div/>}
+      {mediaType === 'tv' ? <Seasons data={data} loading={loading}/> : <div/>}
       <Similar id={id} mediaType={mediaType}/>
       <Recommendation id={id} mediaType={mediaType}/>
 
-      {
-        showEps && <div className='text-white text-9xl absolute top-0 w-3/4 h-[100vh] z-50 bg-black overflow-scroll'>
-          <span onClick={handleEpisode}>XXXXXXXX</span>
-        </div>
-      }
+      
 
     </div>
 

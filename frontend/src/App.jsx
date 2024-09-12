@@ -30,7 +30,8 @@ function App() {
   })
 
   return (
-    <div className='bg-[#030c1e]'>
+    // <div className='bg-[#030c1e]'>
+    <div className='bg-[#343434]'>
       <BrowserRouter>
         <Navbar/>
         <ScrolltoTop/>

@@ -112,7 +112,7 @@ const Navbar = () => {
         </div>
         
         {menu &&
-          <div className='flex flex-col text-white'>
+          <div className='flex flex-col text-white md:hidden'>
             <div>Movies</div>
             <div>TV Shows</div>
             <div>In Cinemas</div>
