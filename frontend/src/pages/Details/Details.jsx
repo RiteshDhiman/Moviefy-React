@@ -45,7 +45,13 @@ const Details = () => {
   const addtoWatchlist = async() => {
     try {
       const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
-      toast.success(`${data?.name || data?.title} added to Watch Later`);
+      const message = testing.data.message;
+
+      if (message === "Media Already exists") {
+          toast.warning(`${data?.name || data?.title} is already in your Watch Later list`, {style : {width : '400px'}});
+      } else if (message === "Added to watchlist") {
+          toast.success(`${data?.name || data?.title} added to Watch Later`, {style : {width : '400px'}});
+      }
     } catch (error) {
       alert(error.message)
     }

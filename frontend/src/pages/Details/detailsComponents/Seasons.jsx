@@ -29,7 +29,7 @@ const Seasons = ({data, loading}) => {
            {
             data?.seasons.map((item)=>(
 
-            <div key={item.id} className='flex h-[40vh] bg-[#1e293b83] w-full rounded-3xl'>
+            <div key={item.id} className='flex h-[40vh] bg-[#1e293b83] w-11/12 rounded-3xl'>
               <div className='w-1/2 h-full'>
                 <img src={item.poster_path ? posterImg.url + item.poster_path : noposter} className="h-full rounded-3xl opacity-85 shadow-2xl shadow-black hover:scale-105 duration-300"/>
               </div>

@@ -7,15 +7,22 @@ const addToWishList = async(req,res) => {
         const userFind = await User.findOne({userId})
 
         if(userFind){
-            userFind.wishlist.push({
-                id,
-                mediaName,
-                mediaType,
-                posterPath : 'https://image.tmdb.org/t/p/original'+ posterPath
-            })
+            const mediaFind = userFind.wishlist.find(item => item.id === id);
 
-            await userFind.save()
-            res.status(200).json({ message: "Added to watchlist" });
+            if(mediaFind){
+                res.status(200).json({message : 'Media Already exists'})
+            }
+            else{
+                userFind.wishlist.push({
+                    id,
+                    mediaName,
+                    mediaType,
+                    posterPath : 'https://image.tmdb.org/t/p/original'+ posterPath
+                })
+                await userFind.save()
+                res.status(200).json({ message: "Added to watchlist" });
+            }
+
         }
     } catch (error) {
         res.status(500).json({

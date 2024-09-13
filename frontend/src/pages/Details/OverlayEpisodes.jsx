@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IoCheckmark } from "react-icons/io5";
 import { motion } from 'framer-motion';
+import dayjs from 'dayjs'
+import close from '../../assets/close.png'
 
 const OverlayEpisodes = ({ seriesid, seasonNumber, handleEpisode }) => {
 
@@ -30,19 +32,25 @@ const OverlayEpisodes = ({ seriesid, seasonNumber, handleEpisode }) => {
   return (
     <div className="text-white w-full h-[100vh] absolute z-50 top-0 flex justify-center items-center">
       <div className="w-4/5 md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black bg-gray-600 overflow-y-scroll scrollbar scrollbar-thumb-gray-300 scrollbar-track-gray-600 scrollbar-thumb-rounded-lg">
-        <span className="absolute right-3 text-8xl cursor-pointer" onClick={handleEpisode}>
-          X
+        <span className="absolute top-3 right-3 text-8xl cursor-pointer" onClick={handleEpisode}>
+        <img src={close} className='w-5 md:w-7 invert hover:scale-110 duration-200 cursor-pointer'/>
+
         </span>
 
         <div className="w-full flex flex-col">
           <div className="w-full flex items-center py-5 flex-col gap-1">
             <div className="font-oswald text-5xl font-semibold">SEASON {seasonNumber}</div>
+            {data?.vote_average !== 0 ?
             <div className="flex gap-2">
               <Box sx={{ '& > legend': { mt: 2} }}>
                 <Rating name="read-only" value={data?.vote_average/2 || 0} precision={0.5} readOnly />
               </Box>
               <div>({data?.vote_average/2}/5)</div>
             </div>
+            : (
+              <div className="font-poppins">Rating Unavailable</div>
+              )
+            }
             <div className="font-poppins text-md">{`Total Runtime : ${hours} hours ${minutes} minutes`}</div>
           </div>
           
@@ -85,7 +93,24 @@ const OverlayEpisodes = ({ seriesid, seasonNumber, handleEpisode }) => {
                     </div>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <p className="border-t-2 border-white py-5">{item.overview}</p>
+                    <div className="flex flex-col gap-1">
+                      <div className="border-t-[1px] border-white pt-2">Air date : {dayjs(item.air_date).format('D MMM YYYY')}</div>
+
+                      {data?.vote_average !== 0 ?
+                        <div className="flex gap-2">
+                          <Box sx={{ '& > legend': { mt: 2} }}>
+                            <Rating name="read-only" value={data?.vote_average/2 || 0} precision={0.5} readOnly />
+                          </Box>
+                          <div>({data?.vote_average/2}/5)</div>
+                        </div>
+                        : (
+                          <div className="font-poppins">Rating Unavailable</div>
+                          )
+                      }
+
+                      <div>{item.overview}</div>
+
+                    </div>
                   </AccordionDetails>
                 </Accordion>
               </div>
