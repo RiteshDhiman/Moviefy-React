@@ -2,14 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const app = express();
-// app.use(cors({
-//     origin: 'https://moviefy-ritesh.vercel.app'
-//   }));
+app.use(cors({
+    origin: 'https://moviefy-ritesh.vercel.app'
+  }));
 const getConnection = require('./db/connection');
 const userRouter = require('./routes/Signup.route.js')
 const wishlistRouter = require('./routes/Wishlist.route.js')
 const mediaRouter = require('./routes/Track.route.js')
-app.use(cors());
+// app.use(cors());
 
 dotenv.config()
 app.use(express.json())
