@@ -64,15 +64,6 @@ const Navbar = () => {
     });
   };
 
-  const testingFun = async() => {
-    try {
-      const response = await axios.get('https://moviefy-backend.vercel.app/')
-      alert(response)
-    } catch (error) {
-      alert('CORS waali dikkat')
-    }
-  }
-
   return (
     <div className='py-3 flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
       <ContentCenter className={"h-full relative"}>
@@ -84,7 +75,7 @@ const Navbar = () => {
 
             <div>
               <ul className='flex gap-6 items-center text-lg font-mukta'>
-                <button onClick={testingFun}>Testing</button>
+
                 <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/movie')}>
                   Movies
                 </li>
@@ -136,13 +127,19 @@ const Navbar = () => {
         }
 
         {profile && (
-          <div className='absolute flex flex-col gap-3 right-0 top-12 mt-2 w-1/4 z-20 bg-black text-white p-4 rounded-lg shadow-lg' onMouseLeave={()=>setProfile(false)}>
+          <div className='absolute flex flex-col gap-3 right-0 top-12 mt-2 w-1/4 z-50 bg-black text-white p-4 rounded-lg shadow-lg' onMouseLeave={()=>setProfile(false)}>
 
-            <div className='flex flex-col'>
+            <div className='flex flex-col w-full'>
+              <div className='flex flex-col items-center justify-center'>
+                <div className='h-[50px] w-[50px] border-2 border-[#c3e200] bg-[#c3e200] bg-opacity-30 rounded-full flex items-center justify-center'>{firstName.split('')[0]}</div>
+                <div>{user.displayName}</div>
+              </div>
               <div className='hover:text-[#c3e200] cursor-pointer' onClick={() => navigate('/profile')}>Profile</div>
+              <div className='hover:text-[#c3e200] cursor-pointer' onClick={() => navigate('/watchlist')}>Watch Later</div>
+
             </div>
             <div className='w-full h-[1px] bg-white'></div>
-            <div className='hover:text-[#c3e200] cursor-pointer mt-2' onClick={handleSignOut}>SignOut</div>
+            <div className='hover:text-[#c3e200] cursor-pointer mt-2' onClick={handleSignOut}>Sign Out</div>
           </div>
         )}
 
