@@ -20,7 +20,8 @@ const WatchLater = () => {
     try {
       if (userId) {
         const response = await axios.get(
-          "http://localhost:3000/add/watchlist",
+          // "http://localhost:3000/add/watchlist",
+          "https://moviefy-backend.vercel.app/add/watchlist",
           {
             params: { userId },
           }
@@ -35,7 +36,8 @@ const WatchLater = () => {
   const removeWatchlist = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/add/wishlistRemove",
+        // "http://localhost:3000/add/wishlistRemove",
+        "https://moviefy-backend.vercel.app/add/wishlistRemove",
         { userId, id }
       );
 
