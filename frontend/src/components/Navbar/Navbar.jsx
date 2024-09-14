@@ -8,6 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Authentication from './LoginSignup/Authentication.jsx'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useFirebase } from '../../Context/Firebase.jsx';
+import axios from 'axios';
 
 const Navbar = () => {
 
@@ -63,6 +64,15 @@ const Navbar = () => {
     });
   };
 
+  const testingFun = async() => {
+    try {
+      const response = await axios.get('https://moviefy-backend.vercel.app/')
+      alert(response)
+    } catch (error) {
+      alert('CORS waali dikkat')
+    }
+  }
+
   return (
     <div className='py-3 flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
       <ContentCenter className={"h-full relative"}>
@@ -74,6 +84,7 @@ const Navbar = () => {
 
             <div>
               <ul className='flex gap-6 items-center text-lg font-mukta'>
+                <button onclick={testingFun}>Testing</button>
                 <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/movie')}>
                   Movies
                 </li>
