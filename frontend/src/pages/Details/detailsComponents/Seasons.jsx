@@ -7,12 +7,14 @@ import CircleRating from '../../../utilityComponent/CircularRating';
 import noposter from "../../../assets/no-poster.png"
 import OverlayEpisodes from '../OverlayEpisodes';
 
-const Seasons = ({data, loading}) => {
+const Seasons = ({data, loading, userId}) => {
 
     console.log(data)
     const [showEps, setShowEps] = useState(false)
     const [ep, setEp] = useState(0)
     const posterImg = useSelector((state)=>state.home)
+    const seasonCount = data?.number_of_seasons
+    const seriesName = data?.title || data?.name
 
     const handleEpisode = (episode) => {
       setShowEps(!showEps)
@@ -24,7 +26,7 @@ const Seasons = ({data, loading}) => {
 
       <ContentCenter>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 justify-items-center gap-16'>
+        <div className='grid grid-cols-1 md:grid-cols-2 justify-items-center gap-8 md:gap-16'>
 
            {
             data?.seasons.map((item)=>(
@@ -63,7 +65,7 @@ const Seasons = ({data, loading}) => {
         </div>
       </ContentCenter>
       {
-        showEps && <OverlayEpisodes seasonNumber={ep} seriesid={data?.id} handleEpisode={handleEpisode}/>
+        showEps && <OverlayEpisodes seriesName={seriesName} seasonCount={seasonCount} userId={userId} seasonNumber={ep} seriesid={data?.id} handleEpisode={handleEpisode}/>
       }
     </div>
   )

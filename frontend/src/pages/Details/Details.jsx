@@ -23,6 +23,7 @@ const Details = () => {
   const firebase = useFirebase();
 
   const userId = firebase.firebaseauth.currentUser?.uid
+  console.log(userId)
 
   const {mediaType, id} = useParams();
 
@@ -40,6 +41,15 @@ const Details = () => {
     mediaName : mediaType === 'movie' ? data?.title : data?.name,
     posterPath : data?.poster_path
   }
+
+  const movieData = {
+    userId,
+    movieId : id,
+    movieName : data?.title || data?.name,
+    watchedDate : new Date()
+  }
+
+  console.log(movieData)
   
 
   const addtoWatchlist = async() => {
@@ -57,17 +67,14 @@ const Details = () => {
     }
   }
 
-  // const epCount = () => {
-  //   let count = 0;
-  //   data?.seasons.map((item)=>{
-  //     count += item.episode_count
-  //   })
-
-  //   return count;
-  // }
-
-
-
+  const addMovie = async() => {
+    try {
+      const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
+      alert('Added movie to db')
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
   return (
     <div>
@@ -100,7 +107,7 @@ const Details = () => {
                   Add to WatchList
                 </button>
 
-                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl'>
+                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl' onClick={mediaType === "movie" && addMovie}>
                   Track
                 </button>
               </div>
@@ -112,7 +119,7 @@ const Details = () => {
           </div>
         </ContentCenter>
 
-      {mediaType === 'tv' ? <Seasons data={data} loading={loading}/> : <div/>}
+      {mediaType === 'tv' ? <Seasons userId={userId} data={data} loading={loading}/> : <div/>}
       <Similar id={id} mediaType={mediaType}/>
       <Recommendation id={id} mediaType={mediaType}/>
 

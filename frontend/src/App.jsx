@@ -13,6 +13,7 @@ import { Analytics } from "@vercel/analytics/react"
 import Footer from './components/Footer/Footer'
 import ScrolltoTop from './utilityComponent/ScrolltoTop'
 import WatchLater from './pages/WatchLater/WatchLater'
+import Profile from './pages/Profile/Profile'
 
 function App() {
   
@@ -42,6 +43,7 @@ function App() {
           <Route path='/search/:media/' element={<SearchPage/>}/>
           <Route path='/movie/now_playing/' element={<SearchPage/>}/>
           <Route path='/watchlist' element={<WatchLater/>}></Route>
+          <Route path='/profile' element={<Profile/>}></Route>
         </Routes>
         <Footer/>
       </BrowserRouter>

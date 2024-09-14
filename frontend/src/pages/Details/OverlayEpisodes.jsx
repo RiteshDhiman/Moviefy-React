@@ -11,19 +11,48 @@ import { IoCheckmark } from "react-icons/io5";
 import { motion } from 'framer-motion';
 import dayjs from 'dayjs'
 import close from '../../assets/close.png'
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const OverlayEpisodes = ({ seriesid, seasonNumber, handleEpisode }) => {
-
-  const [epTrack, setEpTrack] = useState(null)
+const OverlayEpisodes = ({ seasonCount, seriesid, seriesName, seasonNumber, handleEpisode, userId }) => {
 
   const {url} = useSelector((state)=>state.home)
 
+  const [clickedEpisodes, setClickedEpisodes] = useState([]);
+
   const { data, loading } = useFetch(`/tv/${seriesid}/season/${seasonNumber}`);
 
-  const trackEpisode = () => {
-    setEpTrack(!epTrack)
+  const trackEpisode = async(epNumber, epName) => {
+
+    const episodeData = {
+      userId,
+      seriesId : seriesid,
+      seriesName : seriesName,
+      totalSeasons : seasonCount,
+      watchedDate : new Date(),
+      episodeNumber : epNumber,
+      episodeName : epName,
+      seasonNumber : data?.season_number
+    }
+    try {
+      const response = await axios.post('http://localhost:3000/track/tv', episodeData)
+      const message = response.data.message;
+
+      if(message.includes('Episode already tracked')){
+        toast.warning('Episode already tracked')
+      }
+      else{
+        toast.success(`Successfully tracked Ep:${episodeData.episodeNumber}`)
+        setClickedEpisodes((prev) => [...prev, epNumber]);
+      }
+    } catch (error) {
+      console.log(error.message)
+      toast.error('Failed to track episode. Try again later')
+    }
   }
   console.log(data);
+
+  const isEpisodeClicked = (epNumber) => clickedEpisodes.includes(epNumber);
 
   const totalRunTime = data?.episodes?.reduce((acc, episode) => acc + episode.runtime, 0);
   const hours = Math.floor(totalRunTime / 60);
@@ -86,7 +115,9 @@ const OverlayEpisodes = ({ seriesid, seasonNumber, handleEpisode }) => {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3 }}
-                          className={`w-[55px] h-[55px] rounded-full border-2 border-white flex justify-center items-center ${epTrack ? 'bg-green-400' : 'bg-transparent'}`}>
+                          className={`w-[55px] h-[55px] rounded-full border-2 border-white flex justify-center items-center ${isEpisodeClicked(item.episode_number) ? 'bg-green-500' : 'bg-transparent'}`}
+                          onClick = {()=>trackEpisode(item.episode_number, item.name)}
+                        >
                           <IoCheckmark className="text-4xl font-bold"/>
                         </motion.button>
                       </div>
