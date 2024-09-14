@@ -3,8 +3,11 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const app = express();
 app.use(cors({
-    origin: 'https://moviefy-ritesh.vercel.app'
+    origin: '*', // This allows all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
   }));
+  
 const getConnection = require('./db/connection');
 const userRouter = require('./routes/Signup.route.js')
 const wishlistRouter = require('./routes/Wishlist.route.js')
@@ -22,6 +25,14 @@ app.use('/track', mediaRouter)
 app.get('/',(req,res)=>{
     res.status(200).json({message : "Postman request success"})
 })
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://moviefy-ritesh.vercel.app');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+  });
+  
 
 app.listen(PORT, ()=>{
     getConnection()
