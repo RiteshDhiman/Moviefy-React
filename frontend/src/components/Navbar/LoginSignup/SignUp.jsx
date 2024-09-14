@@ -23,8 +23,8 @@ const SignUp = ({loginsignuphandle, handleFormClose}) => {
       const userId = userCredentials.user.uid;
       const fullName = userCredentials.user.displayName
 
-      // const userIDSend = await axios.post('http://localhost:3000/auth/signup', {userId, fullName})
-      const userIDSend = await axios.post('https://moviefy-backend.vercel.app/auth/signup', {userId, fullName})
+      const userIDSend = await axios.post('http://localhost:3000/auth/signup', {userId, fullName})
+      // const userIDSend = await axios.post('https://moviefy-backend.vercel.app/auth/signup', {userId, fullName})
 
       toast.success('Account created successfully')
       actions.resetForm()

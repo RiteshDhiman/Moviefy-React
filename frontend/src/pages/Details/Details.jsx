@@ -54,8 +54,8 @@ const Details = () => {
 
   const addtoWatchlist = async() => {
     try {
-      // const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
-      const testing = await axios.post('https://moviefy-backend.vercel.app/add/wishlist', wishlistData)
+      const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
+      // const testing = await axios.post('https://moviefy-backend.vercel.app/add/wishlist', wishlistData)
       const message = testing.data.message;
 
       if (message === "Media Already exists") {
@@ -70,8 +70,8 @@ const Details = () => {
 
   const addMovie = async() => {
     try {
-      // const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
-      const movieTrack = await axios.post('https://moviefy-backend.vercel.app/track/movie', movieData)
+      const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
+      // const movieTrack = await axios.post('https://moviefy-backend.vercel.app/track/movie', movieData)
       alert('Added movie to db')
     } catch (error) {
       alert(error.message)
