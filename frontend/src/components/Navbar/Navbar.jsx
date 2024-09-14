@@ -84,7 +84,7 @@ const Navbar = () => {
 
             <div>
               <ul className='flex gap-6 items-center text-lg font-mukta'>
-                <button onclick={testingFun}>Testing</button>
+                <button onClick={testingFun}>Testing</button>
                 <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/movie')}>
                   Movies
                 </li>
