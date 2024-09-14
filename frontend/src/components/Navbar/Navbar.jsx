@@ -17,8 +17,11 @@ const Navbar = () => {
   const [search, setSearch] = useState(false)
   const [text, setText] = useState();
   const [user, setUser] = useState(null)
+  const [profile, setProfile] = useState(false)
   const firebase = useFirebase()
   const auth = firebase.firebaseauth
+
+  const firstName = user?.displayName.split(' ')[0];
 
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -62,7 +65,7 @@ const Navbar = () => {
 
   return (
     <div className='py-3 flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
-      <ContentCenter className={"h-full"}>
+      <ContentCenter className={"h-full relative"}>
         <div className='text-white flex justify-between items-center h-full'>
             
             <div onClick={()=>navigate('/')} className='hover:cursor-pointer w-1/3 md:w-1/6'>
@@ -93,9 +96,11 @@ const Navbar = () => {
 
                 {user ? (
                 <div className='flex items-center gap-2'>
-                  <span>Welcome, {user.displayName}</span>
-                  <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' onClick={handleSignOut}>
-                    Sign Out
+                  <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' 
+                    onMouseEnter={()=>setProfile(true)}
+                    // onMouseLeave={handleProfile}
+                  >
+                    {firstName}
                   </button>
                 </div>
               ) : (
@@ -112,12 +117,23 @@ const Navbar = () => {
         </div>
         
         {menu &&
-          <div className='flex flex-col text-white md:hidden'>
+          <div className='absolute flex flex-col text-white md:hidden '>
             <div>Movies</div>
             <div>TV Shows</div>
             <div>In Cinemas</div>
           </div>
         }
+
+        {profile && (
+          <div className='absolute flex flex-col gap-3 right-0 top-12 mt-2 w-1/4 z-20 bg-black text-white p-4 rounded-lg shadow-lg' onMouseLeave={()=>setProfile(false)}>
+
+            <div className='flex flex-col'>
+              <div className='hover:text-[#c3e200] cursor-pointer' onClick={() => navigate('/profile')}>Profile</div>
+            </div>
+            <div className='w-full h-[1px] bg-white'></div>
+            <div className='hover:text-[#c3e200] cursor-pointer mt-2' onClick={handleSignOut}>SignOut</div>
+          </div>
+        )}
 
         {search &&
           <div className='w-full flex justify-center items-center mt-10 h-[40px]'>

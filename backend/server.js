@@ -16,6 +16,9 @@ app.use('/auth', userRouter)
 app.use('/add', wishlistRouter)
 app.use('/track', mediaRouter)
 
+app.get('/',(req,res)=>{
+    res.status(200).json({message : "Postman request success"})
+})
 
 app.listen(PORT, ()=>{
     getConnection()
