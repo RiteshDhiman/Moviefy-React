@@ -32,7 +32,7 @@ function App() {
 
   return (
     // <div className='bg-[#030c1e]'>
-    <div className='bg-[#343434]'>
+    <div style={{background: 'radial-gradient(circle, #001c2a 30%, #002f4c 100%)'}}>
       <BrowserRouter>
         <Navbar/>
         <ScrolltoTop/>

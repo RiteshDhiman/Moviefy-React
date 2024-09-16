@@ -46,10 +46,11 @@ const Details = () => {
     userId,
     movieId : id,
     movieName : data?.title || data?.name,
-    watchedDate : new Date()
+    watchedDate : new Date(),
+    movieRuntime : data?.runtime
   }
 
-  console.log(movieData)
+  console.log(data)
   
 
   const addtoWatchlist = async() => {

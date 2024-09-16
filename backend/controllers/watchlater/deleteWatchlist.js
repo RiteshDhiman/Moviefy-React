@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../../models/user.model");
 
 const deleteWatchlist = async(req,res)=>{
     const {userId, id} = req.body;

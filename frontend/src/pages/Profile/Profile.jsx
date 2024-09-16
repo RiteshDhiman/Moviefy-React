@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useFirebase } from "../../Context/Firebase";
 import axios from 'axios';
+import ProfileHerobanner from './ProfileComponents/ProfileHerobanner';
+import ProfileTabs from './ProfileComponents/ProfileTabs';
 
 const Profile = () => {
 
   const firebase = useFirebase();
   const userId = firebase.firebaseauth.currentUser?.uid;
+  const userName = firebase.firebaseauth.currentUser?.displayName;
   const [trackingData, settrackingData] = useState([]);
 
-  console.log(trackingData)
+  // console.log(trackingData)
 
   const fetchTrackingData = async () => {
     try {
@@ -16,9 +19,7 @@ const Profile = () => {
         const response = await axios.get(
           "http://localhost:3000/track/fetch",
           // "https://moviefy-backend.vercel.app/track/fetch",
-          {
-            params: { userId },
-          }
+          {params: { userId },}
         );
         settrackingData(response.data); // Set the fetched watch later array
         console.log(response)
@@ -32,9 +33,13 @@ const Profile = () => {
     fetchTrackingData();
   }, [userId]);
 
+  // console.log(trackingData)
+
   return (
     <div>
-      {trackingData?.movies?.map((item)=>(
+      <ProfileHerobanner userName={userName}/>
+      <ProfileTabs data={trackingData}/>
+      {trackingData?.watchedMedia?.movies?.map((item)=>(
         <p>{item.movieName}</p>
       ))}
     </div>

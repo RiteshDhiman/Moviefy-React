@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../../models/user.model");
 
 const fetchWatclist = async(req,res)=>{
     const {userId} = req.query;

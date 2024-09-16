@@ -1,7 +1,7 @@
 const express = require('express');
-const trackMovie = require('../controllers/movieTrack.controller');
-const trackTv = require('../controllers/tvTrack.controller');
-const fetchTracking = require('../controllers/fetchTracking');
+const trackMovie = require('../controllers/tracking/movieTrack.controller');
+const trackTv = require('../controllers/tracking/tvTrack.controller');
+const fetchTracking = require('../controllers/fetch/fetchTracking');
 
 const router = express.Router();
 

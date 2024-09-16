@@ -22,7 +22,7 @@ const OverlayEpisodes = ({ seasonCount, seriesid, seriesName, seasonNumber, hand
 
   const { data, loading } = useFetch(`/tv/${seriesid}/season/${seasonNumber}`);
 
-  const trackEpisode = async(epNumber, epName) => {
+  const trackEpisode = async(epNumber, epName, epRuntime) => {
 
     const episodeData = {
       userId,
@@ -32,7 +32,8 @@ const OverlayEpisodes = ({ seasonCount, seriesid, seriesName, seasonNumber, hand
       watchedDate : new Date(),
       episodeNumber : epNumber,
       episodeName : epName,
-      seasonNumber : data?.season_number
+      seasonNumber : data?.season_number,
+      episodeRuntime : epRuntimew
     }
     try {
       const response = await axios.post('http://localhost:3000/track/tv', episodeData)
@@ -117,7 +118,7 @@ const OverlayEpisodes = ({ seasonCount, seriesid, seriesName, seasonNumber, hand
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3 }}
                           className={`w-[55px] h-[55px] rounded-full border-2 border-white flex justify-center items-center ${isEpisodeClicked(item.episode_number) ? 'bg-green-500' : 'bg-transparent'}`}
-                          onClick = {()=>trackEpisode(item.episode_number, item.name)}
+                          onClick = {()=>trackEpisode(item.episode_number, item.name, item.runtime)}
                         >
                           <IoCheckmark className="text-4xl font-bold"/>
                         </motion.button>

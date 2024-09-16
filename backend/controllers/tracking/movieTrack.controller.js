@@ -1,7 +1,7 @@
-const User = require("../models/user.model")
+const User = require("../../models/user.model")
 
 const trackMovie = async(req,res) => {
-  const {userId, movieId, movieName, watchedDate} = req.body
+  const {userId, movieId, movieName, watchedDate, movieRuntime} = req.body
   try {
     console.log(userId, movieId, movieName, watchedDate)
     const userFind = await User.findOne({userId})
@@ -22,7 +22,8 @@ const trackMovie = async(req,res) => {
           movieId,
           watchedDate,
           movieName,
-          movieStatus : true
+          movieStatus : true,
+          movieRuntime
         })
         await userFind.save()
         res.status(200).json({ message: "Added to tracking" });

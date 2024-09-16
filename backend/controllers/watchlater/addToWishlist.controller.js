@@ -1,4 +1,4 @@
-const User = require("../models/user.model.js");
+const User = require("../../models/user.model.js");
 
 const addToWishList = async(req,res) => {
     const {userId, mediaType, id, mediaName, posterPath} = req.body;

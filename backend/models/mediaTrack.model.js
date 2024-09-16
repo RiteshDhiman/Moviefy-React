@@ -16,6 +16,10 @@ const episodeSchema = new mongoose.Schema({
     type : Boolean,
     default : false
   },
+  episodeRuntime : {
+    type : Number,
+    default : 40
+  }
 })
 
 const seasonSchema = new mongoose.Schema({
@@ -57,6 +61,10 @@ const movieSchema = new mongoose.Schema({
     type : Boolean,
     default : false
   },
+  movieRuntime : {
+    type : Number,
+    default : 90
+  }
 })
 
 const mediaSchema = new mongoose.Schema({
