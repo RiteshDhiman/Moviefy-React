@@ -47,7 +47,8 @@ const Details = () => {
     movieId : id,
     movieName : data?.title || data?.name,
     watchedDate : new Date(),
-    movieRuntime : data?.runtime
+    movieRuntime : data?.runtime,
+    posterPath : data?.poster_path
   }
 
   console.log(data)
@@ -73,7 +74,7 @@ const Details = () => {
     try {
       const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
       // const movieTrack = await axios.post('https://moviefy-backend.vercel.app/track/movie', movieData)
-      alert('Added movie to db')
+      toast.success(`${data?.title || data?.name} tracked`)
     } catch (error) {
       alert(error.message)
     }

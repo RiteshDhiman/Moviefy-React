@@ -14,15 +14,17 @@ import close from '../../assets/close.png'
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const OverlayEpisodes = ({ seasonCount, seriesid, seriesName, seasonNumber, handleEpisode, userId }) => {
+const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, seasonNumber, handleEpisode, userId }) => {
 
   const {url} = useSelector((state)=>state.home)
 
   const [clickedEpisodes, setClickedEpisodes] = useState([]);
+  const [expanded, setExpanded] = useState(false);
 
   const { data, loading } = useFetch(`/tv/${seriesid}/season/${seasonNumber}`);
 
-  const trackEpisode = async(epNumber, epName, epRuntime) => {
+  const trackEpisode = async(epNumber, epName, epRuntime, event) => {
+    event.stopPropagation();
 
     const episodeData = {
       userId,
@@ -33,8 +35,11 @@ const OverlayEpisodes = ({ seasonCount, seriesid, seriesName, seasonNumber, hand
       episodeNumber : epNumber,
       episodeName : epName,
       seasonNumber : data?.season_number,
-      episodeRuntime : epRuntimew
+      episodeRuntime : epRuntime,
+      posterPath,
     }
+
+    console.log(episodeData)
     try {
       const response = await axios.post('http://localhost:3000/track/tv', episodeData)
       // const response = await axios.post('https://moviefy-backend.vercel.app/track/tv', episodeData)
@@ -89,6 +94,8 @@ const OverlayEpisodes = ({ seasonCount, seriesid, seriesName, seasonNumber, hand
             {data?.episodes.map((item)=>(
               <div key={item.id} className="w-11/12">
                 <Accordion
+                expanded={expanded === item.id}
+                onChange={() => setExpanded(expanded === item.id ? false : item.id)}
                   sx={{
                     backgroundColor : 'black',
                     color : 'white',
@@ -118,7 +125,7 @@ const OverlayEpisodes = ({ seasonCount, seriesid, seriesName, seasonNumber, hand
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3 }}
                           className={`w-[55px] h-[55px] rounded-full border-2 border-white flex justify-center items-center ${isEpisodeClicked(item.episode_number) ? 'bg-green-500' : 'bg-transparent'}`}
-                          onClick = {()=>trackEpisode(item.episode_number, item.name, item.runtime)}
+                          onClick = {(event)=>trackEpisode(item.episode_number, item.name, item.runtime, event)}
                         >
                           <IoCheckmark className="text-4xl font-bold"/>
                         </motion.button>

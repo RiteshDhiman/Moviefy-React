@@ -42,7 +42,11 @@ const tvSchema = new mongoose.Schema({
   tvTotalSeasons : {
     type : Number,
   },
-  seasons : [seasonSchema]
+  seasons : [seasonSchema],
+
+  posterPath : {
+    type : String
+  }
 })
 
 const movieSchema = new mongoose.Schema({
@@ -64,6 +68,9 @@ const movieSchema = new mongoose.Schema({
   movieRuntime : {
     type : Number,
     default : 90
+  },
+  posterPath : {
+    type : String
   }
 })
 

@@ -31,8 +31,8 @@ function App() {
   })
 
   return (
-    // <div className='bg-[#030c1e]'>
-    <div style={{background: 'radial-gradient(circle, #001c2a 30%, #002f4c 100%)'}}>
+    <div className='bg-[#030c1e]'>
+    {/* <div style={{background: 'radial-gradient(circle, #001c2a 30%, #002f4c 100%)'}}> */}
       <BrowserRouter>
         <Navbar/>
         <ScrolltoTop/>

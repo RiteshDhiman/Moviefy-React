@@ -1,10 +1,10 @@
 const User = require("../../models/user.model");
 
 const trackTv = async (req, res) => {
-  const { userId, seriesId, seriesName, totalSeasons, watchedDate, episodeRuntime, episodeNumber, episodeName, seasonNumber } = req.body;
+  const { userId, seriesId, seriesName, totalSeasons, watchedDate, episodeRuntime, episodeNumber, episodeName, seasonNumber, posterPath } = req.body;
 
   try {
-    console.log(userId, seriesId, seriesName, totalSeasons, watchedDate, episodeNumber, episodeName, seasonNumber);
+    console.log(userId, seriesId, seriesName, totalSeasons, watchedDate, episodeNumber, episodeName, seasonNumber, posterPath);
     
     const userFind = await User.findOne({ userId });
 
@@ -33,7 +33,7 @@ const trackTv = async (req, res) => {
               episodeName,
               episodeDate: watchedDate,
               episodeStatus: true,
-              episodeRuntime
+              episodeRuntime,
             });
             await userFind.save();
             return res.status(200).json({ message: `Episode ${episodeNumber} added to tracked season ${seasonNumber}` });
@@ -66,7 +66,8 @@ const trackTv = async (req, res) => {
               episodeDate: watchedDate,
               episodeStatus: true
             }]
-          }]
+          }],
+          posterPath
         });
         await userFind.save();
         return res.status(200).json({ message: `Series, season ${seasonNumber}, and episode ${episodeNumber} added to tracking` });

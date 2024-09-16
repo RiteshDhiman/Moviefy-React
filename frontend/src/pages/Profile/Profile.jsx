@@ -3,6 +3,9 @@ import { useFirebase } from "../../Context/Firebase";
 import axios from 'axios';
 import ProfileHerobanner from './ProfileComponents/ProfileHerobanner';
 import ProfileTabs from './ProfileComponents/ProfileTabs';
+import TrackedShows from './ProfileComponents/TrackedShows/TrackedShows';
+import TrackedMovies from './ProfileComponents/TrackedMovies/TrackedMovies';
+import WatchLaterMovies from './WatchLaterMovies/WatchLaterMovies';
 
 const Profile = () => {
 
@@ -21,7 +24,7 @@ const Profile = () => {
           // "https://moviefy-backend.vercel.app/track/fetch",
           {params: { userId },}
         );
-        settrackingData(response.data); // Set the fetched watch later array
+        settrackingData(response.data);
         console.log(response)
       }
     } catch (error) {
@@ -39,9 +42,12 @@ const Profile = () => {
     <div>
       <ProfileHerobanner userName={userName}/>
       <ProfileTabs data={trackingData}/>
-      {trackingData?.watchedMedia?.movies?.map((item)=>(
+      <TrackedShows data={trackingData} />
+      <TrackedMovies data={trackingData}/>
+      <WatchLaterMovies data={trackingData?.wishlist}/>
+      {/* {trackingData?.watchedMedia?.movies?.map((item)=>(
         <p>{item.movieName}</p>
-      ))}
+      ))} */}
     </div>
   )
 }
