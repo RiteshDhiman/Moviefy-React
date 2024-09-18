@@ -42,8 +42,8 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
     // const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
 
     try {
-      const response = await axios.post('http://localhost:3000/track/tv', episodeData)
-      // const response = await axios.post('https://moviefy-react.onrender.com/track/tv', episodeData)
+      // const response = await axios.post('http://localhost:3000/track/tv', episodeData)
+      const response = await axios.post('https://moviefy-react.onrender.com/track/tv', episodeData)
       // const response = await axios.post(`${BASE_ENDPOINT}/track/tv`, episodeData)
       const message = response.data.message;
 

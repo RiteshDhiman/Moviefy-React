@@ -73,8 +73,8 @@ const Details = () => {
 
   const addMovie = async() => {
     try {
-      const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
-      // const movieTrack = await axios.post('https://moviefy-react.onrender.com/track/movie', movieData)
+      // const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
+      const movieTrack = await axios.post('https://moviefy-react.onrender.com/track/movie', movieData)
       // const movieTrack = await axios.post(`${BASE_ENDPOINT}/track/movie`, movieData)
       toast.success(`${data?.title || data?.name} tracked`)
     } catch (error) {

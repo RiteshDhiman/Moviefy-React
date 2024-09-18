@@ -23,8 +23,8 @@ const WatchLater = () => {
     try {
       if (userId) {
         const response = await axios.get(
-          "http://localhost:3000/add/watchlist",
-          // "https://moviefy-react.onrender.com/add/watchlist",
+          // "http://localhost:3000/add/watchlist",
+          "https://moviefy-react.onrender.com/add/watchlist",
           // `${BASE_ENDPOINT}/add/watchlist`,
           {
             params: { userId },
@@ -40,8 +40,8 @@ const WatchLater = () => {
   const removeWatchlist = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/add/wishlistRemove",
-        // "https://moviefy-react.onrender.com/add/wishlistRemove",
+        // "http://localhost:3000/add/wishlistRemove",
+        "https://moviefy-react.onrender.com/add/wishlistRemove",
         // `${BASE_ENDPOINT}/add/wishlistRemove`,
         { userId, id }
       );
