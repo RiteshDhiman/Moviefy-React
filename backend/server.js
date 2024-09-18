@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const app = express();
 app.use(cors({
     // origin: 'http://localhost:5173',
-    origin: 'https://moviefy-react.onrender.com',
+    origin: 'https://moviefy-ritesh.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: false,
   }));
