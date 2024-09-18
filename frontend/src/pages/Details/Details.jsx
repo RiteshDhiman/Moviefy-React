@@ -51,13 +51,13 @@ const Details = () => {
     posterPath : data?.poster_path
   }
 
-  console.log(data)
+  const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
   
 
   const addtoWatchlist = async() => {
     try {
       // const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
-      const testing = await axios.post('https://moviefy-react.onrender.com/add/wishlist', wishlistData)
+      const testing = await axios.post(`${BASE_ENDPOINT}/add/wishlist`, wishlistData)
       const message = testing.data.message;
 
       if (message === "Media Already exists") {
@@ -73,7 +73,7 @@ const Details = () => {
   const addMovie = async() => {
     try {
       // const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
-      const movieTrack = await axios.post('https://moviefy-react.onrender.com/track/movie', movieData)
+      const movieTrack = await axios.post(`${BASE_ENDPOINT}/track/movie`, movieData)
       toast.success(`${data?.title || data?.name} tracked`)
     } catch (error) {
       alert(error.message)

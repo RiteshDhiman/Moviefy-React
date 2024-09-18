@@ -14,6 +14,9 @@ const WatchLater = () => {
   const userId = firebase.firebaseauth.currentUser?.uid;
   const [watchLaterList, setWatchLaterList] = useState([]);
   const navigate = useNavigate();
+
+  const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
+
   // console.log(watchLaterList)
 
   const fetchWatchlist = async () => {
@@ -21,7 +24,7 @@ const WatchLater = () => {
       if (userId) {
         const response = await axios.get(
           // "http://localhost:3000/add/watchlist",
-          "https://moviefy-react.onrender.com/add/watchlist",
+          `${BASE_ENDPOINT}/add/watchlist`,
           {
             params: { userId },
           }
@@ -37,7 +40,7 @@ const WatchLater = () => {
     try {
       const response = await axios.post(
         // "http://localhost:3000/add/wishlistRemove",
-        "https://moviefy-react.onrender.com/add/wishlistRemove",
+        `${BASE_ENDPOINT}/add/wishlistRemove`,
         { userId, id }
       );
 

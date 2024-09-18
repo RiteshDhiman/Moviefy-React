@@ -17,6 +17,8 @@ const Carousel = ({data, loading, endpoint}) => {
   const [absoluteHover, setAbsolueteHover] = useState(null)
   const itemImg = useSelector((state)=>state.home)
 
+  console.log(data)
+
   return (
     <div className='relative text-white'>
 
@@ -26,7 +28,7 @@ const Carousel = ({data, loading, endpoint}) => {
             {data?.map((item)=>{
 
               return (
-                <div className='relative flex flex-col flex-shrink-0 calc-width-mob sm:w-1/3 md:w-1/4 
+                item.media_type != 'person' && <div className='relative flex flex-col flex-shrink-0 calc-width-mob sm:w-1/3 md:w-1/4 
                   lg:w-1/5 rounded-xl overflow-hidden hover:scale-105 hover:overflow-hidden hover:rounded-xl hover:cursor-pointer duration-300' 
                   key={item.id} onMouseOver={()=>setHover(item?.id)} 
                   onMouseLeave={()=>{
