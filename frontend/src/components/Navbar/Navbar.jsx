@@ -22,7 +22,7 @@ const Navbar = () => {
   const firebase = useFirebase()
   const auth = firebase.firebaseauth
 
-  const firstName = user?.displayName.split(' ')[0];
+  const firstName = user?.displayName?.split(' ')[0];
 
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

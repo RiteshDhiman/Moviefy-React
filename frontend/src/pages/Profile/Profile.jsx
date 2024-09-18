@@ -23,8 +23,8 @@ const Profile = () => {
     try {
       if (userId) {
         const response = await axios.get(
-          // "http://localhost:3000/track/fetch",
-          "https://moviefy-react.onrender.com/track/fetch",
+          "http://localhost:3000/track/fetch",
+          // "https://moviefy-react.onrender.com/track/fetch",
           // `${BASE_ENDPOINT}/track/fetch`,
           {params: { userId },}
         );

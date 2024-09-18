@@ -8,7 +8,7 @@ const fetchWatclist = async(req,res)=>{
         // console.log(listData)
         res.status(200).json(listData.wishlist)
     } catch (error) {
-        res.status(500).message({
+        res.status(500).json({
             message:"Internal server error wishlist"
         })
     }

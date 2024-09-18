@@ -56,8 +56,8 @@ const Details = () => {
 
   const addtoWatchlist = async() => {
     try {
-      // const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
-      const testing = await axios.post('https://moviefy-react.onrender.com/add/wishlist', wishlistData)
+      const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
+      // const testing = await axios.post('https://moviefy-react.onrender.com/add/wishlist', wishlistData)
       // const testing = await axios.post(`${BASE_ENDPOINT}/add/wishlist`, wishlistData)
       const message = testing.data.message;
 
@@ -73,8 +73,8 @@ const Details = () => {
 
   const addMovie = async() => {
     try {
-      // const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
-      const movieTrack = await axios.post('https://moviefy-react.onrender.com/track/movie', movieData)
+      const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
+      // const movieTrack = await axios.post('https://moviefy-react.onrender.com/track/movie', movieData)
       // const movieTrack = await axios.post(`${BASE_ENDPOINT}/track/movie`, movieData)
       toast.success(`${data?.title || data?.name} tracked`)
     } catch (error) {
