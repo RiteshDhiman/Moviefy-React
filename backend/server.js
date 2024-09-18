@@ -3,7 +3,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:5173', // This allows all origins
+    // origin: 'http://localhost:5173',
+    origin: 'https://moviefy-react.onrender.com',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: false,
   }));

@@ -41,8 +41,8 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
 
     console.log(episodeData)
     try {
-      const response = await axios.post('http://localhost:3000/track/tv', episodeData)
-      // const response = await axios.post('https://moviefy-backend.vercel.app/track/tv', episodeData)
+      // const response = await axios.post('http://localhost:3000/track/tv', episodeData)
+      const response = await axios.post('https://moviefy-react.onrender.com/track/tv', episodeData)
       const message = response.data.message;
 
       if(message.includes('Episode already tracked')){
