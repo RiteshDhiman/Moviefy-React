@@ -14,7 +14,7 @@ const Profile = () => {
   const userName = firebase.firebaseauth.currentUser?.displayName;
   const [trackingData, settrackingData] = useState([]);
 
-  const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
+  // const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
 
 
   // console.log(trackingData)
@@ -24,8 +24,8 @@ const Profile = () => {
       if (userId) {
         const response = await axios.get(
           // "http://localhost:3000/track/fetch",
-          // "https://moviefy-react.onrender.com/track/fetch",
-          `${BASE_ENDPOINT}/track/fetch`,
+          "https://moviefy-react.onrender.com/track/fetch",
+          // `${BASE_ENDPOINT}/track/fetch`,
           {params: { userId },}
         );
         settrackingData(response.data);
