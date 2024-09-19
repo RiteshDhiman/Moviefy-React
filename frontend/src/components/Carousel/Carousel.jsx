@@ -17,7 +17,7 @@ const Carousel = ({data, loading, endpoint}) => {
   const [absoluteHover, setAbsolueteHover] = useState(null)
   const itemImg = useSelector((state)=>state.home)
 
-  console.log(data)
+  // console.log(data)
 
   return (
     <div className='relative text-white'>

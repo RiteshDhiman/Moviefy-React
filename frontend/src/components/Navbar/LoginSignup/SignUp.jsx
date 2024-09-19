@@ -23,11 +23,11 @@ const SignUp = ({loginsignuphandle, handleFormClose}) => {
       const userId = userCredentials.user.uid;
       const fullName = userCredentials.user.displayName
 
-      // const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
+      const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
 
       // const userIDSend = await axios.post('http://localhost:3000/auth/signup', {userId, fullName})
-      const userIDSend = await axios.post('https://moviefy-react.onrender.com/auth/signup', {userId, fullName})
-      // const userIDSend = await axios.post(`${BASE_ENDPOINT}/auth/signup`, {userId, fullName})
+      // const userIDSend = await axios.post('https://moviefy-react.onrender.com/auth/signup', {userId, fullName})
+      const userIDSend = await axios.post(`${BASE_ENDPOINT}/auth/signup`, {userId, fullName})
 
       toast.success('Account created successfully')
       actions.resetForm()
