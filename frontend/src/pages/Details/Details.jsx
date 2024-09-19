@@ -56,8 +56,8 @@ const Details = () => {
 
   const addtoWatchlist = async() => {
     try {
-      const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
-      // const testing = await axios.post('https://moviefy-react.onrender.com/add/wishlist', wishlistData)
+      // const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
+      const testing = await axios.post('https://moviefy-react.onrender.com/add/wishlist', wishlistData)
       // const testing = await axios.post(`${BASE_ENDPOINT}/add/wishlist`, wishlistData)
       const message = testing.data.message;
 
