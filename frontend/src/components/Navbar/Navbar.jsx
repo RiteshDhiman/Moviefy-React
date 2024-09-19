@@ -69,12 +69,12 @@ const Navbar = () => {
       <ContentCenter className={"h-full relative"}>
         <div className='text-white flex justify-between items-center h-full'>
             
-            <div onClick={()=>navigate('/')} className='hover:cursor-pointer w-1/3 md:w-1/6'>
+            <div onClick={()=>navigate('/')} className='hover:cursor-pointer w-[45%] md:w-1/6'>
               <img src={moviefy} alt="" />
             </div>
 
             <div>
-              <ul className='flex gap-6 items-center text-lg font-mukta'>
+              <ul className='flex gap-4 md:gap-6 items-center text-lg font-mukta'>
 
                 <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/movie')}>
                   Movies
@@ -111,7 +111,7 @@ const Navbar = () => {
                 </button>
               )}
 
-                <LuMenu className='block md:hidden text-white hover:cursor-pointer' onClick={handleMenu}/>
+                <LuMenu className='block md:hidden text-3xl text-white hover:cursor-pointer' onClick={handleMenu}/>
                 
               </ul>
             </div>
@@ -119,15 +119,17 @@ const Navbar = () => {
         </div>
         
         {menu &&
-          <div className='absolute flex flex-col text-white md:hidden '>
-            <div>Movies</div>
-            <div>TV Shows</div>
-            <div>In Cinemas</div>
+          <div className='absolute top-13 z-50 bg-black w-full flex flex-col text-white md:hidden centering gap-4 text-xl py-10 '>
+            <div onClick={()=>navigate('/search/movie')}>Movies</div>
+            <div onClick={()=>navigate('/search/tv')}>TV Shows</div>
+            <div onClick={()=>navigate('/movie/now_playing')}>In Cinemas</div>
+            <div onClick={()=>navigate('/watchlist')}>WatchList</div>
+            <div onClick={() => navigate('/profile')}>Profile</div>
           </div>
         }
 
         {profile && (
-          <div className='absolute flex flex-col gap-3 right-0 top-12 mt-2 w-1/4 z-50 bg-black text-white p-4 rounded-lg shadow-lg' onMouseLeave={()=>setProfile(false)}>
+          <div className='absolute flex flex-col gap-3 right-0 top-12 mt-2 w-3/4 md:w-1/4 z-50 bg-black text-white p-4 rounded-lg shadow-lg' onMouseLeave={()=>setProfile(false)}>
 
             <div className='flex flex-col w-full'>
               <div className='flex flex-col items-center justify-center'>
@@ -144,7 +146,7 @@ const Navbar = () => {
         )}
 
         {search &&
-          <div className='w-full flex justify-center items-center mt-10 h-[40px]'>
+          <div className='absolute z-50 w-full flex justify-center items-center mt-10 h-[40px]'>
             <input type="text" className='w-2/3 md:w-1/2 h-full outline-none pl-4 rounded-l-lg' onChange={(e)=>setText(e.target.value)} onKeyDown={(e)=>handleSearchEnter(e)}/>
             <button className='w-1/4 md:w-1/6 h-full bg-[#c3e200] font-oswald rounded-r-lg' onClick={handleSearchOnclick}>Search</button>
           </div>

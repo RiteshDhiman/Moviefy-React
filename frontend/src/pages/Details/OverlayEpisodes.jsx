@@ -68,16 +68,16 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
   const minutes = totalRunTime % 60;
 
   return (
-    <div className="text-white w-full h-[100vh] absolute z-50 top-0 flex justify-center items-center">
-      <div className="w-4/5 md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black bg-gray-600 overflow-y-scroll scrollbar scrollbar-thumb-gray-300 scrollbar-track-gray-600 scrollbar-thumb-rounded-lg">
-        <span className="absolute top-3 right-3 text-8xl cursor-pointer" onClick={handleEpisode}>
+    <div className="text-white w-full h-[100vh] absolute z-30 top-0 flex justify-center items-center">
+      <div className="w-5/6 md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black bg-gray-600 ">
+        <span className="absolute z-50 top-3 right-3 text-8xl cursor-pointer" onClick={handleEpisode}>
         <img src={close} className='w-5 md:w-7 invert hover:scale-110 duration-200 cursor-pointer'/>
 
         </span>
 
         <div className="w-full flex flex-col">
           <div className="w-full flex items-center py-5 flex-col gap-1">
-            <div className="font-oswald text-5xl font-semibold">SEASON {seasonNumber}</div>
+            <div className="font-oswald text-4xl md:text-5xl font-semibold">SEASON {seasonNumber}</div>
             {data?.vote_average !== 0 ?
             <div className="flex gap-2">
               <Box sx={{ '& > legend': { mt: 2} }}>
@@ -92,7 +92,7 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
             <div className="font-poppins text-md">{`Total Runtime : ${hours} hours ${minutes} minutes`}</div>
           </div>
           
-          <div className="w-full flex flex-col items-center">
+          <div className="w-full flex flex-col items-center overflow-y-scroll scrollbar scrollbar-thumb-gray-300 scrollbar-track-gray-600 scrollbar-thumb-rounded-lg">
             {data?.episodes.map((item)=>(
               <div key={item.id} className="w-11/12">
                 <Accordion
@@ -104,29 +104,29 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
                   }}
                 >
                   <AccordionSummary
-                    expandIcon={<MdKeyboardArrowDown className="text-white text-5xl"/>}
+                    expandIcon={<MdKeyboardArrowDown className="text-white text-xl md:text-5xl"/>}
                   >
                     <div className="flex w-full">
-                      <div className="w-[15%]">
+                      <div className="w-[40%] md:w-[15%]">
                         <img src={url + item.still_path} className="w-full"/>
                       </div>
 
-                      <div className="px-10 flex flex-col h-full items-center justify-center w-3/5">
-                        <div className="w-full flex items-center gap-6">
-                          <div className="font-mukta md:text-2xl 2xl:text-3xl font-extrabold">{`S${seasonNumber} | E${item.episode_number}`}</div>
+                      <div className="px-1 md:px-10 flex flex-col h-full items-center justify-center w-3/5">
+                        <div className="w-full flex items-center gap-3 md:gap-6">
+                          <div className="font-mukta text-xl md:text-2xl 2xl:text-3xl font-extrabold ">{`S${seasonNumber} | E${item.episode_number}`}</div>
                           <div className="text-sm font-semibold text-gray-300 font-mukta">{`(${item.runtime} min)`}</div>
                         </div>
-                        <div className="w-full font-mukta text-lg">{item.name}</div>
+                        <div className="w-full font-mukta text-md md:text-lg">{item.name}</div>
                       </div>
 
-                      <div className="w-1/5 flex items-center justify-end ">
+                      <div className="md:w-1/5 flex items-center justify-end ">
                         <motion.button 
                           whileHover={{ scale: 1.15 }}
                           whileTap={{ scale: 0.95 }}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3 }}
-                          className={`w-[55px] h-[55px] rounded-full border-2 border-white flex justify-center items-center ${isEpisodeClicked(item.episode_number) ? 'bg-green-500' : 'bg-transparent'}`}
+                          className={`w-[30px] h-[30px] md:w-[55px] md:h-[55px] rounded-full border-2 border-white flex justify-center items-center ${isEpisodeClicked(item.episode_number) ? 'bg-green-500' : 'bg-transparent'}`}
                           onClick = {(event)=>trackEpisode(item.episode_number, item.name, item.runtime, event)}
                         >
                           <IoCheckmark className="text-4xl font-bold"/>

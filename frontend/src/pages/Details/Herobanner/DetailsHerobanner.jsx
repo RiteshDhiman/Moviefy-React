@@ -8,15 +8,6 @@ const DetailsHerobanner = ({ data, loading, mediaType, id}) => {
 
   const posterImg = useSelector((state)=>state.home)
 
-  const epCount = () => {
-    let count = 0;
-    data?.seasons.map((item)=>{
-      count += item.episode_count
-    })
-
-    return count;
-  }
-
   return (
     <div className="relative w-full h-[60vh]">
       <div className="absolute z-10 w-full h-full">
@@ -33,21 +24,21 @@ const DetailsHerobanner = ({ data, loading, mediaType, id}) => {
         <div className="w-4/5 mx-auto flex">
 
           <div className="w-full md:w-3/4 justify-center flex flex-col gap-3">
-            <div className="font-oswald text-3xl md:text-5xl font-bold uppercase">
+            <div className="font-oswald text-4xl md:text-5xl font-bold uppercase">
               {data?.title || data?.name}
             </div>
 
             {
               data?.number_of_seasons ? 
-                <div className="font-poppins">{data?.seasons.length} Seasons • {epCount()} Episodes</div>
+                <div className="font-poppins">{data?.number_of_seasons} Seasons • {data?.number_of_episodes} Episodes</div>
               :
                 <div className="font-poppins">Runtime : {data?.runtime} Minutes</div>
             }
 
-            <div className="flex gap-3">
+            <div className="flex gap-2 md:gap-3">
               {data?.genres.map((genre)=>{
                 return (
-                  <div key={genre.id} className="border-white border-2 rounded-lg px-2 py-1 bg-[#464847] bg-opacity-50 hover:scale-95 duration-200 cursor-pointer">
+                  <div key={genre.id} className="flex justify-center items-center border-white border-2 rounded-lg px-2 py-1 bg-[#464847] bg-opacity-50 hover:scale-95 duration-200 cursor-pointer">
                     {genre.name}
                   </div>
                 )

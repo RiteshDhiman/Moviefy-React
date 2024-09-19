@@ -30,31 +30,31 @@ const ProfileTabs = ({data}) => {
 
   return (
     <ContentCenter>
-      <div className='flex centering h-[20vh] w-full '>
+      <div className='flex centering md:h-[20vh] w-full py-8 md:py-0'>
 
-        <div className='w-full flex h-3/5 gap-2 mx-2'>
+        <div className='w-full h-3/5 gap-2 mx-2 grid grid-cols-1 md:grid-cols-5 gap-y-5'>
 
           {/* TV SHOWS WATCHED */}
-          <div className='w-1/5 flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
+          <div className='w-full flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
             <div className='h-1/3 w-full centering gap-2 border-b-[0.5px] border-slate-400'>
               <MdLiveTv />
               <span className='font-mukta text-lg'>TV shows watched</span>
             </div>
-            <div className='h-2/3 centering font-alfa text-3xl'>{data?.watchedMedia?.tvShows.length}</div>
+            <div className='h-2/3 centering font-alfa text-3xl'>{data?.watchedMedia?.tvShows.length || 0}</div>
           </div>
 
           {/* EPISODES WATCHED */}
-          <div className='w-1/5 flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
+          <div className='w-full flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
             <div className='h-1/3 w-full centering gap-2 border-b-[0.5px] border-slate-400'>
               <MdLiveTv />
               <span className='font-mukta text-lg'>Episodes Watched</span>
             </div>
-            <div className='h-2/3 centering font-alfa text-3xl'>{episodeCount}</div>
+            <div className='h-2/3 centering font-alfa text-3xl'>{episodeCount || 0}</div>
           </div>
 
 
           {/* TV TIME */}
-          <div className='w-1/5 flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
+          <div className='w-full flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
 
             <div className='h-1/3 w-full centering gap-2 border-b-[0.5px] border-slate-400'>
               <MdLiveTv />
@@ -63,37 +63,37 @@ const ProfileTabs = ({data}) => {
 
             <div className='h-2/3 centering gap-2 '>
               <div className='flex flex-col items-center justify-center'>
-                <span className='font-alfa text-2xl'>{Math.floor(totalTVRuntime/60/24/30)}</span>
+                <span className='font-alfa text-2xl'>{Math.floor(totalTVRuntime/60/24/30) || 0}</span>
                 <span className='font-oswald uppercase'>Months</span>
               </div>
 
               <span className='font-alfa text-xl'>:</span>
 
               <div className='flex flex-col items-center justify-center'>
-                <span className='font-alfa text-2xl'>{Math.floor(totalTVRuntime/60/24%30)}</span>
+                <span className='font-alfa text-2xl'>{Math.floor(totalTVRuntime/60/24%30) || 0}</span>
                 <span className='font-oswald uppercase'>Days</span>
               </div>
 
               <span className='font-alfa text-xl'>:</span>
 
               <div className='flex flex-col items-center justify-center'>
-                <span className='font-alfa text-2xl'>{Math.floor(totalTVRuntime/60%24)}</span>
+                <span className='font-alfa text-2xl'>{Math.floor(totalTVRuntime/60%24) || 0}</span>
                 <span className='font-oswald uppercase'>Hours</span>
               </div>
             </div>
           </div>
 
           {/* MOVIES WATCHED */}
-          <div className='w-1/5 flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
+          <div className='w-full flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
             <div className='h-1/3 w-full centering gap-2 border-b-[0.5px] border-slate-400'>
               <MdLiveTv />
               <span className='font-mukta text-lg'>Movies Watched</span>
             </div>
-            <div className='h-2/3 centering font-alfa text-3xl'>{data?.watchedMedia?.movies.length}</div>
+            <div className='h-2/3 centering font-alfa text-3xl'>{data?.watchedMedia?.movies.length || 0}</div>
           </div>
 
           {/* MOVIES TIME */}
-          <div className='w-1/5 flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
+          <div className='w-full flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
 
             <div className='h-1/3 w-full centering gap-2 border-b-[0.5px] border-slate-400'>
               <MdLiveTv />
@@ -102,21 +102,21 @@ const ProfileTabs = ({data}) => {
 
             <div className='h-2/3 centering gap-2 '>
               <div className='flex flex-col items-center justify-center'>
-                <span className='font-alfa text-2xl'>{Math.floor(totalMovieRuntime/60/24/30)}</span>
+                <span className='font-alfa text-2xl'>{Math.floor(totalMovieRuntime/60/24/30) || 0}</span>
                 <span className='font-oswald uppercase'>Months</span>
               </div>
 
               <span className='font-alfa text-xl'>:</span>
 
               <div className='flex flex-col items-center justify-center'>
-                <span className='font-alfa text-2xl'>{Math.floor(totalMovieRuntime/60/24%30)}</span>
+                <span className='font-alfa text-2xl'>{Math.floor(totalMovieRuntime/60/24%30) || 0}</span>
                 <span className='font-oswald uppercase'>Days</span>
               </div>
 
               <span className='font-alfa text-xl'>:</span>
 
               <div className='flex flex-col items-center justify-center'>
-                <span className='font-alfa text-2xl'>{Math.floor(totalMovieRuntime/60%24)}</span>
+                <span className='font-alfa text-2xl'>{Math.floor(totalMovieRuntime/60%24) || 0}</span>
                 <span className='font-oswald uppercase'>Hours</span>
               </div>
             </div>

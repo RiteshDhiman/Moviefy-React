@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import useFetch from '../../hooks/useFetch'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
@@ -8,15 +8,16 @@ import Similar from '../../components/Similar/Similar';
 import Recommendation from '../../components/Recommendation/Recommendation';
 import SubDetails from './detailsComponents/SubDetails';
 import Tagline from './detailsComponents/Tagline';
-import { FaShareAlt } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import DetailsSlider from './detailsComponents/DetailsSlider';
 import DetailsHerobanner from './Herobanner/DetailsHerobanner';
 import axios from 'axios';
 import { useFirebase } from '../../Context/Firebase';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import OverlayEpisodes from './OverlayEpisodes';
+import heart from '../../assets/heart.png'
+import add from '../../assets/add.png'
+import track from '../../assets/track.png'
+import { motion } from 'framer-motion'
 
 const Details = () => {
 
@@ -27,11 +28,11 @@ const Details = () => {
 
   const {mediaType, id} = useParams();
 
-
-
+  
   const posterImg = useSelector((state)=>state.home)
   const {data, loading} = useFetch(`/${mediaType}/${id}`)
-
+  
+  console.log(data)
   // const mediaName = data?.title || data?.name
 
   const wishlistData = {
@@ -87,38 +88,62 @@ const Details = () => {
 
       <DetailsHerobanner data={data} loading={loading} mediaType={mediaType} id={id}/>
 
-        <ContentCenter className={'mt-20'}>
+        <ContentCenter className={'mt-8'}>
 
-          <div className='w-full flex justify-between gap-5'>
+          <div className='w-full flex flex-col md:h-[50vh]'>
 
-            <div className='w-3/4'>
-              <div className='bg-slate-800 rounded-2xl p-5 px-6 flex flex-col gap-3 h-[]'>
-                <div className='text-[#C3E200] font-oswald text-3xl'>DESCRIPTION</div>
-                <div className='font-lato text-white text-lg'>
+            <div className='w-full h-1/2 my-3 flex flex-col md:flex-row gap-3 lg:gap-5'>
+
+              <div className='bg-slate-800 w-full md:w-3/5 lg:w-3/4 max-h-full rounded-2xl p-5 px-6 flex flex-col gap-3'>
+                <div className='text-[#C3E200] font-oswald text-3xl uppercase'>Description</div>
+                <div className='font-lato text-white text-lg overflow-ellipsis'>
                   {data?.overview}
                 </div>
               </div>
-              <div className='flex justify-between'> 
-                <div className='w-full flex gap-5 my-10'>
-                  <SubDetails data={data} loading={loading}/>
-                  <Tagline data={data} loading={loading}/>
-                </div>
+              
+              <div className='w-full md:w-2/5 lg:w-1/4 flex flex-col gap-3'>
+                <motion.button 
+                  className='bg-[#C3E200] h-14 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-md md:rounded-xl' 
+                  onClick={addtoWatchlist}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <img src={add} className='h-1/2'/>
+                  Add to WatchList
+                </motion.button>
+
+                <motion.button 
+                  className='bg-[#C3E200] h-14 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-md md:rounded-xl' 
+                  onClick={addMovie}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >                  
+                  <img src={track} className='h-1/2'/>
+                  Track
+                </motion.button>
+
+                <motion.button 
+                  className='bg-[#C3E200] h-14 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-md md:rounded-xl' 
+                  onClick={addtoWatchlist}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >                  
+                  <img src={heart} className='h-1/2'/>
+                  Add to Favourites
+                </motion.button>
               </div>
             </div>
 
-            <div className='w-1/4 flex flex-col gap-5'>
-              <div className='w-full h-1/4 flex flex-col gap-3'>
-                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl' onClick={addtoWatchlist}>
-                  <IoMdAddCircleOutline className='scale-150'/>
-                  Add to WatchList
-                </button>
-
-                <button className='bg-[#C3E200] h-1/2 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-xl' onClick={mediaType === "movie" && addMovie}>
-                  Track
-                </button>
+            <div className='h-1/2 w-full flex flex-col md:flex-row gap-4 my-3'>
+              <div className='w-full md:w-1/2'>
+                <SubDetails data={data} loading={loading}/>
               </div>
-              <div className='h-3/4'>
-                <DetailsSlider mediaType={mediaType}/>
+
+              <div className='w-full md:w-1/2'>
+                <Tagline data={data} loading={loading}/>
               </div>
             </div>
 
