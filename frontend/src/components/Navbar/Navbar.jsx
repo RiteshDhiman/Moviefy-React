@@ -164,11 +164,11 @@ const Navbar = () => {
 
       {menu &&
           <div className='absolute top-13 z-50 bg-black w-full flex flex-col text-white md:hidden centering gap-4 text-xl py-10 '>
-            <div onClick={()=>navigate('/search/movie')}>Movies</div>
-            <div onClick={()=>navigate('/search/tv')}>TV Shows</div>
-            <div onClick={()=>navigate('/movie/now_playing')}>In Cinemas</div>
-            <div onClick={()=>navigate('/watchlist')}>WatchList</div>
-            <div onClick={() => navigate('/profile')}>Profile</div>
+            <div onClick={()=>{navigate('/search/movie'); setMenu(false)}}>Movies</div>
+            <div onClick={()=>{navigate('/search/tv'); setMenu(false)}}>TV Shows</div>
+            <div onClick={()=>{navigate('/movie/now_playing'); setMenu(false)}}>In Cinemas</div>
+            <div onClick={()=>{navigate('/watchlist'); setMenu(false)}}>WatchList</div>
+            <div onClick={() => {navigate('/profile'); setMenu(false)}}>Profile</div>
           </div>
         }
     </div>
