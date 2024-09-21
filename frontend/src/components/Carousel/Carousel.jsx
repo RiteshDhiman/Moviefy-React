@@ -29,7 +29,7 @@ const Carousel = ({data, loading, endpoint}) => {
 
               return (
                 item.media_type != 'person' && <div className='relative flex flex-col flex-shrink-0 calc-width-mob sm:w-1/3 md:w-1/4 
-                  lg:w-1/5 rounded-xl overflow-hidden hover:scale-105 hover:overflow-hidden hover:rounded-xl hover:cursor-pointer duration-300' 
+                  lg:w-1/5 xl:w-1/6 rounded-xl overflow-hidden hover:scale-105 hover:overflow-hidden hover:rounded-xl hover:cursor-pointer duration-300' 
                   key={item.id} onMouseOver={()=>setHover(item?.id)} 
                   onMouseLeave={()=>{
                     setHover(null);
