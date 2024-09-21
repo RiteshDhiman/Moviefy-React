@@ -6,10 +6,12 @@ import { useFirebase } from '../../../Context/Firebase'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from 'framer-motion'
+import { getAuth, signInWithPopup } from 'firebase/auth'
 
 const Login = ({loginsignuphandle, handleFormClose, setLoading}) => {
 
   const firebase = useFirebase();
+  const auth = getAuth()
 
   const onSubmit = async (values, actions) => {
     try {
@@ -20,9 +22,23 @@ const Login = ({loginsignuphandle, handleFormClose, setLoading}) => {
       actions.resetForm()
       handleFormClose('close')
     } catch (error) {
-        alert('Login failed')
+        toast.error('Login failed')
     }
   }
+
+  const googlesignin = async() => {
+    try {
+      setLoading(true)
+      const response = await firebase.googlesignup()
+      setLoading(false)
+      toast.success('Google Login In Successful')
+      console.log(response)
+      handleFormClose('close')  
+    } catch (error) {
+      toast.error(error)
+    }
+  }
+  
   
 
   const {values, errors, handleBlur, handleChange, handleSubmit} = useFormik({
@@ -79,7 +95,7 @@ const Login = ({loginsignuphandle, handleFormClose, setLoading}) => {
 
           <button 
             className='flex items-center justify-center rounded-full w-11/12 gap-3 h-[40px] border-[1px] border-gray-300'
-            onClick={()=>firebase.googlesignup()}
+            onClick={googlesignin}
           >
             <img src={google} className='h-2/3'/>
             <span className='text-white font-semibold'>Google</span>

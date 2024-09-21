@@ -42,6 +42,12 @@ function App() {
           <Route path='/search/multi/:text' element={<SearchPage/>}/>
           <Route path='/search/:media/' element={<SearchPage/>}/>
           <Route path='/movie/now_playing/' element={<SearchPage/>}/>
+          <Route path='/trending/:media/week/' element={<SearchPage/>}/>
+          <Route path='/:media/popular/' element={<SearchPage/>}/>
+          <Route path='/:media/top_rated/' element={<SearchPage/>}/>
+          <Route path='/movie/upcoming/' element={<SearchPage/>}/>
+          <Route path='/discover/tv/' element={<SearchPage/>}/>
+          <Route path='/tv/airing_today/' element={<SearchPage/>}/>
           <Route path='/watchlist' element={<WatchLater/>}></Route>
           <Route path='/profile' element={<Profile/>}></Route>
         </Routes>

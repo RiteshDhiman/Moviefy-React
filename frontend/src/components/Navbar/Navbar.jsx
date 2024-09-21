@@ -7,8 +7,11 @@ import moviefy from '../../assets/moviefy_logo.jpeg'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Authentication from './LoginSignup/Authentication.jsx'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { useFirebase } from '../../Context/Firebase.jsx';
-import axios from 'axios';
+import { motion } from 'framer-motion'
+import dashboard from '../../assets/navbar/dashboard.png'
+import watchlater from '../../assets/navbar/watchlater.png'
+import menuBar from '../../assets/navbar/menuBar.png'
+import DetailedMenu from './DetailedMenu.jsx';
 
 const Navbar = () => {
 
@@ -19,19 +22,21 @@ const Navbar = () => {
   const [text, setText] = useState();
   const [user, setUser] = useState(null)
   const [profile, setProfile] = useState(false)
-  const firebase = useFirebase()
-  const auth = firebase.firebaseauth
-
-  const firstName = user?.displayName?.split(' ')[0];
+  const [detailedMenu, setDetailedMenu] = useState(false)
+  const [firstName, setFirstName] = useState(null)
+  const auth = getAuth()
 
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
+      setFirstName(currentUser?.displayName?.split(' ')[0])
       // console.log(currentUser)
     })
 
     return () => unsubscribe()
   }, [auth])
+
+
 
   const handleLogin = () => {
     setLogin(!login);
@@ -65,7 +70,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='h-[7vh] flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
+    <div className='h-[9vh] 2xl:h-[7vh] flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
       <ContentCenter className={"h-full relative"}>
         <div className='text-white flex justify-between items-center h-full'>
             
@@ -76,23 +81,25 @@ const Navbar = () => {
             <div className='h-full centering'>
               <ul className='flex gap-4 md:gap-6 items-center text-lg font-mukta h-full'>
 
-                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/movie')}>
-                  Movies
+                <li 
+                  className='hidden md:flex centering gap-2 hover:text-[#c3e200] h-full cursor-pointer' 
+                  onClick={()=>setDetailedMenu(!detailedMenu)}
+                  onMouseEnter={()=>setDetailedMenu(true)}
+                  onMouseLeave={()=>setDetailedMenu(false)}
+                >
+                  <img src={menuBar} className='w-5 invert'/>
+                  <span>Menu</span>
                 </li>
 
-                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/tv')}>
-                  TV Shows
+                <li className='hidden md:flex hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/profile')}>
+                  {/* <img src={dashboard} className='w-6' /> */}
+                  Dashboard
                 </li>
 
-                <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/movie/now_playing')}>
-                  In Cinemas
+                <li className='hidden md:flex centering gap-1 hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/watchlist')}>
+                  <img src={watchlater} className='w-5' />
+                  WatchList
                 </li>
-
-                {firebase.firebaseauth.currentUser &&
-                  <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/watchlist')}>
-                    WatchList
-                  </li>
-                }
 
                 <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>
 
@@ -100,15 +107,16 @@ const Navbar = () => {
                 <div className='flex items-center gap-2 h-full' onMouseLeave={()=>setProfile(false)}>
                   <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' 
                     onMouseEnter={()=>setProfile(true)}
+                    onClick={()=>setProfile(!profile)}
                   >
                     {firstName}
                   </button>
                 </div>
-              ) : (
-                <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' onClick={handleLogin}>
-                  Log In
-                </button>
-              )}
+                ) : (
+                  <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' onClick={handleLogin}>
+                    Log In
+                  </button>
+                )}
 
                 <LuMenu className='block md:hidden text-3xl text-white hover:cursor-pointer' onClick={handleMenu}/>
                 
@@ -116,31 +124,28 @@ const Navbar = () => {
             </div>
 
         </div>
-        
-        {menu &&
-          <div className='absolute top-13 z-50 bg-black w-full flex flex-col text-white md:hidden centering gap-4 text-xl py-10 '>
-            <div onClick={()=>navigate('/search/movie')}>Movies</div>
-            <div onClick={()=>navigate('/search/tv')}>TV Shows</div>
-            <div onClick={()=>navigate('/movie/now_playing')}>In Cinemas</div>
-            <div onClick={()=>navigate('/watchlist')}>WatchList</div>
-            <div onClick={() => navigate('/profile')}>Profile</div>
-          </div>
-        }
 
         {profile && (
-          <div className='absolute flex flex-col gap-3 right-0 top-12 mt-2 w-3/4 md:w-1/4 z-50 bg-black text-white p-4 rounded-lg shadow-lg' onMouseLeave={()=>setProfile(false)} onMouseEnter={()=>setProfile(true)}>
+          <div className='absolute flex flex-col gap-2 right-0 top-[9vh] 2xl:top-[7vh] w-3/4 md:w-1/4 z-50 bg-black text-white p-4 rounded-b-lg shadow-lg' onMouseLeave={()=>setProfile(false)} onMouseEnter={()=>setProfile(true)}>
 
             <div className='flex flex-col w-full'>
-              <div className='flex flex-col items-center justify-center'>
-                <div className='h-[50px] w-[50px] border-2 border-[#c3e200] bg-[#c3e200] bg-opacity-30 rounded-full flex items-center justify-center'>{firstName.split('')[0]}</div>
-                <div>{user.displayName}</div>
+              <div className='flex flex-col items-center justify-center gap-1'>
+                <div className='h-[50px] w-[50px] border-2 border-[#c3e200] bg-[#c3e200] bg-opacity-30 rounded-full flex items-center justify-center font-poetsen text-2xl text-[#ffffff]'>
+                  {firstName?.split('')[0]}
+                </div>
+                <div className='font-mukta text-xl'>{user?.displayName}</div>
               </div>
-              <div className='hover:text-[#c3e200] cursor-pointer' onClick={() => navigate('/profile')}>Profile</div>
-              <div className='hover:text-[#c3e200] cursor-pointer' onClick={() => navigate('/watchlist')}>Watch Later</div>
 
             </div>
-            <div className='w-full h-[1px] bg-white'></div>
-            <div className='hover:text-[#c3e200] cursor-pointer mt-2' onClick={handleSignOut}>Sign Out</div>
+            <motion.button 
+              className='cursor-pointer bg-red-600 rounded-xl py-2 font-mukta text-lg font-semibold' 
+              onClick={handleSignOut}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              Sign Out
+            </motion.button>
           </div>
         )}
 
@@ -150,8 +155,22 @@ const Navbar = () => {
             <button className='w-1/4 md:w-1/6 h-full bg-[#c3e200] font-oswald rounded-r-lg' onClick={handleSearchOnclick}>Search</button>
           </div>
         }
+
       </ContentCenter>
+
+      {detailedMenu && <DetailedMenu setDetailedMenu={setDetailedMenu} />} 
+
       {login && <Authentication handleLogin={handleLogin}/>}
+
+      {menu &&
+          <div className='absolute top-13 z-50 bg-black w-full flex flex-col text-white md:hidden centering gap-4 text-xl py-10 '>
+            <div onClick={()=>navigate('/search/movie')}>Movies</div>
+            <div onClick={()=>navigate('/search/tv')}>TV Shows</div>
+            <div onClick={()=>navigate('/movie/now_playing')}>In Cinemas</div>
+            <div onClick={()=>navigate('/watchlist')}>WatchList</div>
+            <div onClick={() => navigate('/profile')}>Profile</div>
+          </div>
+        }
     </div>
   )
 }

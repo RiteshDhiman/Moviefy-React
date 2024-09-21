@@ -51,7 +51,7 @@ const SearchPage = () => {
 
         {!loading 
             ?
-            (<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 min-h-[50vh]">
+            (<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 min-h-[50vh]">
               
             {data?.results.map((item) => {
               return (

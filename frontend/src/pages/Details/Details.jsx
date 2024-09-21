@@ -104,15 +104,18 @@ const Details = () => {
 
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth, (user)=>{
+      console.log(user)
       if(user){
-        setUserId(user.uid)
+        setUserId(user?.uid)
       }
       else{
         setUserId(null)
       }
     })
 
-    return () => unsubscribe()
+    return () => {
+      console.log("Unsubscribing from auth state changes");
+      unsubscribe()}
   },[auth])
 
   return (

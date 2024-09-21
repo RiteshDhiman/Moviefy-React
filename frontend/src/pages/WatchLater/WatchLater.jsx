@@ -72,6 +72,7 @@ const WatchLater = () => {
       if(user){
         setUserId(user.uid)
         fetchWatchlist(user.uid)
+        // console.log(user)
       }
       else{
         setUserId(null)

@@ -27,8 +27,8 @@ export const FirebaseProvider = ({children}) => {
     return await createUserWithEmailAndPassword(firebaseauth, email, password);
   };
 
-    const googlesignup = () => {
-        signInWithPopup(firebaseauth, googleProvider)
+    const googlesignup = async() => {
+      return await signInWithPopup(firebaseauth, googleProvider)
     }
 
     const signinwithemailandpassword = async (email, password) => {

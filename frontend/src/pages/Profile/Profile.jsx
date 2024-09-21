@@ -46,12 +46,15 @@ const Profile = () => {
     // Listen to changes in authentication state
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log('Here')
+        console.log(user)
         // User is signed in
         setUserId(user.uid);
         setUserName(user.displayName);
         fetchTrackingData(user.uid); // Fetch data when the user is authenticated
       } else {
         // User is signed out, handle this case if needed
+        console.log('User not available')
         setUserId(null);
         setUserName(null);
       }
@@ -67,7 +70,7 @@ const Profile = () => {
   return (
     <div>
       {loading && <LoadingScreen />}
-      <ProfileHerobanner userName={userName}/>
+      <ProfileHerobanner userName={userName}  />
       <ProfileTabs data={trackingData}/>
       <TrackedShows data={trackingData} />
       <TrackedMovies data={trackingData}/>

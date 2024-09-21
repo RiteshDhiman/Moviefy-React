@@ -13,6 +13,8 @@ import dayjs from 'dayjs'
 import close from '../../assets/close.png'
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Bounce } from 'react-activity'
+import "react-activity/dist/library.css";
 
 const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, seasonNumber, handleEpisode, userId }) => {
 
@@ -69,10 +71,10 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
 
   return (
     <div className="text-white w-full h-[100vh] absolute z-30 top-0 flex justify-center items-center">
+      {!loading ? (
       <div className="w-5/6 md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black bg-gray-600 ">
         <span className="absolute z-50 top-3 right-3 text-8xl cursor-pointer" onClick={handleEpisode}>
-        <img src={close} className='w-5 md:w-7 invert hover:scale-110 duration-200 cursor-pointer'/>
-
+          <img src={close} className='w-5 md:w-7 invert hover:scale-110 duration-200 cursor-pointer'/>
         </span>
 
         <div className="w-full flex flex-col">
@@ -159,7 +161,34 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
             ))}
           </div>
         </div>
-      </div>
+      </div>) : (
+        <div className="w-5/6 md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black bg-gray-600">
+          <span className="absolute z-50 top-3 right-3 text-8xl cursor-pointer" onClick={handleEpisode}>
+            <img src={close} className='w-5 md:w-7 invert hover:scale-110 duration-200 cursor-pointer'/>
+          </span>
+          
+          <div className="w-full flex flex-col items-center">
+            <div className="w-full flex items-center py-5 flex-col gap-1">
+              <div className="font-oswald text-4xl md:text-5xl font-semibold">SEASON {seasonNumber}</div>
+              {data?.vote_average !== 0 ?
+              <div className="flex gap-2">
+                <Box sx={{ '& > legend': { mt: 2} }}>
+                  <Rating name="read-only" value={5} precision={0.5} readOnly />
+                </Box>
+              </div>
+              : (
+                <div className="font-poppins">Rating Unavailable</div>
+                )
+              }
+              <div className="font-poppins text-md">{`Total Runtime : Loading ...`}</div>
+            </div>
+
+            <div className="w-11/12 bg-black h-full centering mb-5 rounded-xl">
+              <Bounce size={40} speed={1}/>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -40,7 +40,7 @@ import { useNavigate } from 'react-router-dom';
   return (
     <div className='relative w-full h-[45vh] md:h-[90vh] mb-10'>
       <div className='w-full h-full'>
-        <img src={bg} className="h-full w-full object-cover opacity-50" loading='lazy'/>
+        <img src={bg} className="h-full w-full object-cover opacity-40" loading='lazy'/>
       </div>
 
       <div className='top-0 left-0 w-full h-full absolute flex justify-center items-center'>
@@ -52,6 +52,9 @@ import { useNavigate } from 'react-router-dom';
             </span>
             <span className="text-md md:text-xl lg:text-2xl font-oswald">
               Your Streaming guide for Movies and TV shows
+            </span>
+            <span className="text-md md:text-xl lg:text-xl font-poppins">
+              Track • Discover • Enjoy
             </span>
           </div>
 
