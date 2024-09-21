@@ -65,7 +65,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='py-3 flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
+    <div className='h-[7vh] flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
       <ContentCenter className={"h-full relative"}>
         <div className='text-white flex justify-between items-center h-full'>
             
@@ -73,8 +73,8 @@ const Navbar = () => {
               <img src={moviefy} alt="" />
             </div>
 
-            <div>
-              <ul className='flex gap-4 md:gap-6 items-center text-lg font-mukta'>
+            <div className='h-full centering'>
+              <ul className='flex gap-4 md:gap-6 items-center text-lg font-mukta h-full'>
 
                 <li className='hidden md:block hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/search/movie')}>
                   Movies
@@ -97,10 +97,9 @@ const Navbar = () => {
                 <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>
 
                 {user ? (
-                <div className='flex items-center gap-2'>
+                <div className='flex items-center gap-2 h-full' onMouseLeave={()=>setProfile(false)}>
                   <button className='bg-[#c3e200] px-4 py-1 rounded-lg font-mukta font-medium text-black hover:scale-105 duration-300' 
                     onMouseEnter={()=>setProfile(true)}
-                    // onMouseLeave={handleProfile}
                   >
                     {firstName}
                   </button>
@@ -129,7 +128,7 @@ const Navbar = () => {
         }
 
         {profile && (
-          <div className='absolute flex flex-col gap-3 right-0 top-12 mt-2 w-3/4 md:w-1/4 z-50 bg-black text-white p-4 rounded-lg shadow-lg' onMouseLeave={()=>setProfile(false)}>
+          <div className='absolute flex flex-col gap-3 right-0 top-12 mt-2 w-3/4 md:w-1/4 z-50 bg-black text-white p-4 rounded-lg shadow-lg' onMouseLeave={()=>setProfile(false)} onMouseEnter={()=>setProfile(true)}>
 
             <div className='flex flex-col w-full'>
               <div className='flex flex-col items-center justify-center'>

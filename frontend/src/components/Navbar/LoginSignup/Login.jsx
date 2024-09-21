@@ -5,14 +5,17 @@ import google from '../../../assets/google.png'
 import { useFirebase } from '../../../Context/Firebase'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { motion } from 'framer-motion'
 
-const Login = ({loginsignuphandle, handleFormClose}) => {
+const Login = ({loginsignuphandle, handleFormClose, setLoading}) => {
 
   const firebase = useFirebase();
 
   const onSubmit = async (values, actions) => {
     try {
+      setLoading(true)
       await firebase.signinwithemailandpassword(values.email, values.password);
+      setLoading(false)
       toast.success('Login Successful');
       actions.resetForm()
       handleFormClose('close')
@@ -57,9 +60,15 @@ const Login = ({loginsignuphandle, handleFormClose}) => {
                 placeholder='Password'
             />
             {errors.password && <span className='text-[#c4e200] pl-4 text-sm'>{errors.password}</span>}
-            <button type='submit' className='mt-4 rounded-full h-[40px] bg-[#c4e200] font-semibold'>
+            <motion.button 
+              type='submit' 
+              className='mt-4 rounded-full h-[40px] bg-[#c4e200] font-semibold'
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
               Sign In
-            </button>
+            </motion.button>
           </form>
 
           <div className='flex text-white font-mukta gap-2'>

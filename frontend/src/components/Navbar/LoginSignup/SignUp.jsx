@@ -6,14 +6,16 @@ import google from '../../../assets/google.png'
 import { updateProfile } from "firebase/auth";
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import { motion } from 'framer-motion'
 import 'react-toastify/dist/ReactToastify.css';
 
-const SignUp = ({loginsignuphandle, handleFormClose}) => {
+const SignUp = ({loginsignuphandle, handleFormClose, setLoading}) => {
 
   const firebase = useFirebase();
 
   const onSubmit = async(values, actions) => {
     try {
+      setLoading(true)
       const userCredentials = await firebase.signupwithemailandpassword(values.email, values.password)
 
       await updateProfile(userCredentials.user, {
@@ -24,11 +26,11 @@ const SignUp = ({loginsignuphandle, handleFormClose}) => {
       const fullName = userCredentials.user.displayName
 
       // const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
-
+      
       // const userIDSend = await axios.post('http://localhost:3000/auth/signup', {userId, fullName})
       const userIDSend = await axios.post('https://moviefy-react.onrender.com/auth/signup', {userId, fullName})
       // const userIDSend = await axios.post(`${BASE_ENDPOINT}/auth/signup`, {userId, fullName})
-
+      setLoading(false)
       toast.success('Account created successfully')
       actions.resetForm()
       handleFormClose('close')
@@ -103,9 +105,15 @@ const SignUp = ({loginsignuphandle, handleFormClose}) => {
               placeholder='Password'
           />
           {errors.password && <span className='text-[#c4e200] pl-4 text-sm'>{errors.password}</span>}
-          <button type='submit' className='mt-4 rounded-full h-[40px] bg-[#c4e200] font-semibold'>
+          <motion.button 
+            type='submit' 
+            className='mt-4 rounded-full h-[40px] bg-[#c4e200] font-semibold'
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
             Sign Up
-          </button>
+          </motion.button>
         </form>
 
         <div className='flex text-white font-mukta gap-2'>

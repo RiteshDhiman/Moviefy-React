@@ -7,6 +7,7 @@ import TrackedShows from './ProfileComponents/TrackedShows/TrackedShows';
 import TrackedMovies from './ProfileComponents/TrackedMovies/TrackedMovies';
 import WatchLaterMovies from './WatchLaterMovies/WatchLaterMovies';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 
 const Profile = () => {
 
@@ -14,6 +15,7 @@ const Profile = () => {
 
   const [userId, setUserId] = useState(null);
   const [userName, setUserName] = useState(null);
+  const [loading, setLoading] = useState(false)
 
   const [trackingData, settrackingData] = useState([]);
 
@@ -24,12 +26,14 @@ const Profile = () => {
   const fetchTrackingData = async (uid) => {
     try {
       if (uid) {
+        setLoading(true)
         const response = await axios.get(
           // "http://localhost:3000/track/fetch",
           "https://moviefy-react.onrender.com/track/fetch",
           // `${BASE_ENDPOINT}/track/fetch`,
           {params: { userId:uid },}
         );
+        setLoading(false)
         settrackingData(response.data);
         console.log(response)
       }
@@ -62,6 +66,7 @@ const Profile = () => {
 
   return (
     <div>
+      {loading && <LoadingScreen />}
       <ProfileHerobanner userName={userName}/>
       <ProfileTabs data={trackingData}/>
       <TrackedShows data={trackingData} />

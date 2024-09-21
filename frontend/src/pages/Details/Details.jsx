@@ -19,6 +19,7 @@ import add from '../../assets/add.png'
 import track from '../../assets/track.png'
 import { motion } from 'framer-motion'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 
 const Details = () => {
 
@@ -26,7 +27,7 @@ const Details = () => {
   const seasonRef = useRef(null)
 
   const [userId, setUserId] = useState(null)
-  console.log(userId)
+  const [loadingFull, setLoadingFull] = useState(false)
 
   const {mediaType, id} = useParams();
 
@@ -63,9 +64,11 @@ const Details = () => {
 
   const addtoWatchlist = async() => {
     try {
+      setLoadingFull(true)
       // const testing = await axios.post('http://localhost:3000/add/wishlist', wishlistData)
       const testing = await axios.post('https://moviefy-react.onrender.com/add/wishlist', wishlistData)
       // const testing = await axios.post(`${BASE_ENDPOINT}/add/wishlist`, wishlistData)
+      setLoadingFull(false)
       const message = testing.data.message;
 
       if (message === "Media Already exists") {
@@ -80,9 +83,11 @@ const Details = () => {
 
   const trackMovie = async() => {
     try {
+      setLoadingFull(true)
       // const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
       const movieTrack = await axios.post('https://moviefy-react.onrender.com/track/movie', movieData)
       // const movieTrack = await axios.post(`${BASE_ENDPOINT}/track/movie`, movieData)
+      setLoadingFull(false)
 
       const message = movieTrack.data.message;
 
@@ -181,7 +186,8 @@ const Details = () => {
       <Similar id={id} mediaType={mediaType}/>
       <Recommendation id={id} mediaType={mediaType}/>
 
-      
+      {loading && <LoadingScreen />}
+      {loadingFull && <LoadingScreen/>}
 
     </div>
 
