@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
@@ -18,12 +18,14 @@ import heart from '../../assets/heart.png'
 import add from '../../assets/add.png'
 import track from '../../assets/track.png'
 import { motion } from 'framer-motion'
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const Details = () => {
 
-  const firebase = useFirebase();
+  const auth = getAuth();
+  const seasonRef = useRef(null)
 
-  const userId = firebase.firebaseauth.currentUser?.uid
+  const [userId, setUserId] = useState(null)
   console.log(userId)
 
   const {mediaType, id} = useParams();
@@ -52,6 +54,10 @@ const Details = () => {
     posterPath : data?.poster_path
   }
 
+  const scrollToSection  = (sectionRef) => {
+    sectionRef.current?.scrollIntoView({behavior : 'smooth'})
+  }
+
   // const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
   
 
@@ -72,16 +78,37 @@ const Details = () => {
     }
   }
 
-  const addMovie = async() => {
+  const trackMovie = async() => {
     try {
       // const movieTrack = await axios.post('http://localhost:3000/track/movie', movieData)
       const movieTrack = await axios.post('https://moviefy-react.onrender.com/track/movie', movieData)
       // const movieTrack = await axios.post(`${BASE_ENDPOINT}/track/movie`, movieData)
-      toast.success(`${data?.title || data?.name} tracked`)
+
+      const message = movieTrack.data.message;
+
+      if(message === 'Movie already tracked'){
+        toast.warning(`${data?.name || data?.title} is already tracked`, {style : {width : '400px'}})
+      }
+      else if(message === 'Added to tracking'){
+        toast.success(`${data?.name || data?.title} Tracked`, {style : {width : '400px'}});
+      }
     } catch (error) {
       alert(error.message)
     }
   }
+
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth, (user)=>{
+      if(user){
+        setUserId(user.uid)
+      }
+      else{
+        setUserId(null)
+      }
+    })
+
+    return () => unsubscribe()
+  },[auth])
 
   return (
     <div>
@@ -115,13 +142,13 @@ const Details = () => {
 
                 <motion.button 
                   className='bg-[#C3E200] h-14 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-md md:rounded-xl' 
-                  onClick={addMovie}
+                  onClick={()=>{mediaType === 'tv' ? scrollToSection(seasonRef) : trackMovie()}}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.96 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >                  
                   <img src={track} className='h-1/2'/>
-                  Track
+                  {mediaType === 'tv' ? "Track Show" : "Track Movie"}
                 </motion.button>
 
                 <motion.button 
@@ -137,7 +164,7 @@ const Details = () => {
               </div>
             </div>
 
-            <div className='h-1/2 w-full flex flex-col md:flex-row gap-4 my-3'>
+            <div className='h-1/2 w-full flex flex-col md:flex-row gap-4 my-3' ref={seasonRef}>
               <div className='w-full md:w-1/2'>
                 <SubDetails data={data} loading={loading}/>
               </div>

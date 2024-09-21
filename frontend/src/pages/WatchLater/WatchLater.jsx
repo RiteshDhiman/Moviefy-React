@@ -8,10 +8,13 @@ import { MdDelete } from "react-icons/md";
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const WatchLater = () => {
-  const firebase = useFirebase();
-  const userId = firebase.firebaseauth.currentUser?.uid;
+
+  const auth = getAuth()
+
+  const [userId, setUserId] = useState(null)
   const [watchLaterList, setWatchLaterList] = useState([]);
   const navigate = useNavigate();
 
@@ -19,15 +22,15 @@ const WatchLater = () => {
 
   // console.log(watchLaterList)
 
-  const fetchWatchlist = async () => {
+  const fetchWatchlist = async (uid) => {
     try {
-      if (userId) {
+      if (uid) {
         const response = await axios.get(
           // "http://localhost:3000/add/watchlist",
           "https://moviefy-react.onrender.com/add/watchlist",
           // `${BASE_ENDPOINT}/add/watchlist`,
           {
-            params: { userId },
+            params: { userId:uid },
           }
         );
         setWatchLaterList(response.data); // Set the fetched watch later array
@@ -58,9 +61,19 @@ const WatchLater = () => {
     }
   };
 
-  useEffect(() => {
-    fetchWatchlist();
-  }, [userId]);
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth, (user)=>{
+      if(user){
+        setUserId(user.uid)
+        fetchWatchlist(user.uid)
+      }
+      else{
+        setUserId(null)
+      }
+    })
+    return () => unsubscribe()
+  },[auth])
+
 
   const movies = watchLaterList.filter((item) => item.mediaType === "movie");
   const tvShows = watchLaterList.filter((item) => item.mediaType === "tv");

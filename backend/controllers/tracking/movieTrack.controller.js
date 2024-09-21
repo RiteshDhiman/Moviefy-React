@@ -12,7 +12,7 @@ const trackMovie = async(req,res) => {
         userFind.watchedMedia = { movies: [], tvShows: [] };
       }
 
-      const movieFind = userFind.watchedMedia.movies.find(item => item.id === movieId)
+      const movieFind = userFind.watchedMedia.movies.find(item => item.movieId.toString() === movieId.toString())
 
       if(movieFind){
         res.status(200).json({message : 'Movie already tracked'})
