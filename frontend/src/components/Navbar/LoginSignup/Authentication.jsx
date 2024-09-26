@@ -7,11 +7,14 @@ import {motion} from 'framer-motion'
 import SignUp from './SignUp'
 import Login from './Login'
 import LoadingScreen from '../../LoadingScreen/LoadingScreen'
+import { useLocation } from 'react-router-dom'
 
 const Authentication = ({handleLogin}) => {
 
   const [loginSignup, setloginSignup] = useState('login')
   const [loading, setLoading] = useState(null)
+
+  const location = useLocation()
 
   const loginsignuphandle = () => {
     loginSignup === 'login' ? setloginSignup('signup') : setloginSignup('login')
@@ -33,9 +36,9 @@ const Authentication = ({handleLogin}) => {
         className='w-4/5 md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black'
       >
 
-        <div className='absolute top-3 right-4 z-10'>
+        {<div className='absolute top-3 right-4 z-10'>
           <img src={close} className='w-5 md:w-7 invert hover:scale-110 duration-200 cursor-pointer' onClick={handleLogin}/>
-        </div>
+        </div>}
 
         <div className='hidden md:block w-1/2 bg-black absolute top-0 h-full opacity-60 z-10'></div>
 

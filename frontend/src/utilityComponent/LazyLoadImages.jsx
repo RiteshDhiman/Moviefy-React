@@ -8,7 +8,7 @@ const LazyLoadImages = ({src, alt, className}) => {
     // <LazyLoadImage className={className || ''}>
     //   <img src={src} alt={alt} />
     // </LazyLoadImage>
-    <LazyLoadImage className={className || ''} src={src} alt={alt} effect='blur'/>
+    <LazyLoadImage className={className || ''} src={src} alt={alt} effect='blur' style={{ height: '100%', width: '100%' }}/>
   )
 }
 

@@ -18,6 +18,7 @@ export default {
       'anton' : ['Anton'],
       'alfa' : ['Alfa Slab One'],
       'antonio' : ['Antonio'],
+      'monoton' : ['Monoton']
     },
   },
   plugins: [

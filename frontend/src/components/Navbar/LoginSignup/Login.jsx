@@ -22,7 +22,8 @@ const Login = ({loginsignuphandle, handleFormClose, setLoading}) => {
       actions.resetForm()
       handleFormClose('close')
     } catch (error) {
-        toast.error('Login failed')
+        setLoading(false)
+        toast.error('Incorrect Credentials')
     }
   }
 
@@ -35,6 +36,7 @@ const Login = ({loginsignuphandle, handleFormClose, setLoading}) => {
       console.log(response)
       handleFormClose('close')  
     } catch (error) {
+      setLoading(false)
       toast.error(error)
     }
   }

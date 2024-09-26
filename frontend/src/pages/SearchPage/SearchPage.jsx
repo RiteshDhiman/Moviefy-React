@@ -67,14 +67,14 @@ const SearchPage = () => {
           </div>)
           :
           <div className="grid grid-cols-4 gap-6">
-            <div className="w-full bg-slate-400 h-[50vh]"></div>
-            <div className="w-full bg-slate-400 h-[50vh]"></div>
-            <div className="w-full bg-slate-400 h-[50vh]"></div>
-            <div className="w-full bg-slate-400 h-[50vh]"></div>
-            <div className="w-full bg-slate-400 h-[50vh]"></div>
-            <div className="w-full bg-slate-400 h-[50vh]"></div>
-            <div className="w-full bg-slate-400 h-[50vh]"></div>
-            <div className="w-full bg-slate-400 h-[50vh]"></div>
+            <div className="w-full rgba(1000,1000,1000,0.2) h-[50vh]"></div>
+            <div className="w-full rgba(1000,1000,1000,0.2) h-[50vh]"></div>
+            <div className="w-full rgba(1000,1000,1000,0.2) h-[50vh]"></div>
+            <div className="w-full rgba(1000,1000,1000,0.2) h-[50vh]"></div>
+            <div className="w-full rgba(1000,1000,1000,0.2) h-[50vh]"></div>
+            <div className="w-full rgba(1000,1000,1000,0.2) h-[50vh]"></div>
+            <div className="w-full rgba(1000,1000,1000,0.2) h-[50vh]"></div>
+            <div className="w-full rgba(1000,1000,1000,0.2) h-[50vh]"></div>
           </div>
         }
       </ContentCenter>

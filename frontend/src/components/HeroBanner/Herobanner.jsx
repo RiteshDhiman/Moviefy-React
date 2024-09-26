@@ -3,6 +3,7 @@ import useFetch from '../../hooks/useFetch';
 import { useDispatch, useSelector } from 'react-redux';
 import { getList } from '../../store/homeSlice';
 import { useNavigate } from 'react-router-dom';
+import LazyLoadImages from '../../utilityComponent/LazyLoadImages'
 
   const Herobanner = () => {
 
@@ -18,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
   const {url} = useSelector((state)=>state.home)
 
   const handleSearch = () => {
-    navigate(`/search/multi/${text}`);
+    text !== '' && navigate(`/search/multi/${text}`);
   }
 
   const handleSearchEnter = (e) => {
@@ -38,9 +39,10 @@ import { useNavigate } from 'react-router-dom';
   },[data])
 
   return (
-    <div className='relative w-full h-[45vh] md:h-[90vh] mb-10'>
-      <div className='w-full h-full'>
-        <img src={bg} className="h-full w-full object-cover opacity-40" loading='lazy'/>
+    <div className='relative w-full h-[40vh] sm:h-[45vh] md:h-[60vh] lg:h-[70vh] xl:h-[80vh] 2xl:h-[90vh] mb-10'>
+      <div className='w-full h-full overflow-hidden opacity-40 '>
+        {/* <img src={bg} className="h-full w-full object-cover opacity-40" loading='lazy'/> */}
+        <LazyLoadImages src={bg} className={'h-full w-full object-fill'}/>
       </div>
 
       <div className='top-0 left-0 w-full h-full absolute flex justify-center items-center'>
@@ -53,7 +55,7 @@ import { useNavigate } from 'react-router-dom';
             <span className="text-md md:text-xl lg:text-2xl font-oswald">
               Your Streaming guide for Movies and TV shows
             </span>
-            <span className="text-md md:text-xl lg:text-xl font-poppins">
+            <span className="text-md md:text-xl lg:text-lg font-poppins">
               Track • Discover • Enjoy
             </span>
           </div>

@@ -34,7 +34,7 @@ const Seasons = ({data, loading, userId}) => {
             data?.seasons.map((item)=>(
 
             item.name != "Specials" && 
-            <div key={item.id} className='flex h-[32vh] xl:h-[35vh] 2xl:h-[30vh] bg-[#1e293b83] w-full xl:w-11/12 rounded-xl md:rounded-3xl'>
+            <div key={item.id} className='flex h-[32vh] xl:h-[35vh] 2xl:h-[32vh] bg-[#1e293b83] w-full xl:w-11/12 rounded-xl md:rounded-3xl'>
               <div className='w-2/5 2xl:w-[40%] h-full'>
                 <img src={item.poster_path ? posterImg.url + item.poster_path : noposter} className="h-full w-full rounded-3xl opacity-85 shadow-2xl shadow-black hover:scale-105 duration-300"/>
               </div>

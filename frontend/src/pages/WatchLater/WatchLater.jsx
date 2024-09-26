@@ -10,6 +10,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
+import LazyLoadImages from '../../utilityComponent/LazyLoadImages'
+import dayjs from 'dayjs'
 
 const WatchLater = () => {
 
@@ -93,65 +95,70 @@ const WatchLater = () => {
           <div className="w-full">
             <div className="text-3xl font-mukta py-5">Movies</div>
             <div className="grid md:grid-cols-3 grid-cols-2 gap-x-6 gap-y-5">
+
               {movies.length > 0 ? (
-                movies.map((item, index) => (
-                  <div className="w-full bg-slate-900 h-[55vh] flex flex-col justify-around items-center rounded-3xl">
-                    <div className="relative w-full h-3/5 bg-black flex">
-                      <div className="w-full h-full flex justify-center items-center text-9xl font-alfa font-bold pr-4">
-                        {index + 1}
+                movies?.map((item, index) => (
+                  <div className="w-full text-white flex flex-col rounded-2xl bg-black">
+                    <div className="flex">
+
+                      <div className=" w-[40%] rounded-tl-2xl">
+                        <img src={item.posterPath} className="rounded-tl-2xl shadow-xl"/>
                       </div>
-                      <div className="absolute h-full w-1/2 top-0 right-0">
-                        <img
-                          src={item.posterPath}
-                          className="h-full w-full brightness-75"
-                        />
+                      
+                      <div className="w-[65%] flex flex-col items-center gap-2">
+                        
+                        <div className="w-full centering py-2 font-roboto mb-2">
+                          <span>Added on : {dayjs(item.mediaDate).format('D MMM YYYY')}</span>
+                        </div>
+
+                        <div className="w-full centering flex-col gap-2 font-poppins text-md font-semibold">
+                          <motion.button
+                            className="w-4/5 rounded-xl bg-lime-400 bg-opacity-20 border-[1.5px] border-lime-600 py-2 text-lime-400"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => removeWatchlist(item.id)}
+                          >
+                              Watched
+                          </motion.button>
+                          <motion.button
+                            className="w-4/5 rounded-xl bg-red-400 bg-opacity-20 border-[1.5px] border-red-600 py-2 text-red-500"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => removeWatchlist(item.id)}
+                          >
+                              Remove
+                          </motion.button>
+                          <motion.button
+                            className="w-4/5 rounded-xl bg-indigo-400 bg-opacity-20 border-[1.5px] border-indigo-400 py-2 text-indigo-300"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => navigate(`/${item.mediaType}/${item.id}`)}
+                          >
+                              Explore Now
+                          </motion.button>
+                        </div>
                       </div>
                     </div>
-                    <div className="w-11/12 h-2/5 px-4 py-2 flex flex-col gap-2 justify-center items-center">
-                      <p className="h-1/3 font-roboto text-xl flex justify-center items-center">
-                        {item.mediaName}
-                      </p>
-                      <div className="flex justify-around w-full gap-5 h-1/3">
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="w-1/2 rounded-xl py-2 bg-[#C3E200] flex justify-center items-center gap-1 text-black font-poppins text-md font-semibold"
-                          onClick={() => removeWatchlist(item.id)}
-                        >
-                          <GiConfirmed />
-                          Watched
-                        </motion.button>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="w-1/2 rounded-xl py-2 bg-[#cf3817] flex justify-center items-center gap-1 font-poppins text-md font-semibold"
-                        >
-                          <MdDelete />
-                          Remove
-                        </motion.button>
-                      </div>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="h-1/3 bg-sky-300 w-full rounded-xl py-1 text-black text-md font-semibold"
-                        onClick={() => navigate(`/${item.mediaType}/${item.id}`)}
-                      >
-                        Explore Now
-                      </motion.button>
+                    <div className="py-3 centering text-2xl font-fina border-t-[1px] border-slate-400">
+                      {item.mediaName}
                     </div>
                   </div>
                 ))
               ) : (
-                <p>No movies</p>
+                <>
+                  <div className="h-[30vh] bg-slate-500 rounded-2xl w-full"></div>
+                  <div className="h-[30vh] bg-slate-500 rounded-2xl w-full"></div>
+                  <div className="h-[30vh] bg-slate-500 rounded-2xl w-full"></div>
+                </>
               )}
             </div>
           </div>
@@ -161,63 +168,67 @@ const WatchLater = () => {
             <div className="grid md:grid-cols-3 grid-cols-2 gap-x-10 gap-y-5">
               {tvShows.length > 0 ? (
                 tvShows.map((item, index) => (
-                  <div className="w-full bg-slate-900 h-[55vh] flex flex-col justify-around items-center rounded-3xl">
-                    <div className="relative w-full h-3/5 bg-black flex">
-                      <div className="w-full h-full flex justify-center items-center text-9xl font-alfa font-bold pr-4">
-                        {index + 1}
+                  <div className="w-full text-white flex flex-col rounded-2xl" style={{background: 'radial-gradient(circle, #002f4c 30%, #001c2a 100%)',}}>
+                    <div className="flex">
+
+                      <div className=" w-[40%] rounded-tl-2xl">
+                        <img src={item.posterPath} className="rounded-tl-2xl shadow-xl"/>
                       </div>
-                      <div className="absolute h-full w-1/2 top-0 right-0">
-                        <img
-                          src={item.posterPath}
-                          className="h-full w-full brightness-75"
-                        />
+                      
+                      <div className="w-[65%] flex flex-col items-center gap-2">
+                        
+                        <div className="w-full centering py-2 font-roboto mb-2">
+                          <span>Added on : {dayjs(item.mediaDate).format('D MMM YYYY')}</span>
+                        </div>
+
+                        <div className="w-full centering flex-col gap-2 font-poppins text-md font-semibold">
+                          <motion.button
+                            className="w-4/5 rounded-xl bg-lime-400 bg-opacity-20 border-[1.5px] border-lime-600 py-2 text-lime-400"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => removeWatchlist(item.id)}
+                          >
+                              Watched
+                          </motion.button>
+                          <motion.button
+                            className="w-4/5 rounded-xl bg-red-400 bg-opacity-20 border-[1.5px] border-red-600 py-2 text-red-500"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => removeWatchlist(item.id)}
+                          >
+                              Remove
+                          </motion.button>
+                          <motion.button
+                            className="w-4/5 rounded-xl bg-indigo-400 bg-opacity-20 border-[1.5px] border-indigo-400 py-2 text-indigo-300"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => navigate(`/${item.mediaType}/${item.id}`)}
+                          >
+                              Explore Now
+                          </motion.button>
+                        </div>
                       </div>
                     </div>
-                    <div className="w-11/12 h-2/5 px-4 py-2 flex flex-col gap-2 justify-center items-center">
-                      <p className="h-1/3 font-roboto text-xl flex justify-center items-center">
-                        {item.mediaName}
-                      </p>
-                      <div className="flex justify-around w-full gap-5 h-1/3">
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="w-1/2 rounded-xl py-2 bg-[#C3E200] flex justify-center items-center gap-1 text-black font-poppins text-md font-semibold"
-                          onClick={() => removeWatchlist(item.id)}
-                        >
-                          <GiConfirmed />
-                          Watched
-                        </motion.button>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="w-1/2 rounded-xl py-2 bg-[#cf3817] flex justify-center items-center gap-1 font-poppins text-md font-semibold"
-                        >
-                          <MdDelete />
-                          Remove
-                        </motion.button>
-                      </div>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="h-1/3 bg-sky-300 w-full rounded-xl py-1 text-black text-md font-semibold"
-                        onClick={() => navigate(`/${item.mediaType}/${item.id}`)}
-                      >
-                        Explore Now
-                      </motion.button>
+                    <div className="py-3 centering text-2xl font-fina">
+                      {item.mediaName}
                     </div>
                   </div>
                 ))
               ) : (
-                <p>No TV shows</p>
+                <>
+                  <div className="h-[30vh] bg-slate-500 rounded-2xl w-full"></div>
+                  <div className="h-[30vh] bg-slate-500 rounded-2xl w-full"></div>
+                  <div className="h-[30vh] bg-slate-500 rounded-2xl w-full"></div>
+                </>
               )}
             </div>
           </div>

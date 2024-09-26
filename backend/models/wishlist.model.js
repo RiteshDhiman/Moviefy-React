@@ -13,6 +13,9 @@ const wishListSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    mediaDate : {
+        type : Date
+    },
     posterPath : {
         type:String
     }

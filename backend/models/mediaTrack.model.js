@@ -10,7 +10,7 @@ const episodeSchema = new mongoose.Schema({
     required : true
   },
   episodeDate : {
-    type : Date,
+    type : Date
   },
   episodeStatus : {
     type : Boolean,
@@ -42,6 +42,9 @@ const tvSchema = new mongoose.Schema({
   tvTotalSeasons : {
     type : Number,
   },
+  tvDate : {
+    type : Date,
+  },
   seasons : [seasonSchema],
 
   posterPath : {
@@ -59,7 +62,7 @@ const movieSchema = new mongoose.Schema({
     required : true
   },
   movieDate : {
-    type : Date,
+    type : Date
   },
   movieStatus : {
     type : Boolean,

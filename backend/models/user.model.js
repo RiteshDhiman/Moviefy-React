@@ -13,7 +13,11 @@ const userSchema = new mongoose.Schema({
     },
     wishlist:[wishListSchema],
 
-    watchedMedia : mediaSchema
+    watchedMedia : mediaSchema,
+
+    userCreationDate : {
+        type : Date
+    }
 })
 
 const User = mongoose.model("User", userSchema)

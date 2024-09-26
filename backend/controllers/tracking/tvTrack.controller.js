@@ -34,6 +34,7 @@ const trackTv = async (req, res) => {
               episodeDate: watchedDate,
               episodeStatus: true,
               episodeRuntime,
+              episodeDate : new Date()
             });
             await userFind.save();
             return res.status(200).json({ message: `Episode ${episodeNumber} added to tracked season ${seasonNumber}` });
@@ -46,7 +47,8 @@ const trackTv = async (req, res) => {
               episodeNumber,
               episodeName,
               episodeDate: watchedDate,
-              episodeStatus: true
+              episodeStatus: true,
+              episodeDate : new Date()
             }]
           });
           await userFind.save();
@@ -64,10 +66,12 @@ const trackTv = async (req, res) => {
               episodeNumber,
               episodeName,
               episodeDate: watchedDate,
-              episodeStatus: true
+              episodeStatus: true,
+              episodeDate : new Date()
             }]
           }],
-          posterPath
+          posterPath,
+          tvDate : new Date()
         });
         await userFind.save();
         return res.status(200).json({ message: `Series, season ${seasonNumber}, and episode ${episodeNumber} added to tracking` });

@@ -13,7 +13,7 @@ const LoadingScreen = () => {
   },[])
   
   return (
-    <div className='z-50 absolute top-0 h-screen w-full bg-black bg-opacity-55 text-white centering'>
+    <div className='z-50 fixed top-0 h-screen w-full bg-black bg-opacity-55 text-white centering'>
       {/* <Spinner size={40} speed={0.8}/> */}
       <Bounce size={50} speed={1}/>
       {/* <Dots size={40}/> */}

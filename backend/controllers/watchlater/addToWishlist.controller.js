@@ -17,7 +17,8 @@ const addToWishList = async(req,res) => {
                     id,
                     mediaName,
                     mediaType,
-                    posterPath : 'https://image.tmdb.org/t/p/original'+ posterPath
+                    posterPath : 'https://image.tmdb.org/t/p/original'+ posterPath,
+                    mediaDate : new Date()
                 })
                 await userFind.save()
                 res.status(200).json({ message: "Added to watchlist" });

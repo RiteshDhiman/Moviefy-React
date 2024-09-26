@@ -24,7 +24,8 @@ const trackMovie = async(req,res) => {
           movieName,
           movieStatus : true,
           movieRuntime,
-          posterPath
+          posterPath,
+          movieDate : new Date()
         })
         await userFind.save()
         res.status(200).json({ message: 'Added to tracking' });

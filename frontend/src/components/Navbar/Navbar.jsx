@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import ContentCenter from '../../utilityComponent/ContentCenter.jsx'
 import { FiSearch } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { LuMenu } from "react-icons/lu";
 import moviefy from '../../assets/moviefy_logo.jpeg'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Authentication from './LoginSignup/Authentication.jsx'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { motion } from 'framer-motion'
-import dashboard from '../../assets/navbar/dashboard.png'
+import dashboard from '../../assets/navbar/dashboardProfile.png'
 import watchlater from '../../assets/navbar/watchlater.png'
 import menuBar from '../../assets/navbar/menuBar.png'
 import DetailedMenu from './DetailedMenu.jsx';
@@ -19,24 +19,37 @@ const Navbar = () => {
   const [login, setLogin] = useState(false)
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState(false)
-  const [text, setText] = useState();
+  const [searchIcon, setSearchIcon] = useState(true)
+  const [text, setText] = useState('');
   const [user, setUser] = useState(null)
   const [profile, setProfile] = useState(false)
   const [detailedMenu, setDetailedMenu] = useState(false)
   const [firstName, setFirstName] = useState(null)
   const auth = getAuth()
+  const location = useLocation()
 
   useEffect(()=>{
+    
+    location.pathname === '/' ? setSearchIcon(false) : setSearchIcon(true)
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-      setFirstName(currentUser?.displayName?.split(' ')[0])
-      // console.log(currentUser)
+      try {
+        if(currentUser){
+          setUser(currentUser)
+          setFirstName(currentUser?.displayName?.split(' ')[0])
+        }
+        else{
+          setUser(null)
+        }
+      } catch (error) {
+        alert('Error', error)
+      }
     })
 
     return () => unsubscribe()
-  }, [auth])
+  }, [auth, location.pathname])
 
-
+  console.log(searchIcon)
 
   const handleLogin = () => {
     setLogin(!login);
@@ -52,8 +65,8 @@ const Navbar = () => {
   }
   
   const handleSearchOnclick = () => {
-    navigate(`/search/multi/${text}`);
-    setSearch(!search)
+    text !== '' && navigate(`/search/multi/${text}`);
+    text !== '' && setSearch(!search)
   }
 
   const handleSearchEnter = (e) => {
@@ -69,20 +82,29 @@ const Navbar = () => {
     });
   };
 
+  const handleDashboard = () => {
+    !user && setLogin(!login) 
+    user && navigate('/profile')
+  }
+
+  const handleWatchlist = () => {
+    !user && setLogin(!login)
+    user && navigate('/watchlist')
+  }
+
   return (
     <div className='h-[9vh] 2xl:h-[7vh] flex flex-col justify-center items-center w-full z-10 bg-black bg-opacity-70'>
       <ContentCenter className={"h-full relative"}>
         <div className='text-white flex justify-between items-center h-full'>
             
-            <div onClick={()=>navigate('/')} className='hover:cursor-pointer w-[45%] md:w-1/6'>
-              <img src={moviefy} alt="" />
-            </div>
+
+            <div onClick={()=>navigate('/')} className='font-monoton text-3xl md:text-4xl uppercase cursor-pointer  '>Moviefy</div>
 
             <div className='h-full centering'>
               <ul className='flex gap-4 md:gap-6 items-center text-lg font-mukta h-full'>
 
                 <li 
-                  className='hidden md:flex centering gap-2 hover:text-[#c3e200] h-full cursor-pointer' 
+                  className='hidden md:flex centering gap-2 hover:text-[#c3e200] h-full cursor-pointer pl-4' 
                   onClick={()=>setDetailedMenu(!detailedMenu)}
                   onMouseEnter={()=>setDetailedMenu(true)}
                   onMouseLeave={()=>setDetailedMenu(false)}
@@ -91,17 +113,17 @@ const Navbar = () => {
                   <span>Menu</span>
                 </li>
 
-                <li className='hidden md:flex hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/profile')}>
-                  {/* <img src={dashboard} className='w-6' /> */}
+                <li className='hidden md:flex hover:text-[#c3e200] cursor-pointer centering gap-1' onClick={()=>handleDashboard()}>
+                  <img src={dashboard} className='w-7 invert' />
                   Dashboard
                 </li>
 
-                <li className='hidden md:flex centering gap-1 hover:text-[#c3e200] cursor-pointer' onClick={()=>navigate('/watchlist')}>
+                <li className='hidden md:flex centering gap-1 hover:text-[#c3e200] cursor-pointer' onClick={()=>handleWatchlist()}>
                   <img src={watchlater} className='w-5' />
                   WatchList
                 </li>
 
-                <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>
+                {searchIcon && <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>}
 
                 {user ? (
                 <div className='flex items-center gap-2 h-full' onMouseLeave={()=>setProfile(false)}>
@@ -150,7 +172,7 @@ const Navbar = () => {
         )}
 
         {search &&
-          <div className='absolute z-50 w-full flex justify-center items-center mt-10 h-[40px]'>
+          <div className='absolute z-40 w-full flex justify-center items-center mt-10 h-[40px]'>
             <input type="text" className='w-2/3 md:w-1/2 h-full outline-none pl-4 rounded-l-lg' onChange={(e)=>setText(e.target.value)} onKeyDown={(e)=>handleSearchEnter(e)}/>
             <button className='w-1/4 md:w-1/6 h-full bg-[#c3e200] font-oswald rounded-r-lg' onClick={handleSearchOnclick}>Search</button>
           </div>

@@ -77,7 +77,8 @@ const Details = () => {
           toast.success(`${data?.name || data?.title} added to Watch Later`, {style : {width : '400px'}});
       }
     } catch (error) {
-      alert(error.message)
+      setLoadingFull(false)
+      toast.error('Error while adding to watch later')
     }
   }
 
@@ -98,7 +99,8 @@ const Details = () => {
         toast.success(`${data?.name || data?.title} Tracked`, {style : {width : '400px'}});
       }
     } catch (error) {
-      alert(error.message)
+      setLoadingFull(false)
+      toast.error('Error while tracking movie')
     }
   }
 

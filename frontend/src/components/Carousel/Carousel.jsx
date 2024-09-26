@@ -64,7 +64,7 @@ const Carousel = ({data, loading, endpoint}) => {
             <Box display="flex" overflow="hidden" width="100%">
               {Array.from(new Array(10)).map((_, index) => (
                 <Box key={index} width={250} marginRight={2}>
-                  <Skeleton variant="rectangular" width={250} height={300} className='rounded-xl' animation = 'wave' sx={{backgroundColor : 'rgba(1000,1000,1000,0.2)'}} />
+                  <Skeleton variant="rectangular" width={200} height={300} className='rounded-xl' animation = 'wave' sx={{backgroundColor : 'rgba(1000,1000,1000,0.2)'}} />
                 </Box>
               ))}
             </Box>

@@ -72,7 +72,7 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
   return (
     <div className="text-white w-full h-[100vh] absolute z-30 top-0 flex justify-center items-center">
       {!loading ? (
-      <div className="w-5/6 md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black bg-gray-600 ">
+      <div className="w-[95%] md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black bg-gray-600 ">
         <span className="absolute z-50 top-3 right-3 text-8xl cursor-pointer" onClick={handleEpisode}>
           <img src={close} className='w-5 md:w-7 invert hover:scale-110 duration-200 cursor-pointer'/>
         </span>
@@ -83,7 +83,12 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
             {data?.vote_average !== 0 ?
             <div className="flex gap-2">
               <Box sx={{ '& > legend': { mt: 2} }}>
-                <Rating name="read-only" value={data?.vote_average/2 || 0} precision={0.5} readOnly />
+                <Rating 
+                  name="read-only" 
+                  value={data?.vote_average/2 || 0} 
+                  precision={0.5} 
+                  readOnly 
+                />
               </Box>
               <div>({data?.vote_average/2}/5)</div>
             </div>
@@ -109,11 +114,11 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
                     expandIcon={<MdKeyboardArrowDown className="text-white text-xl md:text-5xl"/>}
                   >
                     <div className="flex w-full">
-                      <div className="w-[40%] md:w-[15%]">
+                      <div className="w-1/3 md:w-[15%]">
                         <img src={url + item.still_path} className="w-full"/>
                       </div>
 
-                      <div className="px-1 md:px-10 flex flex-col h-full items-center justify-center w-3/5">
+                      <div className="px-2 md:px-10 flex flex-col h-full items-center justify-center w-3/5">
                         <div className="w-full flex items-center gap-3 md:gap-6">
                           <div className="font-mukta text-xl md:text-2xl 2xl:text-3xl font-extrabold ">{`S${seasonNumber} | E${item.episode_number}`}</div>
                           <div className="text-sm font-semibold text-gray-300 font-mukta">{`(${item.runtime} min)`}</div>
@@ -121,14 +126,14 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
                         <div className="w-full font-mukta text-md md:text-lg">{item.name}</div>
                       </div>
 
-                      <div className="md:w-1/5 flex items-center justify-end ">
+                      <div className="mr-2 md:w-1/5 flex items-center justify-end ">
                         <motion.button 
                           whileHover={{ scale: 1.15 }}
                           whileTap={{ scale: 0.95 }}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3 }}
-                          className={`w-[30px] h-[30px] md:w-[55px] md:h-[55px] rounded-full border-2 border-white flex justify-center items-center ${isEpisodeClicked(item.episode_number) ? 'bg-green-500' : 'bg-transparent'}`}
+                          className={`w-[40px] h-[40px] md:w-[55px] md:h-[55px] rounded-full border-2 border-white flex justify-center items-center ${isEpisodeClicked(item.episode_number) ? 'bg-green-500' : 'bg-transparent'}`}
                           onClick = {(event)=>trackEpisode(item.episode_number, item.name, item.runtime, event)}
                         >
                           <IoCheckmark className="text-4xl font-bold"/>

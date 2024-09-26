@@ -17,7 +17,8 @@ const signUpEmailPass = async(req,res) => {
 
         const user = new User({
             userId,
-            fullName
+            fullName,
+            userCreationDate : new Date()
         })
 
         await user.save()
