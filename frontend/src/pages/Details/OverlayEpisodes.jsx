@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 import { Bounce } from 'react-activity'
 import "react-activity/dist/library.css";
 
-const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, seasonNumber, handleEpisode, userId }) => {
+const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, seasonNumber, handleEpisode, userId, episodeCount }) => {
 
   const {url} = useSelector((state)=>state.home)
 
@@ -37,6 +37,7 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
       episodeNumber : epNumber,
       episodeName : epName,
       seasonNumber : data?.season_number,
+      totalEpisodes : episodeCount,
       episodeRuntime : epRuntime,
       posterPath,
     }

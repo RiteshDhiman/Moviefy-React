@@ -42,7 +42,8 @@ const WatchLater = () => {
         setWatchLaterList(response.data); // Set the fetched watch later array
       }
     } catch (error) {
-      alert("Error: " + error.message);
+      setLoading(false)
+      toast.error("Some error occurred. Reload the page.");
     }
   };
 
@@ -94,11 +95,11 @@ const WatchLater = () => {
           <div className="py-10 font-poetsen text-4xl">Watch Later</div>
           <div className="w-full">
             <div className="text-3xl font-mukta py-5">Movies</div>
-            <div className="grid md:grid-cols-3 grid-cols-2 gap-x-6 gap-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-5">
 
               {movies.length > 0 ? (
                 movies?.map((item, index) => (
-                  <div className="w-full text-white flex flex-col rounded-2xl bg-black">
+                  <div className="w-full text-white flex flex-col rounded-2xl bg-black border-[1.5px] border-slate-400">
                     <div className="flex">
 
                       <div className=" w-[40%] rounded-tl-2xl">
@@ -113,7 +114,7 @@ const WatchLater = () => {
 
                         <div className="w-full centering flex-col gap-2 font-poppins text-md font-semibold">
                           <motion.button
-                            className="w-4/5 rounded-xl bg-lime-400 bg-opacity-20 border-[1.5px] border-lime-600 py-2 text-lime-400"
+                            className="w-4/5 rounded-xl bg-lime-400 bg-opacity-20 border-[1.5px] border-lime-600 py-1 lg:py-2 text-lime-400"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             initial={{ opacity: 0, y: 20 }}
@@ -124,7 +125,7 @@ const WatchLater = () => {
                               Watched
                           </motion.button>
                           <motion.button
-                            className="w-4/5 rounded-xl bg-red-400 bg-opacity-20 border-[1.5px] border-red-600 py-2 text-red-500"
+                            className="w-4/5 rounded-xl bg-red-400 bg-opacity-20 border-[1.5px] border-red-600 py-1 lg:py-2 text-red-500"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             initial={{ opacity: 0, y: 20 }}
@@ -135,7 +136,7 @@ const WatchLater = () => {
                               Remove
                           </motion.button>
                           <motion.button
-                            className="w-4/5 rounded-xl bg-indigo-400 bg-opacity-20 border-[1.5px] border-indigo-400 py-2 text-indigo-300"
+                            className="w-4/5 rounded-xl bg-indigo-400 bg-opacity-20 border-[1.5px] border-indigo-400 py-1 lg:py-2 text-indigo-300"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             initial={{ opacity: 0, y: 20 }}

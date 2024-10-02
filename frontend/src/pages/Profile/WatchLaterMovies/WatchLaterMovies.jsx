@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import ContentCenter from "../../../utilityComponent/ContentCenter";
 import ProfileCarousel from "../ProfileComponents/ProfileCarousel";
+import OverlayProfile from "../ProfileComponents/OverlayProfile/OverlayProfile";
 
 const WatchLaterMovies = ({data}) => {
   const navigate = useNavigate()
+  const [overlay, setOverlay] = useState(false)
+
+  const handleOverlay = () => {
+    setOverlay(!overlay)
+  }
+
   console.log(data)
   return (
     <div>
@@ -25,10 +32,14 @@ const WatchLaterMovies = ({data}) => {
           </div>
 
           <div>
-            <ProfileCarousel data={data} endpoint={'movie'}/>
+            <ProfileCarousel data={data} endpoint={'movie'} handleOverlay={handleOverlay}/>
           </div>
         </ContentCenter>
       </div>
+
+      {
+        overlay && <OverlayProfile mediaType={'movie'} data={data} handleOverlay={handleOverlay}/>
+      }
     </div>
   );
 };

@@ -49,6 +49,9 @@ const tvSchema = new mongoose.Schema({
 
   posterPath : {
     type : String
+  },
+  totalEpisodes : {
+    type : Number
   }
 })
 

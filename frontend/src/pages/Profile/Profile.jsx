@@ -8,6 +8,7 @@ import TrackedMovies from './ProfileComponents/TrackedMovies/TrackedMovies';
 import WatchLaterMovies from './WatchLaterMovies/WatchLaterMovies';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
 
@@ -38,7 +39,8 @@ const Profile = () => {
         console.log(response)
       }
     } catch (error) {
-      alert("Error: " + error.message);
+      setLoading(false)
+      toast.error("Error: " + error.message);
     }
   };
 

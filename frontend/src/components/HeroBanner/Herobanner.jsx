@@ -70,7 +70,7 @@ import LazyLoadImages from '../../utilityComponent/LazyLoadImages'
         </div>
       </div>
 
-      <div className='absolute z-1 bottom-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent'></div>
+      <div className='absolute z-1 bottom-0 w-full h-1/4 bg-gradient-to-t from-black to-transparent'></div>
     </div>
   )
 }

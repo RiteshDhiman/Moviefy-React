@@ -55,6 +55,14 @@ const Details = () => {
     posterPath : data?.poster_path
   }
 
+  const favData = {
+    userId,
+    id,
+    mediaType,
+    mediaName : data?.title || data?.name,
+    posterPath : data?.poster_path
+  }
+
   const scrollToSection  = (sectionRef) => {
     sectionRef.current?.scrollIntoView({behavior : 'smooth'})
   }
@@ -69,6 +77,7 @@ const Details = () => {
       const testing = await axios.post('https://moviefy-react.onrender.com/add/wishlist', wishlistData)
       // const testing = await axios.post(`${BASE_ENDPOINT}/add/wishlist`, wishlistData)
       setLoadingFull(false)
+
       const message = testing.data.message;
 
       if (message === "Media Already exists") {
@@ -78,7 +87,28 @@ const Details = () => {
       }
     } catch (error) {
       setLoadingFull(false)
-      toast.error('Error while adding to watch later')
+      toast.error('Error while adding to Watch Later')
+    }
+  }
+
+  const addFav = async() => {
+    try {
+      setLoadingFull(true)
+      // const response = await axios.post('http://localhost:3000/add/fav', favData)
+      const response = await axios.post('https://moviefy-react.onrender.com/add/fav', favData)
+      setLoadingFull(false)
+
+      const message = response.data.message;
+
+      if(message === "Already present in favourites"){
+        toast.warning(`${data?.name || data?.title} already added to Favourites`, {style : {width : '400px'}})
+      }
+      else if(message === "Added to Favourites"){
+        toast.success(`${data?.name || data?.title} added to Favourites`, {style : {width : '400px'}});
+      }
+    } catch (error) {
+        setLoadingFull(false)
+        toast.error('Error while adding to Favourites')
     }
   }
 
@@ -163,7 +193,7 @@ const Details = () => {
 
                 <motion.button 
                   className='bg-[#C3E200] h-14 font-oswald uppercase text-xl font-medium flex justify-center items-center gap-2 rounded-md md:rounded-xl' 
-                  onClick={addtoWatchlist}
+                  onClick={addFav}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.96 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}

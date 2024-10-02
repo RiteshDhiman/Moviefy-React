@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import Carousel from "../../../../components/Carousel/Carousel";
 import ContentCenter from "../../../../utilityComponent/ContentCenter";
 import ProfileCarousel from "../ProfileCarousel";
+import OverlayProfile from "../OverlayProfile/OverlayProfile";
 
 const TrackedMovies = ({data}) => {
+
+  const [overlay, setOverlay] = useState(false)
+
+  const handleOverlay = () => {
+    setOverlay(!overlay)
+  }
+
   const navigate = useNavigate()
   console.log(data)
   return (
@@ -26,10 +34,14 @@ const TrackedMovies = ({data}) => {
           </div>
 
           <div>
-            <ProfileCarousel data={data?.watchedMedia?.movies} endpoint={'movie'}/>
+            <ProfileCarousel data={data?.watchedMedia?.movies} endpoint={'movie'} handleOverlay={handleOverlay}/>
           </div>
         </ContentCenter>
       </div>
+
+      {
+        overlay && <OverlayProfile mediaType={'movie'} data={data?.watchedMedia?.movies} handleOverlay={handleOverlay}/>
+      }
     </div>
   );
 };

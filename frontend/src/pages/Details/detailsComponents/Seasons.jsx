@@ -14,6 +14,7 @@ const Seasons = ({data, loading, userId}) => {
     const [ep, setEp] = useState(0)
     const posterImg = useSelector((state)=>state.home)
     const seasonCount = data?.number_of_seasons
+    const episodeCount = data?.number_of_episodes
     const seriesName = data?.title || data?.name
     const posterPath = data?.poster_path
 
@@ -74,7 +75,7 @@ const Seasons = ({data, loading, userId}) => {
         </div>
       </ContentCenter>
       {
-        showEps && <OverlayEpisodes posterPath={posterPath} seriesName={seriesName} seasonCount={seasonCount} userId={userId} seasonNumber={ep} seriesid={data?.id} handleEpisode={handleEpisode}/>
+        showEps && <OverlayEpisodes posterPath={posterPath} seriesName={seriesName} seasonCount={seasonCount} userId={userId} seasonNumber={ep} seriesid={data?.id} handleEpisode={handleEpisode} episodeCount={episodeCount}/>
       }
     </div>
   )

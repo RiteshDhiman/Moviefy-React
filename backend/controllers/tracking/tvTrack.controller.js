@@ -1,7 +1,7 @@
 const User = require("../../models/user.model");
 
 const trackTv = async (req, res) => {
-  const { userId, seriesId, seriesName, totalSeasons, watchedDate, episodeRuntime, episodeNumber, episodeName, seasonNumber, posterPath } = req.body;
+  const { userId, seriesId, seriesName, totalSeasons, watchedDate, episodeRuntime, episodeNumber, episodeName, seasonNumber, posterPath, totalEpisodes } = req.body;
 
   try {
     console.log(userId, seriesId, seriesName, totalSeasons, watchedDate, episodeNumber, episodeName, seasonNumber, posterPath);
@@ -59,7 +59,8 @@ const trackTv = async (req, res) => {
         userFind.watchedMedia.tvShows.push({
           tvId: seriesId,
           tvShowName: seriesName,
-          tvTotalSeasons: totalSeasons, // You can update this later if more seasons are tracked
+          tvTotalSeasons: totalSeasons,
+          totalEpisodes,
           seasons: [{
             seasonNumber,
             episodes: [{

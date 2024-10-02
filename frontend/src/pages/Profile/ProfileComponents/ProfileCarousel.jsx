@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import LazyLoadImages from '../../../utilityComponent/LazyLoadImages'
 import noposter from '../../../assets/no-poster.png'
 
-const ProfileCarousel = ({data, endpoint}) => {
+const ProfileCarousel = ({data, endpoint, handleOverlay}) => {
 
   const navigate = useNavigate();
 
@@ -26,7 +26,8 @@ const ProfileCarousel = ({data, endpoint}) => {
                   onMouseLeave={()=>{
                     setHover(null);
                   }}
-                  onClick={()=>endpoint === 'tv' ? navigate(`/tv/${item.tvId}`) : navigate(`/movie/${item.movieId}`)}
+                  // onClick={()=>endpoint === 'tv' ? navigate(`/tv/${item.tvId}`) : navigate(`/movie/${item.movieId}`)}
+                  onClick={handleOverlay}
                   >
                   <div className={`${absoluteHover === item.id ? 'opacity-40' : ''} hover:opacity-40 duration-300 rounded-xl`}>
                     <LazyLoadImages src={item.posterPath ? itemImg.url + item.posterPath : noposter}/>

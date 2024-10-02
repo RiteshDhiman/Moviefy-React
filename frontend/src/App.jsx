@@ -40,7 +40,6 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/:mediaType/:id' element={<Details/>}/>
           <Route path='/search/multi/:text' element={<SearchPage/>}/>
-          <Route path='/search/:media/' element={<SearchPage/>}/>
           <Route path='/movie/now_playing/' element={<SearchPage/>}/>
           <Route path='/trending/:media/week/' element={<SearchPage/>}/>
           <Route path='/:media/popular/' element={<SearchPage/>}/>
