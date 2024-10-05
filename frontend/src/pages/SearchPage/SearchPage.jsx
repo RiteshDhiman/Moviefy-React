@@ -18,67 +18,67 @@ const SearchPage = () => {
   let heading;
   const { url } = useSelector((state) => state.home);
 
-  if(location.pathname === `/search/multi/${text}`){
-    fetchUrl = useFetch(`/search/multi?query=${text}&page=1`)
+  if(location.pathname.startsWith('/search/multi')){
+    fetchUrl = `/search/multi?query=${text}&page=1`
     heading = `Search Results for "${text}"`
   }
 
   //MOVIES
 
   else if (location.pathname === `/trending/movie/week`){
-    fetchUrl = useFetch('/trending/movie/week')
+    fetchUrl = '/trending/movie/week'
     heading = `Trending Movies`
   }
 
   else if (location.pathname === `/movie/now_playing`){
-    fetchUrl = useFetch('/movie/now_playing')
+    fetchUrl = '/movie/now_playing'
     heading = `In Cinemas Movies`
   }
 
   else if (location.pathname === `/movie/popular`){
-    fetchUrl = useFetch('/movie/popular')
+    fetchUrl = '/movie/popular'
     heading = `Popular Movies`
   }
 
   else if (location.pathname === `/movie/top_rated`){
-    fetchUrl = useFetch('/movie/top_rated')
+    fetchUrl = '/movie/top_rated'
     heading = `Top Rated Movies`
   }
 
   else if (location.pathname === `/movie/upcoming`){
-    fetchUrl = useFetch('/movie/upcoming')
+    fetchUrl = '/movie/upcoming'
     heading = `Upcoming Movies`
   }
 
   //TV SHOWS
 
   else if(location.pathname === `/discover/tv`){
-    fetchUrl = useFetch('/discover/tv')
+    fetchUrl = '/discover/tv'
     heading = `Discover TV Shows`
   }
 
   else if (location.pathname === `/trending/tv/week`){
-    fetchUrl = useFetch('/trending/tv/week')
+    fetchUrl = '/trending/tv/week'
     heading = `Trending TV Shows`
   }
 
   else if (location.pathname === `/tv/top_rated`){
-    fetchUrl = useFetch('/tv/top_rated')
+    fetchUrl = '/tv/top_rated'
     heading = `Top Rated TV Shows`
   }
 
   else if (location.pathname === `/tv/popular`){
-    fetchUrl = useFetch('/tv/popular')
+    fetchUrl = '/tv/popular'
     heading = `Popular TV Shows`
   }
 
   else if (location.pathname === `/tv/airing_today`){
-    fetchUrl = useFetch('/tv/airing_today')
+    fetchUrl = '/tv/airing_today'
     heading = `Airing Today TV Shows`
   }
 
 
-  const {data,loading} = fetchUrl
+  const {data,loading} = useFetch(fetchUrl)
 
   // const [page, setPage] = useState(1)
   

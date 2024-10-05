@@ -11,6 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import LazyLoadImages from '../../utilityComponent/LazyLoadImages'
+import { CiCircleCheck } from "react-icons/ci";
+import { IoMdCheckmark } from "react-icons/io";
+import { MdDeleteOutline } from "react-icons/md";
 import dayjs from 'dayjs'
 
 const WatchLater = () => {
@@ -95,63 +98,75 @@ const WatchLater = () => {
           <div className="py-10 font-poetsen text-4xl">Watch Later</div>
           <div className="w-full">
             <div className="text-3xl font-mukta py-5">Movies</div>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-10">
 
               {movies.length > 0 ? (
                 movies?.map((item, index) => (
-                  <div className="w-full text-white flex flex-col rounded-2xl bg-black border-[1.5px] border-slate-400">
-                    <div className="flex">
+                  <div className="w-full h-[220px] text-white flex flex-col rounded-2xl bg-black border-slate-400" style={{background: 'radial-gradient(circle, #002f4c 30%, #001c2a 100%)',}}>
+                    <div className="flex h-full">
 
-                      <div className=" w-[40%] rounded-tl-2xl">
-                        <img src={item.posterPath} className="rounded-tl-2xl shadow-xl"/>
+                      <div className=" w-[40%] rounded-tl-2xl h-full">
+                        <img src={item.posterPath} className="rounded-tl-2xl shadow-xl h-full"/>
                       </div>
-                      
-                      <div className="w-[65%] flex flex-col items-center gap-2">
+                     
+                      <div className="w-[65%] flex flex-col items-center gap-2 overflow-hidden">
+
+                        <div className="py-3 centering text-2xl font-fina text-nowrap">
+                          {item.mediaName}
+                        </div>
+
+                        <div className="w-11/12 centering gap-4">
                         
-                        <div className="w-full centering py-2 font-roboto mb-2">
+                          <motion.button
+                            className="w-[60px] h-[60px] rounded-full bg-[#c8e200df] bg-opacity-75 centering"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2 }}
+                            onClick={() => removeWatchlist(item.id)}
+                          >
+                            <IoMdCheckmark className="invert h-1/2 w-1/2"/>
+                          </motion.button>
+
+                          <motion.button
+                            className="w-[60px] h-[60px] rounded-full bg-red-600 bg-opacity-75 centering"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2 }}
+                            onClick={() => removeWatchlist(item.id)}
+                          >
+                            <MdDeleteOutline className="invert h-1/2 w-1/2"/>
+                          </motion.button>
+                        </div>
+
+                        <div className="w-full centering font-roboto">
                           <span>Added on : {dayjs(item.mediaDate).format('D MMM YYYY')}</span>
                         </div>
 
-                        <div className="w-full centering flex-col gap-2 font-poppins text-md font-semibold">
-                          <motion.button
-                            className="w-4/5 rounded-xl bg-lime-400 bg-opacity-20 border-[1.5px] border-lime-600 py-1 lg:py-2 text-lime-400"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={() => removeWatchlist(item.id)}
-                          >
-                              Watched
-                          </motion.button>
-                          <motion.button
-                            className="w-4/5 rounded-xl bg-red-400 bg-opacity-20 border-[1.5px] border-red-600 py-1 lg:py-2 text-red-500"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={() => removeWatchlist(item.id)}
-                          >
-                              Remove
-                          </motion.button>
-                          <motion.button
-                            className="w-4/5 rounded-xl bg-indigo-400 bg-opacity-20 border-[1.5px] border-indigo-400 py-1 lg:py-2 text-indigo-300"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={() => navigate(`/${item.mediaType}/${item.id}`)}
-                          >
-                              Explore Now
-                          </motion.button>
-                        </div>
+                        {/* <div className="w-full h-full bg-sky-500 centering font-poppins text-md font-semibold">
+                          Explore Now
+                        </div> */}
+
+                        <motion.button
+                          className="w-4/5 rounded-xl bg-sky-500 bg-opacity-50 py-2 font-poppins text-md font-semibold"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3 }}
+                          onClick={() => navigate(`/${item.mediaType}/${item.id}`)}
+                        >
+                            Explore Now
+                        </motion.button>
+
                       </div>
                     </div>
-                    <div className="py-3 centering text-2xl font-fina border-t-[1px] border-slate-400">
+                    {/* <div className="py-3 centering text-2xl font-fina border-t-[1px] border-slate-400">
                       {item.mediaName}
-                    </div>
+                    </div> */}
                   </div>
                 ))
               ) : (
