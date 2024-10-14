@@ -3,17 +3,23 @@ import play from "../../../assets/play.png";
 import dayjs from "dayjs";
 import useFetch from '../../../hooks/useFetch'
 import { redirect, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const HeroBtn = ({ btndata, btnloading, mediaType, id }) => {
 
   const navigate = useNavigate()
 
-  const {data, loading} = mediaType === 'tv' ? useFetch(`/${mediaType}/${id}/season/1/videos`) : useFetch(`/${mediaType}/${id}/videos`)
+  const {data, loading} = mediaType === 'tv' ? useFetch(`/tv/${id}/videos`) : useFetch(`/${mediaType}/${id}/videos`)
 
   const [trailerId, setTrailerId] = useState(null);
 
   const trailer = (trailerId) => {
-    window.open(`https://www.youtube.com/watch?v=${trailerId}`, '_blank');
+    if(trailerId == null){
+      toast.warning('Sorry Trailer not Available')
+    }
+    else{
+      window.open(`https://www.youtube.com/watch?v=${trailerId}`, '_blank');
+    }
   }
 
   useEffect(() => {
@@ -78,6 +84,7 @@ const HeroBtn = ({ btndata, btnloading, mediaType, id }) => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };

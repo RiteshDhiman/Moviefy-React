@@ -108,7 +108,7 @@ const SearchPage = () => {
 
       <ContentCenter>
 
-        <div className="py-10 font-poetsen text-3xl">
+        <div className="py-10 font-roboto font-semibold text-4xl">
           {/* {
             text === undefined ?
 
@@ -122,7 +122,8 @@ const SearchPage = () => {
 
         {!loading 
             ?
-            (<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 min-h-[50vh]">
+            (data?.results?.length>0 ? 
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 min-h-[50vh]">
               
             {data?.results.map((item) => {
               return (
@@ -135,7 +136,9 @@ const SearchPage = () => {
                 </div>
               );
             })}
-          </div>)
+          </div> : (
+            <div className="h-[40vh] font-fina text-3xl font-semibold text-center centering">No results found</div>
+          ))
           :
           <div className="grid grid-cols-4 gap-6">
             <div className="w-full rgba(1000,1000,1000,0.2) h-[50vh]"></div>

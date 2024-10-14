@@ -120,13 +120,6 @@ const DetailedMenu = ({setDetailedMenu}) => {
 
         <div className='w-1/3 h-full py-8 gap-2'>
           <ul className='font-mukta font-medium text-2xl space-y-4'>
-            <li 
-                onClick={()=>navigate('/tv/top_rated')}
-                className='hover:text-[#c3e200] hover:scale-105 duration-150 cursor-pointer flex items-center gap-2'
-            >
-              <img src={heart} className='w-8'/>
-              <span>My Favourites</span>
-            </li>
 
             <li 
                 onClick={()=>navigate('/profile')}
@@ -144,6 +137,13 @@ const DetailedMenu = ({setDetailedMenu}) => {
               <span>My WatchLater</span>
             </li>
 
+            <li 
+                onClick={()=>navigate('/tv/top_rated')}
+                className='hover:text-[#c3e200] hover:scale-105 duration-150 cursor-pointer flex items-center gap-2'
+            >
+              <img src={heart} className='w-8'/>
+              <span>My Favourites</span>
+            </li>
 
           </ul>
         </div>

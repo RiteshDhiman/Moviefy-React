@@ -40,7 +40,7 @@ const TrackedShows = ({data}) => {
       </div>
 
       {
-        overlay && <OverlayProfile mediaType={'tv'} data={data?.watchedMedia?.tvShows} handleOverlay={handleOverlay}/>
+        overlay && <OverlayProfile mediaType={'tv'} data={data?.watchedMedia?.tvShows} handleOverlay={handleOverlay} overlay={overlay}/>
       }
     </div>
   );

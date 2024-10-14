@@ -163,8 +163,8 @@ const Details = () => {
 
               <div className='bg-slate-800 w-full md:w-3/5 lg:w-3/4 max-h-full rounded-2xl p-5 px-6 flex flex-col gap-3'>
                 <div className='text-[#C3E200] font-oswald text-3xl uppercase'>Description</div>
-                <div className='font-lato text-white text-lg overflow-ellipsis'>
-                  {data?.overview}
+                <div className='font-lato text-white text-lg overflow-hidden' title={data?.overview}>
+                  {data?.overview || 'No Description Available'}
                 </div>
               </div>
               
@@ -206,7 +206,7 @@ const Details = () => {
 
             <div className='h-1/2 w-full flex flex-col md:flex-row gap-4 my-3' ref={seasonRef}>
               <div className='w-full md:w-1/2'>
-                <SubDetails data={data} loading={loading}/>
+                <SubDetails data={data} loading={loading} mediaType={mediaType}/>
               </div>
 
               <div className='w-full md:w-1/2'>

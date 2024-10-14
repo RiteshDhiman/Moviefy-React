@@ -20,11 +20,11 @@ const WatchLaterMovies = ({data}) => {
         <ContentCenter>
           <div className="flex justify-between items-center mt-8 mb-4">
             <div className="text-xl md:text-3xl font-fina font-medium text-white">
-              Watch Later Movies
+              Watch Later
             </div>
             <div
               className="text-white flex w-[80px] justify-between items-center text-lg hover:text-[#c3e200] hover:cursor-pointer hover:scale-105 duration-200"
-              onClick={() => navigate("/movie/now_playing")}
+              onClick={() => navigate("/watchlist")}
             >
               <span>See All</span>
               <FaArrowRight />
@@ -38,7 +38,7 @@ const WatchLaterMovies = ({data}) => {
       </div>
 
       {
-        overlay && <OverlayProfile mediaType={'movie'} data={data} handleOverlay={handleOverlay}/>
+        overlay && <OverlayProfile mediaType={'movie'} data={data} handleOverlay={handleOverlay} overlay={overlay}/>
       }
     </div>
   );

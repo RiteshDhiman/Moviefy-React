@@ -26,7 +26,7 @@ const TrackedMovies = ({data}) => {
             </div>
             <div
               className="text-white flex w-[80px] justify-between items-center text-lg hover:text-[#c3e200] hover:cursor-pointer hover:scale-105 duration-200"
-              onClick={() => navigate("/movie/now_playing")}
+              onClick={() => handleOverlay()}
             >
               <span>See All</span>
               <FaArrowRight />
@@ -40,7 +40,7 @@ const TrackedMovies = ({data}) => {
       </div>
 
       {
-        overlay && <OverlayProfile mediaType={'movie'} data={data?.watchedMedia?.movies} handleOverlay={handleOverlay}/>
+        overlay && <OverlayProfile mediaType={'movie'} data={data?.watchedMedia?.movies} handleOverlay={handleOverlay} overlay={overlay}/>
       }
     </div>
   );

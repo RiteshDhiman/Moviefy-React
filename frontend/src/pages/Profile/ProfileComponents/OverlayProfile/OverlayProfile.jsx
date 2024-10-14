@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import close from '../../../../assets/close.png'
 import { useSelector } from 'react-redux'
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useNavigate } from 'react-router-dom';
 
-const OverlayProfile = ({data, handleOverlay, mediaType}) => {
+const OverlayProfile = ({data, handleOverlay, mediaType, overlay}) => {
 
   const { url } = useSelector((state)=>state.home)
   const navigate = useNavigate()
+
+  const overlayref= useRef(null)
 
   console.log(data)
 
@@ -24,12 +26,29 @@ const OverlayProfile = ({data, handleOverlay, mediaType}) => {
     console.log(count)
     return count || 0; // Return the total episode count, or 0 if none
   };
+
+  const handleClickOutsideOverlay = (event) => {
+    if (overlayref.current && !overlayref.current.contains(event.target)) {
+      handleOverlay()
+    }
+  };
+
+  useEffect(() => {
+    if (overlay) {
+      document.addEventListener('mousedown', handleClickOutsideOverlay);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutsideOverlay);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideOverlay);
+    };
+  }, [overlay]);
   
 
   return (
     <div className='text-white w-full h-[100vh] absolute z-30 top-0 flex justify-center items-center'>
 
-      <div className='w-[95%] md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black bg-gray-600'>
+      <div ref={overlayref} className='w-[95%] md:w-2/3 h-3/4 md:h-5/6 fixed flex rounded-xl shadow-2xl shadow-black bg-gray-600'>
 
         <span className="absolute z-50 top-3 right-3 text-8xl cursor-pointer" onClick={handleOverlay}>
           <img src={close} className='w-5 md:w-7 invert hover:scale-110 duration-200 cursor-pointer'/>

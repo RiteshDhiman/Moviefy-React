@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ContentCenter from '../../utilityComponent/ContentCenter.jsx'
 import { FiSearch } from 'react-icons/fi'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -11,6 +11,7 @@ import { motion } from 'framer-motion'
 import dashboard from '../../assets/navbar/dashboardProfile.png'
 import watchlater from '../../assets/navbar/watchlater.png'
 import menuBar from '../../assets/navbar/menuBar.png'
+import heart from '../../assets/heart.png'
 import DetailedMenu from './DetailedMenu.jsx';
 
 const Navbar = () => {
@@ -27,6 +28,8 @@ const Navbar = () => {
   const [firstName, setFirstName] = useState(null)
   const auth = getAuth()
   const location = useLocation()
+
+  const searchRef = useRef(null);
 
   useEffect(()=>{
     
@@ -49,7 +52,22 @@ const Navbar = () => {
     return () => unsubscribe()
   }, [auth, location.pathname])
 
-  console.log(searchIcon)
+  const handleClickOutsideSearch = (event) => {
+    if (searchRef.current && !searchRef.current.contains(event.target)) {
+      setSearch(false);
+    }
+  };
+
+  useEffect(() => {
+    if (search) {
+      document.addEventListener('mousedown', handleClickOutsideSearch);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutsideSearch);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideSearch);
+    };
+  }, [search]);
 
   const handleLogin = () => {
     setLogin(!login);
@@ -104,7 +122,7 @@ const Navbar = () => {
               <ul className='flex gap-4 md:gap-6 items-center text-lg font-mukta h-full'>
 
                 <li 
-                  className='hidden md:flex centering gap-2 hover:text-[#c3e200] h-full cursor-pointer pl-4' 
+                  className='hidden md:flex centering gap-2 hover:text-[#c3e200] duration-100 h-full cursor-pointer pl-4' 
                   onClick={()=>setDetailedMenu(!detailedMenu)}
                   onMouseEnter={()=>setDetailedMenu(true)}
                   onMouseLeave={()=>setDetailedMenu(false)}
@@ -113,14 +131,19 @@ const Navbar = () => {
                   <span>Menu</span>
                 </li>
 
-                <li className='hidden md:flex hover:text-[#c3e200] cursor-pointer centering gap-1' onClick={()=>handleDashboard()}>
+                <li className='hidden md:flex hover:text-[#c3e200] cursor-pointer duration-100 centering gap-1' onClick={()=>handleDashboard()}>
                   <img src={dashboard} className='w-7 invert' />
                   Dashboard
                 </li>
 
-                <li className='hidden md:flex centering gap-1 hover:text-[#c3e200] cursor-pointer' onClick={()=>handleWatchlist()}>
+                <li className='hidden md:flex centering gap-1 hover:text-[#c3e200] duration-100 cursor-pointer' onClick={()=>handleWatchlist()}>
                   <img src={watchlater} className='w-5' />
                   WatchList
+                </li>
+
+                <li className='hidden md:flex centering gap-1 hover:text-[#c3e200] duration-100 cursor-pointer' onClick={()=>handleWatchlist()}>
+                  <img src={heart} className='w-5' />
+                  Favourites
                 </li>
 
                 {searchIcon && <li><FiSearch onClick={handleSearch} className='text-2xl hover:text-[#c3e200] cursor-pointer'/></li>}
@@ -172,9 +195,9 @@ const Navbar = () => {
         )}
 
         {search &&
-          <div className='absolute z-40 w-full flex justify-center items-center mt-10 h-[40px]'>
-            <input type="text" className='w-2/3 md:w-1/2 h-full outline-none pl-4 rounded-l-lg' onChange={(e)=>setText(e.target.value)} onKeyDown={(e)=>handleSearchEnter(e)}/>
-            <button className='w-1/4 md:w-1/6 h-full bg-[#c3e200] font-oswald rounded-r-lg' onClick={handleSearchOnclick}>Search</button>
+          <div ref={searchRef} className='absolute z-40 w-full flex justify-center items-center h-[15vh] bg-slate-900 rounded-b-xl'>
+            <input type="text" className='w-2/3 md:w-2/3 h-1/2 outline-none pl-4 rounded-l-lg font-roboto text-2xl ' onChange={(e)=>setText(e.target.value)} onKeyDown={(e)=>handleSearchEnter(e)}/>
+            <button className='w-1/4 md:w-1/5 h-1/2 bg-[#c3e200] font-oswald rounded-r-lg text-2xl font-bold' onClick={handleSearchOnclick}>Search</button>
           </div>
         }
 
