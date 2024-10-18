@@ -30,9 +30,9 @@ const ProfileTabs = ({data}) => {
 
   return (
     <ContentCenter>
-      <div className='flex centering md:h-[20vh] w-full py-8 md:py-0'>
+      <div className='flex centering xl:h-[20vh] w-full py-8'>
 
-        <div className='w-full h-3/5 gap-2 mx-2 grid grid-cols-1 md:grid-cols-5 gap-y-5'>
+        <div className='w-full h-3/5 gap-2 mx-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-y-5'>
 
           {/* TV SHOWS WATCHED */}
           <div className='w-full flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
@@ -93,7 +93,7 @@ const ProfileTabs = ({data}) => {
           </div>
 
           {/* MOVIES TIME */}
-          <div className='w-full flex flex-col items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
+          <div className='w-full flex flex-col col-span-1 md:col-span-2 lg:col-span-1 items-center border-[0.5px] border-slate-400 bg-[#15202a] bg-opacity-70 text-white rounded-xl'>
 
             <div className='h-1/3 w-full centering gap-2 border-b-[0.5px] border-slate-400'>
               <MdLiveTv />

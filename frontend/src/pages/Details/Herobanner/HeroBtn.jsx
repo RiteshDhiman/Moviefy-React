@@ -35,10 +35,10 @@ const HeroBtn = ({ btndata, btnloading, mediaType, id }) => {
     <div>
       <div className="mt-2 md:mt-10 w-full grid grid-cols-2 md:grid-cols-4 justify-items-center gap-4 h-[100px]">
         <div className="hover:scale-95 duration-200 relative w-full h-full bg-[#c4e200e4] rounded-2xl md:rounded-3xl flex items-center font-poppins justify-center font-bold text-[#ababab] hover:cursor-pointer" onClick={()=>trailer(trailerId)}>
-          <div className="absolute -left-5 transform -rotate-90 text-xl text-black">
+          <div className="absolute -left-5 transform -rotate-90 text-lg md:text-xl text-black">
             TRAILER
           </div>
-          <img src={play} className="hover:scale-125 duration-300" />
+          <img src={play} className="hover:scale-125 duration-300 h-2/3" />
         </div>
 
         <div className="flex flex-col items-center justify-center hover:scale-95 duration-200 w-full md:h-full bg-[#15202a] bg-opacity-70 rounded-3xl font-poppins font-bold text-[#ababab] hover:cursor-pointer">
@@ -61,7 +61,7 @@ const HeroBtn = ({ btndata, btnloading, mediaType, id }) => {
           }
         </div>
 
-        <div className="flex flex-col items-center justify-center hover:scale-95 duration-200 w-full md:h-full bg-[#15202a] bg-opacity-70 rounded-3xl font-poppins font-bold text-[#ababab] hover:cursor-pointer">
+        <div className="flex flex-col items-center justify-center hover:scale-95 duration-200 w-full py-4 md:py-0 md:h-full bg-[#15202a] bg-opacity-70 rounded-3xl font-poppins font-bold text-[#ababab] hover:cursor-pointer">
           <div className="text-md">
             AIR DATE
           </div>

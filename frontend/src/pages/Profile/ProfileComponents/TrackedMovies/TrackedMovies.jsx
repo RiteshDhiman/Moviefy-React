@@ -34,7 +34,13 @@ const TrackedMovies = ({data}) => {
           </div>
 
           <div>
-            <ProfileCarousel data={data?.watchedMedia?.movies} endpoint={'movie'} handleOverlay={handleOverlay}/>
+            {data?.watchedMedia?.movies?.length > 0 ? 
+              (<ProfileCarousel data={data?.watchedMedia?.movies} endpoint={'movie'} handleOverlay={handleOverlay}/>)
+              :
+              <div className="w-full bg-slate-600 h-[25vh] rounded-2xl centering font-roboto text-2xl text-slate-200">
+                No Movies Tracked 😞
+              </div>
+            }
           </div>
         </ContentCenter>
       </div>

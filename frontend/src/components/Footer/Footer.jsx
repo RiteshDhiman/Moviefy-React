@@ -12,12 +12,12 @@ const Footer = () => {
       <ContentCenter>
         <div className='w-full py-10 flex flex-col mt-24 gap-4'>
 
-          <div className='flex w-full'>
+          <div className='flex flex-col md:flex-row w-full gap-4'>
             
-            <div className='font-monoton text-5xl 2xl:text-6xl uppercase cursor-pointer text-white w-1/2'>Moviefy</div>
+            <div className='font-monoton text-5xl 2xl:text-6xl uppercase cursor-pointer text-white w-full centering md:w-1/2'>Moviefy</div>
             
-            <div className='w-1/2 flex flex-col gap-2 centering text-white'>
-              <div className='text-lg md:text-xl'>Get in Touch</div>
+            <div className='w-full md:w-1/2 flex flex-col gap-2 centering text-white'>
+              <div className='text-lg md:text-xl font-fina'>Get in Touch</div>
               <div className='flex w-full justify-center gap-3'>
                 <a href="https://www.linkedin.com/in/ritesh-dhiman-542ab8261/" target="_blank" rel="noopener noreferrer">
                   <img src={linkedin} className='w-9 cursor-pointer hover:scale-110 duration-200' />

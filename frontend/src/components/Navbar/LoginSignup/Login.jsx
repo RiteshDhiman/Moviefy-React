@@ -25,23 +25,7 @@ const Login = ({loginsignuphandle, handleFormClose, setLoading}) => {
         setLoading(false)
         toast.error('Incorrect Credentials')
     }
-  }
-
-  const googlesignin = async() => {
-    try {
-      setLoading(true)
-      const response = await firebase.googlesignup()
-      setLoading(false)
-      toast.success('Google Login In Successful')
-      console.log(response)
-      handleFormClose('close')  
-    } catch (error) {
-      setLoading(false)
-      toast.error(error)
-    }
-  }
-  
-  
+  }  
 
   const {values, errors, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues:{
@@ -88,20 +72,6 @@ const Login = ({loginsignuphandle, handleFormClose, setLoading}) => {
               Sign In
             </motion.button>
           </form>
-
-          <div className='flex text-white font-mukta gap-2'>
-            <p>----------</p>
-            Or Login with
-            <p>----------</p>
-          </div>
-
-          <button 
-            className='flex items-center justify-center rounded-full w-11/12 gap-3 h-[40px] border-[1px] border-gray-300'
-            onClick={googlesignin}
-          >
-            <img src={google} className='h-2/3'/>
-            <span className='text-white font-semibold'>Google</span>
-          </button>
 
           <div className='font-mukta text-white font-semibold'>
             Don't have an account? <span className='text-[#c4e200] cursor-pointer' onClick={loginsignuphandle}>Sign Up now</span>

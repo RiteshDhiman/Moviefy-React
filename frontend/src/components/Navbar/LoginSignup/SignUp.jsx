@@ -25,6 +25,7 @@ const SignUp = ({loginsignuphandle, handleFormClose, setLoading}) => {
       const userId = userCredentials.user.uid;
       const fullName = userCredentials.user.displayName
 
+
       // const BASE_ENDPOINT = import.meta.env.VITE_DEVELOPMENT_MODE === "production" ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL
       
       // const userIDSend = await axios.post('http://localhost:3000/auth/signup', {userId, fullName})
@@ -35,6 +36,7 @@ const SignUp = ({loginsignuphandle, handleFormClose, setLoading}) => {
       actions.resetForm()
       handleFormClose('close')
     } catch (error) {
+      setLoading(false)
       toast.error(error.message)
     }
   }
@@ -115,20 +117,6 @@ const SignUp = ({loginsignuphandle, handleFormClose, setLoading}) => {
             Sign Up
           </motion.button>
         </form>
-
-        <div className='flex text-white font-mukta gap-2'>
-          <p>----------</p>
-          Or Login with
-          <p>----------</p>
-        </div>
-
-        <button 
-          className='flex items-center justify-center rounded-full w-11/12 gap-3 h-[40px] border-[1px] border-gray-300'
-          onClick={()=>firebase.googlesignup()}
-        >
-          <img src={google} className='h-2/3'/>
-          <span className='text-white font-semibold'>Google</span>
-        </button>
 
         <div className='font-mukta text-white font-semibold'>
           Already have an account? <span className='text-[#c4e200] cursor-pointer' onClick={loginsignuphandle}>Sign In now</span>

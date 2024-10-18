@@ -29,7 +29,7 @@ const SubDetails = ({ data, loading, mediaType }) => {
 
           <div className="w-1/3 h-full bg-black rounded-xl md:rounded-3xl centering flex-col gap-1 py-1">
             <div className="h-1/5 centering font-anton text-[#C3E200] text-xl ">STATUS</div>
-            <div className="h-3/5 text-center centering font-alfa text-lg md:text-2xl 2xl:text-3xl text-[#B0B0B0]">{data?.status === 'Returning Series' ? 'Returning' : 'Ended'}</div>
+            <div className="h-3/5 text-center centering font-alfa text-lg md:text-2xl 2xl:text-3xl py-[5px] md:py-0 text-[#B0B0B0]">{data?.status === 'Returning Series' ? 'Returning' : 'Ended'}</div>
           </div>
 
         </div>

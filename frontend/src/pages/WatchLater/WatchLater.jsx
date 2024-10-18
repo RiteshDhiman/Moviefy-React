@@ -68,7 +68,8 @@ const WatchLater = () => {
         toast.success("Removed from Watch List", { autoClose: 1500 });
       }
     } catch (error) {
-      alert("Error: " + error.message);
+      setLoading(false);
+      toast.error(error.message);
     }
   };
 
@@ -181,77 +182,81 @@ const WatchLater = () => {
           <div className="w-full">
             <div className="text-2xl font-roboto font-semibold py-2">TV Shows</div>
 
-            {tvShows.length > 0 ? (
-              <div className="grid md:grid-cols-3 grid-cols-2 gap-x-10 gap-y-5">
-                {tvShows.map((item, index) => (
+            {tvShows.length > 0 ?
+              (<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-10">
+                {tvShows?.map((item, index) => (
                   <div
-                    className="w-full text-white flex flex-col rounded-2xl"
+                    className="w-full h-[220px] text-white flex flex-col rounded-2xl bg-black border-slate-400"
                     style={{
                       background:
                         "radial-gradient(circle, #002f4c 30%, #001c2a 100%)",
                     }}
                   >
-                    <div className="flex">
-                      <div className=" w-[40%] rounded-tl-2xl">
+                    <div className="flex h-full">
+                      <div className=" w-[40%] rounded-tl-2xl h-full">
                         <img
                           src={item.posterPath}
-                          className="rounded-tl-2xl shadow-xl"
+                          className="rounded-tl-2xl shadow-xl h-full"
+                          loading="lazy"
                         />
                       </div>
 
-                      <div className="w-[65%] flex flex-col items-center gap-2">
-                        <div className="w-full centering py-2 font-roboto mb-2">
+                      <div className="w-[65%] flex flex-col items-center gap-2 overflow-hidden">
+                        <div className="py-3 centering text-2xl font-fina text-nowrap">
+                          {item.mediaName}
+                        </div>
+
+                        <div className="w-11/12 centering gap-4">
+                          <motion.button
+                            className="w-[60px] h-[60px] rounded-full bg-[#c8e200df] bg-opacity-75 centering"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2 }}
+                            onClick={() => removeWatchlist(item.id)}
+                          >
+                            <IoMdCheckmark className="invert h-1/2 w-1/2" />
+                          </motion.button>
+
+                          <motion.button
+                            className="w-[60px] h-[60px] rounded-full bg-red-600 bg-opacity-75 centering"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2 }}
+                            onClick={() => removeWatchlist(item.id)}
+                          >
+                            <MdDeleteOutline className="invert h-1/2 w-1/2" />
+                          </motion.button>
+                        </div>
+
+                        <div className="w-full centering font-roboto">
                           <span>
                             Added on :{" "}
                             {dayjs(item.mediaDate).format("D MMM YYYY")}
                           </span>
                         </div>
 
-                        <div className="w-full centering flex-col gap-2 font-poppins text-md font-semibold">
-                          <motion.button
-                            className="w-4/5 rounded-xl bg-lime-400 bg-opacity-20 border-[1.5px] border-lime-600 py-2 text-lime-400"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={() => removeWatchlist(item.id)}
-                          >
-                            Watched
-                          </motion.button>
-                          <motion.button
-                            className="w-4/5 rounded-xl bg-red-400 bg-opacity-20 border-[1.5px] border-red-600 py-2 text-red-500"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={() => removeWatchlist(item.id)}
-                          >
-                            Remove
-                          </motion.button>
-                          <motion.button
-                            className="w-4/5 rounded-xl bg-indigo-400 bg-opacity-20 border-[1.5px] border-indigo-400 py-2 text-indigo-300"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={() =>
-                              navigate(`/${item.mediaType}/${item.id}`)
-                            }
-                          >
-                            Explore Now
-                          </motion.button>
-                        </div>
+                        <motion.button
+                          className="w-4/5 rounded-xl bg-sky-500 bg-opacity-70 py-2 font-poppins text-md font-semibold"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3 }}
+                          onClick={() =>
+                            navigate(`/${item.mediaType}/${item.id}`)
+                          }
+                        >
+                          Explore Now
+                        </motion.button>
                       </div>
-                    </div>
-                    <div className="py-3 centering text-2xl font-fina">
-                      {item.mediaName}
                     </div>
                   </div>
                 ))}
-              </div>
+            </div>
             ) : (
               <div className="bg-slate-800 w-full rounded-2xl h-[20vh] centering font-roboto text-2xl text-slate-200">
                 No TV Shows added to Watch Later 😞

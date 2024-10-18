@@ -32,7 +32,13 @@ const WatchLaterMovies = ({data}) => {
           </div>
 
           <div>
-            <ProfileCarousel data={data} endpoint={'movie'} handleOverlay={handleOverlay}/>
+            {data?.length>0 ? 
+              <ProfileCarousel data={data} endpoint={'movie'} handleOverlay={handleOverlay}/>
+              :
+              <div className="w-full bg-slate-600 h-[25vh] rounded-2xl centering font-roboto text-2xl text-slate-200">
+                No Media in Watch Later 😞
+              </div>
+            }
           </div>
         </ContentCenter>
       </div>

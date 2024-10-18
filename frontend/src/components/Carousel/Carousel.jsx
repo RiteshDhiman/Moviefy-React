@@ -59,7 +59,7 @@ const Carousel = ({data, loading, endpoint}) => {
 
           </div>
         ) : (
-          <div className='w-full h-[300px]'>
+          <div className='w-full md:h-[300px]'>
             {/* <Skeleton variant='rectangular' height={300} animation='wave'/> */}
             <Box display="flex" overflow="hidden" width="100%">
               {Array.from(new Array(10)).map((_, index) => (

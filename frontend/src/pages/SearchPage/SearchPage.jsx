@@ -108,7 +108,7 @@ const SearchPage = () => {
 
       <ContentCenter>
 
-        <div className="py-10 font-roboto font-semibold text-4xl">
+        <div className="py-10 font-roboto font-semibold text-2xl md:text-4xl">
           {/* {
             text === undefined ?
 

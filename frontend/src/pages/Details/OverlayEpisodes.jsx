@@ -25,6 +25,8 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
 
   const { data, loading } = useFetch(`/tv/${seriesid}/season/${seasonNumber}`);
 
+  console.log(data)
+
   const trackEpisode = async(epNumber, epName, epRuntime, event) => {
     event.stopPropagation();
 
@@ -146,12 +148,12 @@ const OverlayEpisodes = ({ posterPath, seasonCount, seriesid, seriesName, season
                     <div className="flex flex-col gap-1">
                       <div className="border-t-[1px] border-white pt-2">Air date : {dayjs(item.air_date).format('D MMM YYYY')}</div>
 
-                      {data?.vote_average !== 0 ?
+                      {item?.vote_average !== 0 ?
                         <div className="flex gap-2">
                           <Box sx={{ '& > legend': { mt: 2} }}>
-                            <Rating name="read-only" value={data?.vote_average/2 || 0} precision={0.5} readOnly />
+                            <Rating name="read-only" value={item?.vote_average/2 || 0} precision={0.5} readOnly />
                           </Box>
-                          <div>({data?.vote_average/2}/5)</div>
+                          <div>({item?.vote_average/2}/5)</div>
                         </div>
                         : (
                           <div className="font-poppins">Rating Unavailable</div>
